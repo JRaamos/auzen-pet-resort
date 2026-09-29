@@ -54,4 +54,4 @@ Um build separado, em `qa/domain-build`, foi executado com `https://example.inva
 
 ## Pendências comerciais e publicação
 
-O site ainda não foi publicado. Domínio, endereço, Instagram, horários, políticas e depoimentos precisam de conteúdo confirmado do negócio. Essas lacunas não impedem o uso do frontend local ou a conversão pelo WhatsApp, mas permanecem ausentes do conteúdo público.
+Atualização: o site foi publicado em `https://auzen-pet-resort.vercel.app`, conforme `deploy.md`. Domínio próprio, endereço, Instagram, horários, políticas e depoimentos ainda precisam de confirmação do negócio. Esses dados permanecem ausentes do conteúdo público.

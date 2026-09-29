@@ -2,6 +2,10 @@
 
 Website institucional em português para hotel e creche de cães. React, TypeScript, Vite, pnpm e styled-components, com Motion para transições discretas. Conversão pelo WhatsApp; sem backend ou reservas próprias.
 
+Site publicado: https://auzen-pet-resort.vercel.app
+
+Projeto Vercel: https://vercel.com/jraamos-projects/auzen-pet-resort. A branch `main` está conectada ao ambiente Production. Detalhes e ressalva do plano atual em `docs/deploy.md`.
+
 ## Executar
 
 O deploy usa Node 24 e pnpm 10.15.1.
@@ -30,7 +34,7 @@ Endereço, Instagram, horário e links legais ficam ausentes enquanto seus campo
 
 ## Domínio e SEO
 
-Após confirmar o domínio oficial, configure `VITE_SITE_URL=https://dominio-confirmado` no ambiente do build e execute `pnpm build`. A URL deve ser uma origem HTTP(S), sem caminhos, parâmetros ou credenciais. Não há domínio presumido.
+Na Vercel, Production usa `VITE_SITE_URL=https://auzen-pet-resort.vercel.app`. Para migrar para um domínio próprio confirmado, atualize essa variável e gere novo deploy. A URL deve ser uma origem HTTP(S), sem caminhos, parâmetros ou credenciais. O arquivo local `.env.example` permanece sem domínio para não presumir o ambiente de desenvolvimento.
 
 O build inclui título, descrição, Open Graph, favicon, idioma e `robots.txt`. Com a URL configurada, gera canonical, `og:url`, imagem Open Graph absoluta e `sitemap.xml`; a referência ao sitemap entra no robots. Sem domínio, canonical e sitemap são omitidos. A informação estruturada `LocalBusiness` só aparece após domínio e endereço serem preenchidos.
 
@@ -50,4 +54,4 @@ Menu mobile com controle de foco, Escape, fundo inerte e fechamento ao navegar. 
 
 ## Verificação
 
-Confira `docs/validacao.md` para resultados da revisão local. Publicação, DNS, previews sociais em um domínio real e dados comerciais dependem da configuração final do negócio.
+Confira `docs/validacao.md` para a revisão local e `docs/deploy.md` para a publicação. Domínio próprio, adequação do plano ao uso comercial e dados comerciais permanecem decisões do negócio.
