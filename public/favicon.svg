@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">Auzen Pet Resort</title>
+  <rect width="64" height="64" rx="18" fill="#183e32"/>
+  <path d="M18 45 29.5 17h5L46 45h-7l-2.1-6H27L25 45h-7Zm11.2-12h5.5L32 24.8 29.2 33Z" fill="#f7f1e7"/>
+  <circle cx="47" cy="18" r="5" fill="#c86645"/>
+</svg>
