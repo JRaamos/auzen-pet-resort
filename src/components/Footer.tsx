@@ -77,6 +77,7 @@ const FooterBottom = styled(Container)`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
   gap: 1rem;
   margin-top: clamp(4rem, 8vw, 7rem);
   padding-top: 1.3rem;
@@ -88,6 +89,13 @@ const FooterBottom = styled(Container)`
     display: inline-flex;
     align-items: center;
     gap: 0.45rem;
+    color: ${({ theme }) => theme.colors.warmWhite};
+    font-weight: 700;
+  }
+`
+
+const FooterCredit = styled.span`
+  strong {
     color: ${({ theme }) => theme.colors.warmWhite};
     font-weight: 700;
   }
@@ -131,6 +139,7 @@ export function Footer() {
       </FooterGrid>
       <FooterBottom>
         <span>© {new Date().getFullYear()} Auzen Pet Resort</span>
+        <FooterCredit>Desenvolvido por <strong>Febraio Tech</strong></FooterCredit>
         {contactConfig.legalLinks.map((item) => <a href={item.href} key={item.href}>{item.label}</a>)}
         <a href="#inicio">
           Voltar ao início <ArrowUp size={14} aria-hidden="true" />
