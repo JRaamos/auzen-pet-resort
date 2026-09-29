@@ -21,7 +21,7 @@ const HeroShell = styled.section`
   }
 
   @media (max-width: 800px) and (max-height: 600px) {
-    --photo-height: 11.5rem;
+    --photo-height: 10rem;
   }
 `
 
@@ -164,7 +164,7 @@ const Title = styled.h1`
 `
 
 const Promise = styled.p`
-  max-width: 15ch;
+  max-width: 20ch;
   margin-bottom: 1rem;
   font-family: ${({ theme }) => theme.typography.display};
   font-size: clamp(2rem, 3.8vw, 3.4rem);
@@ -177,8 +177,6 @@ const Promise = styled.p`
     max-width: none;
     margin-bottom: 0.65rem;
     font-size: clamp(1.55rem, 6.5vw, 2rem);
-    br { display: none; }
-    em::before { content: ' '; }
   }
 `
 
@@ -301,7 +299,7 @@ export function Hero() {
           </motion.div>
           <motion.div variants={reduceMotion ? undefined : { hidden: { opacity: 0, y: 28 }, visible: { opacity: 1, y: 0 } }}>
             <Title>Auzen<i>.</i><small>Pet Resort</small></Title>
-            <Promise>Dias leves.<br /><em>Rabos felizes.</em></Promise>
+            <Promise>Dias de diversão.<br /><em>Carinho em cada estadia.</em></Promise>
           </motion.div>
           <motion.div variants={reduceMotion ? undefined : { hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0 } }}>
             <Lead>Natureza, brincadeira e acolhimento para o seu cão se sentir em casa.</Lead>
