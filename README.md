@@ -1,6 +1,6 @@
 # Auzen Pet Resort
 
-Website institucional em português para hotel e creche de cães. React, TypeScript, Vite, pnpm e styled-components, com Motion para transições discretas. Conversão pelo WhatsApp; sem backend ou reservas próprias.
+Website em português para hotel e creche de cães em Lauro de Freitas, com páginas institucionais, serviços, promoções e solicitação de reserva. React, TypeScript, Vite, React Router, pnpm e styled-components, com Motion para transições discretas. O formulário calcula a estimativa e prepara uma mensagem única para o WhatsApp; a equipe confirma a vaga e o pagamento.
 
 Site publicado: https://auzen-pet-resort.vercel.app
 
@@ -14,6 +14,8 @@ O deploy usa Node 24 e pnpm 10.15.1.
 pnpm install
 pnpm dev
 pnpm lint
+pnpm test
+pnpm test:e2e
 pnpm build
 pnpm preview
 ```
@@ -24,19 +26,23 @@ O build estático é gerado em `dist/`. `vercel.json` define Vite, instalação 
 
 - `src/styles/theme.ts`: cores, fontes, espaçamentos, raios, sombras e transições.
 - `src/config/contact.ts`: telefone, mensagens contextuais e campos comerciais opcionais.
-- `src/config/navigation.ts`: navegação por âncoras.
+- `src/config/navigation.ts`: páginas da navegação principal.
+- `src/config/booking.ts`: tabela inicial de diárias, cupom MAISDIAS, horários e limites.
+- `src/pages/ContentPages.tsx`: história familiar, serviços, promoções, espaço, contato e orientações.
+- `src/pages/BookingPage.tsx`: formulário em quatro etapas, revisão e link para WhatsApp.
+- `src/utils/booking.ts`: cálculo, validação e mensagem consolidada.
 - `src/data/gallery.ts`: seleção e enquadramentos da galeria.
 - `src/data/faq.ts`: perguntas e respostas.
 - `src/data/testimonials.ts`: vazio até receber depoimentos reais aprovados.
 - `src/components/Brand.tsx` e `public/favicon.svg`: wordmark e favicon provisórios.
 
-Endereço, Instagram, horário e links legais ficam ausentes enquanto seus campos forem `null`/vazios. Preencha somente com dados confirmados. Informações sobre preços, alimentação, vacinação, adaptação e atendimento veterinário não foram presumidas.
+WhatsApp, Instagram, endereço regional, história e horários vieram dos materiais enviados em 01/10/2026. O número do imóvel aguarda confirmação. Os preços e a promoção são provisórios, definidos a pedido do usuário e centralizados para revisão. As orientações usam o rascunho fornecido. Dados dos formulários não são persistidos; nenhum pagamento ou confirmação automática é realizado pelo site. Consulte `docs/expansao-reservas.md` para as decisões de conteúdo e fluxo.
 
 ## Domínio e SEO
 
 Na Vercel, Production usa `VITE_SITE_URL=https://auzen-pet-resort.vercel.app`. Para migrar para um domínio próprio confirmado, atualize essa variável e gere novo deploy. A URL deve ser uma origem HTTP(S), sem caminhos, parâmetros ou credenciais. O arquivo local `.env.example` permanece sem domínio para não presumir o ambiente de desenvolvimento.
 
-O build inclui título, descrição, Open Graph, favicon, idioma e `robots.txt`. Com a URL configurada, gera canonical, `og:url`, imagem Open Graph absoluta e `sitemap.xml`; a referência ao sitemap entra no robots. Sem domínio, canonical e sitemap são omitidos. A informação estruturada `LocalBusiness` só aparece após domínio e endereço serem preenchidos.
+O build inclui título, descrição, Open Graph, favicon, idioma, `robots.txt` e sitemap com as páginas públicas. O domínio publicado é o fallback de configuração. Títulos e canonical acompanham a navegação no navegador. Dados estruturados `LocalBusiness` incluem o contato e endereço fornecidos.
 
 ## Imagens e vídeo
 
