@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 interface BrandProps {
   inverted?: boolean
@@ -6,7 +7,7 @@ interface BrandProps {
   onClick?: () => void
 }
 
-const BrandLink = styled.a<{ $inverted: boolean }>`
+const BrandLink = styled(Link)<{ $inverted: boolean }>`
   display: inline-flex;
   flex-direction: column;
   gap: 0.02rem;
@@ -38,7 +39,7 @@ const Descriptor = styled.span`
 export function Brand({ inverted = false, className, onClick }: BrandProps) {
   return (
     <BrandLink
-      href="#inicio"
+      to="/"
       aria-label="Auzen Pet Resort — voltar ao início"
       $inverted={inverted}
       className={className}

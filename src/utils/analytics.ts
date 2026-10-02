@@ -1,4 +1,5 @@
-export type AnalyticsEventName = 'whatsapp_click' | 'gallery_open' | 'video_toggle'
+export type AnalyticsEventName =
+  'whatsapp_click' | 'gallery_open' | 'video_toggle' | 'reservation_start'
 
 export interface AnalyticsEventDetail {
   name: AnalyticsEventName

@@ -1,6 +1,7 @@
 import { MessageCircle } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import styled from 'styled-components'
+import { useLocation } from 'react-router-dom'
 import { contactConfig, createWhatsAppUrl } from '../config/contact'
 import { trackEvent } from '../utils/analytics'
 
@@ -24,9 +25,9 @@ const FloatingLink = styled.a<{ $visible: boolean }>`
   transition:
     background ${({ theme }) => theme.transitions.base},
     transform ${({ theme }) => theme.transitions.base};
-  opacity: ${({ $visible }) => $visible ? 1 : 0};
-  visibility: ${({ $visible }) => $visible ? 'visible' : 'hidden'};
-  pointer-events: ${({ $visible }) => $visible ? 'auto' : 'none'};
+  opacity: ${({ $visible }) => ($visible ? 1 : 0)};
+  visibility: ${({ $visible }) => ($visible ? 'visible' : 'hidden')};
+  pointer-events: ${({ $visible }) => ($visible ? 'auto' : 'none')};
 
   &:hover {
     background: ${({ theme }) => theme.colors.terracotta};
@@ -52,17 +53,25 @@ const FloatingLink = styled.a<{ $visible: boolean }>`
 `
 
 export function WhatsAppButton() {
+  const { pathname } = useLocation()
   const [visible, setVisible] = useState(false)
   useEffect(() => {
-    const targets = Array.from(document.querySelectorAll('#inicio, #contato, footer'))
-    const intersections = new Map(targets.map(element => [element, element.id === 'inicio']))
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => intersections.set(entry.target, entry.isIntersecting))
+    const targets = Array.from(
+      document.querySelectorAll('#inicio, #contato, footer'),
+    )
+    const intersections = new Map(
+      targets.map((element) => [element, element.id === 'inicio']),
+    )
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) =>
+        intersections.set(entry.target, entry.isIntersecting),
+      )
       setVisible(!Array.from(intersections.values()).some(Boolean))
     })
-    targets.forEach(target => observer.observe(target))
+    targets.forEach((target) => observer.observe(target))
     return () => observer.disconnect()
-  }, [])
+  }, [pathname])
+  if (pathname === '/reservar') return null
   return (
     <FloatingLink
       $visible={visible}

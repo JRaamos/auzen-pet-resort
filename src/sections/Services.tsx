@@ -4,7 +4,6 @@ import { ButtonLink } from '../components/Button'
 import { Container } from '../components/Container'
 import { ResponsiveImage } from '../components/ResponsiveImage'
 import { Reveal } from '../components/Reveal'
-import { createWhatsAppUrl } from '../config/contact'
 import { trackEvent } from '../utils/analytics'
 
 const ServicesShell = styled.section`
@@ -155,7 +154,9 @@ const Keywords = styled.p`
 const StyledTextButton = styled(ButtonLink)`
   align-self: flex-start;
   color: ${({ theme }) => theme.colors.terracottaLight};
-  &:hover { color: ${({ theme }) => theme.colors.white}; }
+  &:hover {
+    color: ${({ theme }) => theme.colors.white};
+  }
 `
 
 export function Services() {
@@ -163,10 +164,15 @@ export function Services() {
     <ServicesShell aria-labelledby="services-title">
       <ServicesIntro>
         <Reveal>
-          <IntroTitle id="services-title">Dois jeitos de viver o Auzen.</IntroTitle>
+          <IntroTitle id="services-title">
+            Dois jeitos de viver o Auzen.
+          </IntroTitle>
         </Reveal>
         <Reveal delay={0.12}>
-          <p>Para passar o dia ou ficar por mais tempo, a conversa começa entendendo o que você e seu cão precisam.</p>
+          <p>
+            Para passar o dia ou ficar por mais tempo, a conversa começa
+            entendendo o que você e seu cão precisam.
+          </p>
         </Reveal>
       </ServicesIntro>
       <Container>
@@ -189,17 +195,19 @@ export function Services() {
               <Label>Hotel</Label>
               <ServiceTitle>Uma estadia com clima de casa.</ServiceTitle>
               <ServiceText>
-                Para viagens, compromissos ou períodos de ausência: um lugar acolhedor, com natureza por perto, para o seu cão ficar.
+                Para viagens, compromissos ou períodos de ausência: um lugar
+                acolhedor, com natureza por perto, para o seu cão ficar.
               </ServiceText>
-              <Keywords>Hospedagem · períodos de ausência · ambiente acolhedor</Keywords>
+              <Keywords>
+                Hospedagem · períodos de ausência · ambiente acolhedor
+              </Keywords>
               <StyledTextButton
-                href={createWhatsAppUrl('hotel')}
-                target="_blank"
-                rel="noreferrer"
+                href="/reservar?servico=hotel"
                 variant="text"
-                onClick={() => trackEvent('whatsapp_click', 'hotel')}
+                onClick={() => trackEvent('reservation_start', 'hotel')}
               >
-                Consultar hospedagem <ArrowUpRight size={17} aria-hidden="true" />
+                Planejar hospedagem{' '}
+                <ArrowUpRight size={17} aria-hidden="true" />
               </StyledTextButton>
             </Reveal>
           </ServiceCopy>
@@ -223,17 +231,19 @@ export function Services() {
               <Label>Creche · Day Care</Label>
               <ServiceTitle>Um dia com mais quintal.</ServiceTitle>
               <ServiceText>
-                Um ambiente ao ar livre para brincar, explorar, conviver e gastar energia com uma rotina mais estimulante.
+                Um ambiente ao ar livre para brincar, explorar, conviver e
+                gastar energia com uma rotina mais estimulante.
               </ServiceText>
-              <Keywords>Brincadeiras · convivência · tempo ao ar livre</Keywords>
+              <Keywords>
+                Brincadeiras · convivência · tempo ao ar livre
+              </Keywords>
               <StyledTextButton
-                href={createWhatsAppUrl('daycare')}
-                target="_blank"
-                rel="noreferrer"
+                href="/reservar?servico=daycare"
                 variant="text"
-                onClick={() => trackEvent('whatsapp_click', 'daycare')}
+                onClick={() => trackEvent('reservation_start', 'daycare')}
               >
-                Quero conhecer a creche <ArrowUpRight size={17} aria-hidden="true" />
+                Quero conhecer a creche{' '}
+                <ArrowUpRight size={17} aria-hidden="true" />
               </StyledTextButton>
             </Reveal>
           </ServiceCopy>

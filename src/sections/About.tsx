@@ -4,6 +4,7 @@ import { Container } from '../components/Container'
 import { ResponsiveImage } from '../components/ResponsiveImage'
 import { Reveal } from '../components/Reveal'
 import { SectionHeading } from '../components/SectionHeading'
+import { ButtonLink } from '../components/Button'
 
 const AboutShell = styled.section`
   position: relative;
@@ -76,7 +77,8 @@ const MainImage = styled.div`
   position: relative;
   height: clamp(28rem, 62vw, 47rem);
   overflow: hidden;
-  border-radius: 0 ${({ theme }) => theme.radius.lg} ${({ theme }) => theme.radius.lg} 0;
+  border-radius: 0 ${({ theme }) => theme.radius.lg}
+    ${({ theme }) => theme.radius.lg} 0;
 
   &::after {
     position: absolute;
@@ -125,18 +127,29 @@ export function About() {
     <AboutShell id="auzen">
       <IntroGrid>
         <Reveal>
-          <SectionHeading eyebrow="O Auzen">Aqui, cachorro tem espaço para ser cachorro.</SectionHeading>
+          <SectionHeading eyebrow="O Auzen">
+            Aqui, cachorro tem espaço para ser cachorro.
+          </SectionHeading>
         </Reveal>
         <Reveal delay={0.12}>
           <Copy>
             <p>
-              Entre gramado, árvores e cantinhos de sombra, o Auzen reúne hotel e creche em um ambiente de verdade — aberto, próximo e cheio de vida.
+              Entre gramado, árvores e cantinhos de sombra, o Auzen reúne hotel
+              e creche em um ambiente de verdade — aberto, próximo e cheio de
+              vida.
             </p>
             <SimpleList aria-label="Características do espaço">
               <li>Natureza por perto</li>
               <li>Convivência</li>
               <li>Tempo ao ar livre</li>
             </SimpleList>
+            <ButtonLink
+              href="/quem-somos"
+              variant="text"
+              style={{ marginTop: '1.4rem' }}
+            >
+              Conheça a história da nossa família →
+            </ButtonLink>
           </Copy>
         </Reveal>
       </IntroGrid>
@@ -157,7 +170,9 @@ export function About() {
         <Reveal delay={0.15}>
           <Caption>
             <ArrowDownRight size={28} aria-hidden="true" />
-            <p>Companhia por perto. Um carinho entre uma brincadeira e outra.</p>
+            <p>
+              Companhia por perto. Um carinho entre uma brincadeira e outra.
+            </p>
           </Caption>
         </Reveal>
       </StoryGrid>

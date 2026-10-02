@@ -1,6 +1,9 @@
 export const siteConfig = {
   name: 'Auzen Pet Resort',
   shortName: 'Auzen',
-  description: 'Hotel e creche para cães em um espaço aberto, verde e acolhedor.',
-  siteUrl: import.meta.env.VITE_SITE_URL?.replace(/\/$/, '') || null,
+  description:
+    'Hotel, creche e transporte para cães em Lauro de Freitas. Natureza, acolhimento e carinho em cada estadia.',
+  siteUrl:
+    import.meta.env.VITE_SITE_URL?.replace(/\/$/, '') ||
+    'https://auzen-pet-resort.vercel.app',
 } as const

@@ -1,6 +1,7 @@
 import { ArrowUpRight, Menu, MessageCircle, X } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
+import { Link, NavLink, useLocation } from 'react-router-dom'
 import { contactConfig, createWhatsAppUrl } from '../config/contact'
 import { navigationItems } from '../config/navigation'
 import { trackEvent } from '../utils/analytics'
@@ -70,6 +71,9 @@ const DesktopNav = styled.nav`
       transform: scaleX(0);
       transform-origin: right;
       transition: transform ${({ theme }) => theme.transitions.base};
+    }
+    &[aria-current='page']::after {
+      transform: scaleX(1);
     }
 
     &:hover::after,
@@ -141,7 +145,8 @@ const MobileMenu = styled.div<{ $open: boolean }>`
   overflow-y: auto;
   visibility: ${({ $open }) => ($open ? 'visible' : 'hidden')};
   overscroll-behavior: contain;
-  padding: 5.5rem clamp(1.5rem, 6vw, 2rem) max(1.5rem, env(safe-area-inset-bottom));
+  padding: 5.5rem clamp(1.5rem, 6vw, 2rem)
+    max(1.5rem, env(safe-area-inset-bottom));
   color: ${({ theme }) => theme.colors.warmWhite};
   background: ${({ theme }) => theme.colors.forest};
   pointer-events: ${({ $open }) => ($open ? 'auto' : 'none')};
@@ -162,8 +167,12 @@ const MenuBackdrop = styled.div<{ $open: boolean }>`
   background: rgba(9, 25, 19, 0.6);
   opacity: ${({ $open }) => ($open ? 1 : 0)};
   visibility: ${({ $open }) => ($open ? 'visible' : 'hidden')};
-  transition: opacity 420ms, visibility 420ms;
-  @media (min-width: 1101px) { display: none; }
+  transition:
+    opacity 420ms,
+    visibility 420ms;
+  @media (min-width: 1101px) {
+    display: none;
+  }
 `
 
 const MenuIntro = styled.div`
@@ -172,8 +181,13 @@ const MenuIntro = styled.div`
   overflow: hidden;
   border-radius: 0 2.5rem 0 0;
   height: clamp(5rem, 18dvh, 12rem);
-  img { object-position: 50% 58%; }
-  @media (max-height: 600px) { height: 4rem; margin-bottom: 0.75rem; }
+  img {
+    object-position: 50% 58%;
+  }
+  @media (max-height: 600px) {
+    height: 4rem;
+    margin-bottom: 0.75rem;
+  }
 `
 
 const MobileNav = styled.nav<{ $open: boolean }>`
@@ -198,8 +212,13 @@ const MobileNav = styled.nav<{ $open: boolean }>`
     line-height: 1;
     transform: translateX(${({ $open }) => ($open ? '0' : '1.5rem')});
     opacity: ${({ $open }) => ($open ? 1 : 0)};
-    transition: transform 400ms, opacity 300ms, color 200ms;
-    &:hover { color: ${({ theme }) => theme.colors.terracottaLight}; }
+    transition:
+      transform 400ms,
+      opacity 300ms,
+      color 200ms;
+    &:hover {
+      color: ${({ theme }) => theme.colors.terracottaLight};
+    }
     span:first-child {
       font-family: ${({ theme }) => theme.typography.body};
       font-size: 0.6rem;
@@ -231,11 +250,19 @@ const MobileFooter = styled.div`
     color: ${({ theme }) => theme.colors.warmWhite};
     font-weight: 700;
   }
-  > span { text-align: center; font-size: 0.65rem; letter-spacing: 0.05em; }
-  @media (max-height: 600px) { margin-top: 1rem; }
+  > span {
+    text-align: center;
+    font-size: 0.65rem;
+    letter-spacing: 0.05em;
+  }
+  @media (max-height: 600px) {
+    margin-top: 1rem;
+  }
 `
 
 export function Header() {
+  const { pathname } = useLocation()
+  const solidHeader = pathname !== '/'
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const firstMobileLink = useRef<HTMLAnchorElement>(null)
@@ -253,29 +280,51 @@ export function Header() {
     document.body.classList.toggle('menu-open', menuOpen)
     if (!menuOpen) return
     const menuButton = menuButtonRef.current
-    const focusFrame = requestAnimationFrame(() => firstMobileLink.current?.focus({ preventScroll: true }))
-    const background = Array.from(document.querySelectorAll<HTMLElement>('main, footer, [data-floating-contact]'))
-    background.forEach((element) => { element.inert = true })
+    const focusFrame = requestAnimationFrame(() =>
+      firstMobileLink.current?.focus({ preventScroll: true }),
+    )
+    const background = Array.from(
+      document.querySelectorAll<HTMLElement>(
+        'main, footer, [data-floating-contact]',
+      ),
+    )
+    background.forEach((element) => {
+      element.inert = true
+    })
 
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') setMenuOpen(false)
       if (event.key === 'Tab') {
-        const focusable = Array.from(headerRef.current?.querySelectorAll<HTMLElement>('a, button') ?? [])
-          .filter((element) => element.tabIndex >= 0 && element.getClientRects().length > 0)
+        const focusable = Array.from(
+          headerRef.current?.querySelectorAll<HTMLElement>('a, button') ?? [],
+        ).filter(
+          (element) =>
+            element.tabIndex >= 0 && element.getClientRects().length > 0,
+        )
         const first = focusable[0]
         const last = focusable[focusable.length - 1]
-        if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus() }
-        if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus() }
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault()
+          last?.focus()
+        }
+        if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault()
+          first?.focus()
+        }
       }
     }
-    const onResize = () => { if (window.innerWidth > 1100) setMenuOpen(false) }
+    const onResize = () => {
+      if (window.innerWidth > 1100) setMenuOpen(false)
+    }
     window.addEventListener('keydown', onKeyDown)
     window.addEventListener('resize', onResize)
 
     return () => {
       cancelAnimationFrame(focusFrame)
       document.body.classList.remove('menu-open')
-      background.forEach((element) => { element.inert = false })
+      background.forEach((element) => {
+        element.inert = false
+      })
       menuButton?.focus({ preventScroll: true })
       window.removeEventListener('keydown', onKeyDown)
       window.removeEventListener('resize', onResize)
@@ -283,28 +332,26 @@ export function Header() {
   }, [menuOpen])
 
   const closeMenu = () => setMenuOpen(false)
-  const invertedBrand = menuOpen || !scrolled
+  const invertedBrand = menuOpen || (!scrolled && !solidHeader)
 
   return (
-    <HeaderShell ref={headerRef} $scrolled={scrolled} $open={menuOpen}>
+    <HeaderShell
+      ref={headerRef}
+      $scrolled={scrolled || solidHeader}
+      $open={menuOpen}
+    >
       <MenuBackdrop $open={menuOpen} onClick={closeMenu} aria-hidden="true" />
       <HeaderInner>
         <Brand inverted={invertedBrand} onClick={closeMenu} />
         <DesktopNav aria-label="Navegação principal">
           {navigationItems.map((item) => (
-            <a href={item.href} key={item.href}>
+            <NavLink to={item.href} end={item.href === '/'} key={item.href}>
               {item.label}
-            </a>
+            </NavLink>
           ))}
         </DesktopNav>
-        <HeaderCta
-          href={createWhatsAppUrl('availability')}
-          target="_blank"
-          rel="noreferrer"
-          onClick={() => trackEvent('whatsapp_click', 'header')}
-          aria-label={`Reservar pelo WhatsApp ${contactConfig.whatsapp.display}`}
-        >
-          Reservar pelo WhatsApp <ArrowUpRight size={15} aria-hidden="true" />
+        <HeaderCta as={Link} to="/reservar" aria-label="Planejar minha reserva">
+          Fazer reserva <ArrowUpRight size={15} aria-hidden="true" />
         </HeaderCta>
         <MenuButton
           ref={menuButtonRef}
@@ -314,7 +361,11 @@ export function Header() {
           aria-controls="mobile-navigation"
           onClick={() => setMenuOpen((current) => !current)}
         >
-          {menuOpen ? <X size={20} aria-hidden="true" /> : <Menu size={20} aria-hidden="true" />}
+          {menuOpen ? (
+            <X size={20} aria-hidden="true" />
+          ) : (
+            <Menu size={20} aria-hidden="true" />
+          )}
         </MenuButton>
       </HeaderInner>
       <MobileMenu
@@ -322,28 +373,45 @@ export function Header() {
         $open={menuOpen}
         aria-hidden={!menuOpen}
         onTransitionEnd={(event) => {
-          if (event.target === event.currentTarget && event.propertyName === 'transform' && menuOpen && document.activeElement === menuButtonRef.current) {
+          if (
+            event.target === event.currentTarget &&
+            event.propertyName === 'transform' &&
+            menuOpen &&
+            document.activeElement === menuButtonRef.current
+          ) {
             firstMobileLink.current?.focus({ preventScroll: true })
           }
         }}
       >
         <MenuIntro aria-hidden="true">
-          <ResponsiveImage base="hero-garden" alt="" width={1600} height={900} sizes="430px" />
+          <ResponsiveImage
+            base="hero-garden"
+            alt=""
+            width={1600}
+            height={900}
+            sizes="430px"
+          />
         </MenuIntro>
         <MobileNav $open={menuOpen} aria-label="Navegação mobile">
           {navigationItems.map((item, index) => (
-            <a
+            <NavLink
               ref={index === 0 ? firstMobileLink : undefined}
-              href={item.href}
+              to={item.href}
+              end={item.href === '/'}
               key={item.href}
               onClick={closeMenu}
               tabIndex={menuOpen ? 0 : -1}
             >
-              <span aria-hidden="true">0{index + 1}</span><span>{item.label}</span> <ArrowUpRight size={20} aria-hidden="true" />
-            </a>
+              <span aria-hidden="true">0{index + 1}</span>
+              <span>{item.label}</span>{' '}
+              <ArrowUpRight size={20} aria-hidden="true" />
+            </NavLink>
           ))}
         </MobileNav>
         <MobileFooter>
+          <Link to="/reservar" onClick={closeMenu} tabIndex={menuOpen ? 0 : -1}>
+            Fazer minha reserva <ArrowUpRight size={17} aria-hidden="true" />
+          </Link>
           <a
             href={createWhatsAppUrl('general')}
             target="_blank"
@@ -353,7 +421,9 @@ export function Header() {
           >
             <MessageCircle size={17} aria-hidden="true" /> Vamos conversar?
           </a>
-          <span>Hotel + Creche para cães · {contactConfig.whatsapp.display}</span>
+          <span>
+            Hotel + Creche para cães · {contactConfig.whatsapp.display}
+          </span>
         </MobileFooter>
       </MobileMenu>
     </HeaderShell>

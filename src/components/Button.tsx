@@ -1,5 +1,6 @@
 import type { AnchorHTMLAttributes, ReactNode } from 'react'
 import styled, { css } from 'styled-components'
+import { useLinkClickHandler } from 'react-router-dom'
 
 export type ButtonVariant = 'primary' | 'light' | 'outline' | 'text'
 
@@ -83,9 +84,24 @@ const StyledLink = styled.a<{ $variant: ButtonVariant }>`
   }}
 `
 
-export function ButtonLink({ children, variant = 'primary', ...props }: ButtonLinkProps) {
+export function ButtonLink({
+  children,
+  variant = 'primary',
+  ...props
+}: ButtonLinkProps) {
+  const navigate = useLinkClickHandler<HTMLAnchorElement>(props.href || '/', {
+    target: props.target,
+  })
   return (
-    <StyledLink $variant={variant} {...props}>
+    <StyledLink
+      $variant={variant}
+      {...props}
+      onClick={(event) => {
+        props.onClick?.(event)
+        if (props.href?.startsWith('/') && !event.defaultPrevented)
+          navigate(event)
+      }}
+    >
       {children}
     </StyledLink>
   )

@@ -1,5 +1,6 @@
 import { ArrowUp, ArrowUpRight } from 'lucide-react'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 import { contactConfig, createWhatsAppUrl } from '../config/contact'
 import { navigationItems } from '../config/navigation'
 import { trackEvent } from '../utils/analytics'
@@ -107,16 +108,21 @@ export function Footer() {
       <FooterGrid>
         <FooterIntro>
           <Brand inverted />
-          <p>Hotel e creche para cães, com natureza por perto e espaço para viver o dia do lado de fora.</p>
+          <p>
+            Hotel e creche para cães, com natureza por perto e espaço para viver
+            o dia do lado de fora.
+          </p>
         </FooterIntro>
         <FooterColumn>
           <h3>Navegue</h3>
           <nav aria-label="Navegação do rodapé">
             {navigationItems.map((item) => (
-              <a href={item.href} key={item.href}>
+              <Link to={item.href} key={item.href}>
                 {item.label}
-              </a>
+              </Link>
             ))}
+            <Link to="/reservar">Fazer reserva</Link>
+            <Link to="/informacoes">Antes da estadia</Link>
           </nav>
         </FooterColumn>
         <FooterColumn>
@@ -128,22 +134,41 @@ export function Footer() {
               rel="noreferrer"
               onClick={() => trackEvent('whatsapp_click', 'footer')}
             >
-              {contactConfig.whatsapp.display} <ArrowUpRight size={14} aria-hidden="true" />
+              {contactConfig.whatsapp.display}{' '}
+              <ArrowUpRight size={14} aria-hidden="true" />
             </a>
             <span>Informações e reservas pelo WhatsApp.</span>
-            {contactConfig.address && <address>{contactConfig.address}</address>}
-            {contactConfig.openingHours && <span>{contactConfig.openingHours}</span>}
-            {contactConfig.instagram && <a href={contactConfig.instagram} target="_blank" rel="noreferrer">Instagram <ArrowUpRight size={14} aria-hidden="true" /></a>}
+            {contactConfig.address && (
+              <address>{contactConfig.address}</address>
+            )}
+            {contactConfig.openingHours && (
+              <span>{contactConfig.openingHours}</span>
+            )}
+            {contactConfig.instagram && (
+              <a
+                href={contactConfig.instagram}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Instagram <ArrowUpRight size={14} aria-hidden="true" />
+              </a>
+            )}
           </div>
         </FooterColumn>
       </FooterGrid>
       <FooterBottom>
         <span>© {new Date().getFullYear()} Auzen Pet Resort</span>
-        <FooterCredit>Desenvolvido por <strong>Febraio Tech</strong></FooterCredit>
-        {contactConfig.legalLinks.map((item) => <a href={item.href} key={item.href}>{item.label}</a>)}
-        <a href="#inicio">
+        <FooterCredit>
+          Desenvolvido por <strong>Febraio Tech</strong>
+        </FooterCredit>
+        {contactConfig.legalLinks.map((item) => (
+          <a href={item.href} key={item.href}>
+            {item.label}
+          </a>
+        ))}
+        <Link to="/#inicio">
           Voltar ao início <ArrowUp size={14} aria-hidden="true" />
-        </a>
+        </Link>
       </FooterBottom>
     </FooterShell>
   )

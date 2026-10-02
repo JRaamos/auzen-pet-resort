@@ -1,11 +1,9 @@
-import { ArrowDown, ArrowRight, MessageCircle } from 'lucide-react'
+import { ArrowDown, ArrowRight, CalendarDays } from 'lucide-react'
 import { motion, useReducedMotion, useScroll, useTransform } from 'motion/react'
 import { useRef } from 'react'
 import styled from 'styled-components'
 import { ButtonLink } from '../components/Button'
 import { Container } from '../components/Container'
-import { createWhatsAppUrl } from '../config/contact'
-import { trackEvent } from '../utils/analytics'
 
 const HeroShell = styled.section`
   position: relative;
@@ -56,14 +54,35 @@ const Overlay = styled.div`
   z-index: -2;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(14, 31, 25, 0.66) 0, rgba(14, 31, 25, 0.45) 5rem, transparent 13rem),
-    linear-gradient(90deg, rgba(17, 48, 38, 0.96) 0%, rgba(17, 48, 38, 0.84) 28%, rgba(17, 48, 38, 0.18) 58%, rgba(17, 48, 38, 0.08) 100%),
+    linear-gradient(
+      180deg,
+      rgba(14, 31, 25, 0.66) 0,
+      rgba(14, 31, 25, 0.45) 5rem,
+      transparent 13rem
+    ),
+    linear-gradient(
+      90deg,
+      rgba(17, 48, 38, 0.96) 0%,
+      rgba(17, 48, 38, 0.84) 28%,
+      rgba(17, 48, 38, 0.18) 58%,
+      rgba(17, 48, 38, 0.08) 100%
+    ),
     linear-gradient(0deg, rgba(14, 31, 25, 0.68) 0%, transparent 45%);
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
     background:
-      linear-gradient(180deg, #183e32 3.2rem, rgba(24, 62, 50, 0.12) 6rem, transparent 8rem),
-      linear-gradient(180deg, transparent 8rem, rgba(24, 62, 50, 0.18) calc(var(--photo-height) - 5rem), #183e32 calc(var(--photo-height) + 3.5rem));
+      linear-gradient(
+        180deg,
+        #183e32 3.2rem,
+        rgba(24, 62, 50, 0.12) 6rem,
+        transparent 8rem
+      ),
+      linear-gradient(
+        180deg,
+        transparent 8rem,
+        rgba(24, 62, 50, 0.18) calc(var(--photo-height) - 5rem),
+        #183e32 calc(var(--photo-height) + 3.5rem)
+      );
   }
 `
 
@@ -133,7 +152,9 @@ const Eyebrow = styled.p`
     margin-bottom: 0.8rem;
     font-size: 0.62rem;
     letter-spacing: 0.14em;
-    &::before { width: 1.5rem; }
+    &::before {
+      width: 1.5rem;
+    }
   }
 `
 
@@ -145,7 +166,10 @@ const Title = styled.h1`
   letter-spacing: -0.058em;
   line-height: 0.88;
 
-  i { color: ${({ theme }) => theme.colors.terracotta}; font-style: normal; }
+  i {
+    color: ${({ theme }) => theme.colors.terracotta};
+    font-style: normal;
+  }
   small {
     display: block;
     margin: 0.8rem 0 0 0.35rem;
@@ -159,7 +183,10 @@ const Title = styled.h1`
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
     margin-bottom: 1rem;
     font-size: clamp(4.2rem, 18vw, 5.5rem);
-    small { margin-top: 0.55rem; font-size: 0.6rem; }
+    small {
+      margin-top: 0.55rem;
+      font-size: 0.6rem;
+    }
   }
 `
 
@@ -171,7 +198,9 @@ const Promise = styled.p`
   font-weight: 400;
   letter-spacing: -0.035em;
   line-height: 1.05;
-  em { color: ${({ theme }) => theme.colors.sand}; }
+  em {
+    color: ${({ theme }) => theme.colors.sand};
+  }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
     max-width: none;
@@ -209,7 +238,10 @@ const Actions = styled.div`
       padding-block: 0.65rem;
     }
 
-    a:last-child { border-color: transparent; background: transparent; }
+    a:last-child {
+      border-color: transparent;
+      background: transparent;
+    }
   }
 `
 
@@ -262,25 +294,55 @@ const ScrollCue = styled.a`
   }
 
   @keyframes float-down {
-    0%, 100% { transform: translateY(-2px); }
-    50% { transform: translateY(5px); }
+    0%,
+    100% {
+      transform: translateY(-2px);
+    }
+    50% {
+      transform: translateY(5px);
+    }
   }
 `
 
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null)
   const reduceMotion = useReducedMotion()
-  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start start', 'end start'] })
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start start', 'end start'],
+  })
   const imageY = useTransform(scrollYProgress, [0, 1], ['0%', '12%'])
 
   return (
     <HeroShell id="inicio" ref={sectionRef}>
-      <ImageLayer style={{ y: reduceMotion ? 0 : imageY, scale: reduceMotion ? 1 : 1.04 }}>
+      <ImageLayer
+        style={{ y: reduceMotion ? 0 : imageY, scale: reduceMotion ? 1 : 1.04 }}
+      >
         <picture>
-          <source media="(max-width: 800px)" type="image/avif" srcSet="/images/hero-mobile-v1-480.avif 480w, /images/hero-mobile-v1-900.avif 900w" sizes="100vw" />
-          <source media="(max-width: 800px)" srcSet="/images/hero-mobile-v1-480.jpg 480w, /images/hero-mobile-v1-900.jpg 900w" sizes="100vw" />
-          <source type="image/avif" srcSet="/images/hero-garden-900.avif 900w, /images/hero-garden-1600.avif 1600w" sizes="100vw" />
-          <img src="/images/hero-garden-1600.jpg" alt="Cães e natureza no jardim do Auzen Pet Resort" width={1600} height={900} fetchPriority="high" decoding="async" />
+          <source
+            media="(max-width: 800px)"
+            type="image/avif"
+            srcSet="/images/hero-mobile-v1-480.avif 480w, /images/hero-mobile-v1-900.avif 900w"
+            sizes="100vw"
+          />
+          <source
+            media="(max-width: 800px)"
+            srcSet="/images/hero-mobile-v1-480.jpg 480w, /images/hero-mobile-v1-900.jpg 900w"
+            sizes="100vw"
+          />
+          <source
+            type="image/avif"
+            srcSet="/images/hero-garden-900.avif 900w, /images/hero-garden-1600.avif 1600w"
+            sizes="100vw"
+          />
+          <img
+            src="/images/hero-garden-1600.jpg"
+            alt="Cães e natureza no jardim do Auzen Pet Resort"
+            width={1600}
+            height={900}
+            fetchPriority="high"
+            decoding="async"
+          />
         </picture>
       </ImageLayer>
       <Overlay />
@@ -291,31 +353,76 @@ export function Hero() {
           animate="visible"
           variants={{
             hidden: { opacity: 0 },
-            visible: { opacity: 1, transition: { staggerChildren: 0.12, delayChildren: 0.18 } },
+            visible: {
+              opacity: 1,
+              transition: { staggerChildren: 0.12, delayChildren: 0.18 },
+            },
           }}
         >
-          <motion.div variants={reduceMotion ? undefined : { hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0 } }}>
-            <Eyebrow>Hotel + Creche para cães</Eyebrow>
+          <motion.div
+            variants={
+              reduceMotion
+                ? undefined
+                : {
+                    hidden: { opacity: 0, y: 24 },
+                    visible: { opacity: 1, y: 0 },
+                  }
+            }
+          >
+            <Eyebrow>Hotel + Creche · Lauro de Freitas</Eyebrow>
           </motion.div>
-          <motion.div variants={reduceMotion ? undefined : { hidden: { opacity: 0, y: 28 }, visible: { opacity: 1, y: 0 } }}>
-            <Title>Auzen<i>.</i><small>Pet Resort</small></Title>
-            <Promise>Dias de diversão.<br /><em>Carinho em cada estadia.</em></Promise>
+          <motion.div
+            variants={
+              reduceMotion
+                ? undefined
+                : {
+                    hidden: { opacity: 0, y: 28 },
+                    visible: { opacity: 1, y: 0 },
+                  }
+            }
+          >
+            <Title>
+              Auzen<i>.</i>
+              <small>Pet Resort</small>
+            </Title>
+            <Promise>
+              Dias de diversão.
+              <br />
+              <em>Carinho em cada estadia.</em>
+            </Promise>
           </motion.div>
-          <motion.div variants={reduceMotion ? undefined : { hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0 } }}>
-            <Lead>Natureza, brincadeira e acolhimento para o seu cão se sentir em casa.</Lead>
+          <motion.div
+            variants={
+              reduceMotion
+                ? undefined
+                : {
+                    hidden: { opacity: 0, y: 24 },
+                    visible: { opacity: 1, y: 0 },
+                  }
+            }
+          >
+            <Lead>
+              Natureza, brincadeira e acolhimento para o seu cão se sentir em
+              casa.
+            </Lead>
           </motion.div>
-          <motion.div variants={reduceMotion ? undefined : { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}>
+          <motion.div
+            variants={
+              reduceMotion
+                ? undefined
+                : {
+                    hidden: { opacity: 0, y: 20 },
+                    visible: { opacity: 1, y: 0 },
+                  }
+            }
+          >
             <Actions>
-              <ButtonLink
-                href={createWhatsAppUrl('general')}
-                target="_blank"
-                rel="noreferrer"
-                onClick={() => trackEvent('whatsapp_click', 'hero')}
-              >
-                <MessageCircle size={18} aria-hidden="true" /> Falar pelo WhatsApp
+              <ButtonLink href="/reservar">
+                <CalendarDays size={18} aria-hidden="true" /> Planejar minha
+                reserva
               </ButtonLink>
-              <ButtonLink href="#espaco" variant="outline">
-                Conhecer o espaço <ArrowRight size={17} aria-hidden="true" />
+              <ButtonLink href="/servicos" variant="outline">
+                Serviços e valores <ArrowRight size={17} aria-hidden="true" />
               </ButtonLink>
             </Actions>
           </motion.div>
