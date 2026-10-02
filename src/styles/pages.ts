@@ -76,4 +76,25 @@ export const Note = styled.p`
   color: ${({ theme }) => theme.colors.brown};
   line-height: 1.7;
 `
-export const RuleList = styled.div`>article{display:grid;grid-template-columns:2rem 1fr;gap:1rem;padding:1.6rem 0;border-bottom:1px solid ${({ theme }) => theme.colors.line};svg{color:${({ theme }) => theme.colors.terracotta};}h3{margin:0 0 .4rem;font-size:1rem;}p{margin:0;font-size:.9rem;color:${({ theme }) => theme.colors.brown};}`
+export const RuleList = styled.div`
+  > article {
+    display: grid;
+    grid-template-columns: 2rem minmax(0, 1fr);
+    gap: 1rem;
+    padding: 1.6rem 0;
+    border-bottom: 1px solid ${({ theme }) => theme.colors.line};
+
+    > svg {
+      color: ${({ theme }) => theme.colors.terracotta};
+    }
+    h3 {
+      margin: 0 0 0.4rem;
+      font-size: 1rem;
+    }
+    p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: ${({ theme }) => theme.colors.brown};
+    }
+  }
+`

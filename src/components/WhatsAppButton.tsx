@@ -71,7 +71,8 @@ export function WhatsAppButton() {
     targets.forEach((target) => observer.observe(target))
     return () => observer.disconnect()
   }, [pathname])
-  if (pathname === '/reservar') return null
+  // These pages already expose the contact action in their primary content.
+  if (pathname === '/reservar' || pathname === '/contato') return null
   return (
     <FloatingLink
       $visible={visible}

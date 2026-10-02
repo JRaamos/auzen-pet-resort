@@ -1,5 +1,29 @@
 import { expect, test } from '@playwright/test'
 
+test('contact details align their icons and identify Renata with her role', async ({ page }) => {
+  await page.goto('/contato')
+  const details = page.getByLabel('Canais de contato e informações')
+  await expect(details).toContainText('Coordenadora de comunicações - Renata')
+  await expect(details).not.toContainText('Renato')
+  await expect(details.locator(':scope > article')).toHaveCount(4)
+  for (const row of await details.locator(':scope > article').all()) {
+    expect(await row.evaluate((element) => getComputedStyle(element).display)).toBe('grid')
+    const icon = await row.locator(':scope > span').boundingBox()
+    const content = await row.locator(':scope > div').boundingBox()
+    expect(icon).not.toBeNull()
+    expect(content).not.toBeNull()
+    expect(icon!.x + icon!.width).toBeLessThan(content!.x)
+    expect(Math.abs(icon!.y - content!.y)).toBeLessThan(2)
+    await expect(row.locator(':scope > span > svg')).toHaveAttribute('aria-hidden', 'true')
+  }
+  await expect(details.getByRole('link', { name: 'Conversar com a Renata' })).toHaveAttribute('href', /wa.me\/5571982412339/)
+  await expect(details.getByRole('link', { name: '(71) 98241-2339' })).toHaveAttribute('href', 'tel:+5571982412339')
+  await expect(details.getByRole('link', { name: '@auzenpetresort' })).toHaveAttribute('href', 'https://www.instagram.com/auzenpetresort/')
+  await expect(details.locator('dl')).toContainText('Até 09h')
+  await details.scrollIntoViewIfNeeded()
+  await expect(page.locator('[data-floating-contact]')).not.toBeVisible()
+})
+
 test('all routes load directly, render without overflow and keep the new contact', async ({
   page,
 }) => {

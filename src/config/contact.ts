@@ -2,7 +2,7 @@ export type WhatsAppIntent =
   'general' | 'hotel' | 'daycare' | 'visit' | 'availability'
 
 interface ContactConfig {
-  whatsapp: { display: string; digits: string }
+  whatsapp: { display: string; digits: string; name: string; role: string }
   address: string | null
   instagram: string | null
   openingHours: string | null
@@ -13,6 +13,8 @@ export const contactConfig: ContactConfig = {
   whatsapp: {
     display: '(71) 98241-2339',
     digits: '5571982412339',
+    name: 'Renata',
+    role: 'Coordenadora de comunicações',
   },
   address: 'Rua da Jurema, Quingoma de Fora, Lauro de Freitas – BA',
   instagram: 'https://www.instagram.com/auzenpetresort/',

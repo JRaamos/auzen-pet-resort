@@ -4,7 +4,7 @@ O projeto passa de landing page a site com navegação. Páginas: `/`, `/quem-so
 
 ## Conteúdo dos materiais enviados
 
-- WhatsApp: **(71) 98241-2339**, Renato. Todos os contatos usam `5571982412339`.
+- WhatsApp: **(71) 98241-2339**, Coordenadora de comunicações - Renata. Todos os contatos usam `5571982412339`.
 - Instagram: https://www.instagram.com/auzenpetresort/.
 - Rua da Jurema, Quingoma de Fora, Lauro de Freitas–BA. O número do imóvel permanece pendente de confirmação; o mapa busca a região, sem inventar coordenadas.
 - Referências de chegada: Terraço Mineira e Capela São José. Visitas devem ser combinadas previamente.

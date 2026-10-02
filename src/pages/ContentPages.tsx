@@ -2,12 +2,10 @@ import {
   ArrowRight,
   ArrowUpRight,
   CalendarDays,
-  Camera as Instagram,
   Clock3,
   Heart,
   Leaf,
   MapPin,
-  MessageCircle,
   Moon,
   PawPrint,
   ShieldCheck,
@@ -34,6 +32,7 @@ import {
   Split,
 } from '../styles/pages'
 import { Reveal } from '../components/Reveal'
+import { InstagramIcon, WhatsAppIcon } from '../components/SocialIcons'
 import { bookingConfig, preparationItems } from '../config/booking'
 import { contactConfig, createWhatsAppUrl } from '../config/contact'
 import { Faq } from '../sections/Faq'
@@ -577,6 +576,97 @@ export function SpacePage() {
 }
 
 const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent('Rua da Jurema, Quingoma de Fora, Lauro de Freitas, Bahia')}`
+const ContactDetails = styled(RuleList)`
+  > article {
+    grid-template-columns: 3.25rem minmax(0, 1fr);
+    gap: 1.1rem;
+    padding: 1.75rem 0;
+    &:first-child {
+      padding-top: 0;
+    }
+    &:last-child {
+      border-bottom: 0;
+    }
+    h3 {
+      color: ${({ theme }) => theme.colors.forest};
+      font-size: 1.1rem;
+      margin-bottom: 0.55rem;
+    }
+    p + p {
+      margin-top: 0.6rem;
+    }
+    a {
+      margin-top: 0.75rem;
+      min-height: 2.75rem;
+      text-align: left;
+      justify-content: flex-start;
+    }
+    .contact-person {
+      font-size: 0.8rem;
+      margin-bottom: 0.65rem;
+    }
+    .contact-phone {
+      display: inline-block;
+      margin: 0;
+      min-height: 0;
+      font-size: 1.05rem;
+      font-weight: 650;
+      color: ${({ theme }) => theme.colors.forest};
+    }
+  }
+  @media (max-width: 520px) {
+    > article {
+      grid-template-columns: 2.75rem minmax(0, 1fr);
+      gap: 0.8rem;
+    }
+  }
+`
+const ContactIcon = styled.span`
+  display: grid;
+  place-items: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 50%;
+  background: ${({ theme }) => theme.colors.sand};
+  color: ${({ theme }) => theme.colors.forest};
+  svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  @media (max-width: 520px) {
+    width: 2.75rem;
+    height: 2.75rem;
+    svg {
+      width: 1.3rem;
+      height: 1.3rem;
+    }
+  }
+`
+const ContactHours = styled.dl`
+  margin: 0.5rem 0 0.75rem;
+  font-size: 0.88rem;
+  > div {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.25rem 0;
+  }
+  dt {
+    color: ${({ theme }) => theme.colors.brown};
+  }
+  dd {
+    margin: 0;
+    font-weight: 650;
+    color: ${({ theme }) => theme.colors.forest};
+    white-space: nowrap;
+  }
+  @media (max-width: 380px) {
+    > div {
+      flex-direction: column;
+      gap: 0;
+    }
+  }
+`
 export function ContactPage() {
   return (
     <PageShell>
@@ -593,37 +683,56 @@ export function ContactPage() {
         <Container>
           <Split>
             <div>
-              <RuleList>
+              <ContactDetails id="contato" aria-label="Canais de contato e informações">
                 <article>
-                  <MessageCircle />
+                  <ContactIcon>
+                    <WhatsAppIcon />
+                  </ContactIcon>
                   <div>
-                    <h3>WhatsApp · Renato</h3>
-                    <p>{contactConfig.whatsapp.display}</p>
+                    <h3>Fale pelo WhatsApp</h3>
+                    <p className="contact-person">
+                      {contactConfig.whatsapp.role} - {contactConfig.whatsapp.name}
+                    </p>
+                    <p>
+                      <a
+                        className="contact-phone"
+                        href={`tel:+${contactConfig.whatsapp.digits}`}
+                      >
+                        {contactConfig.whatsapp.display}
+                      </a>
+                    </p>
                     <ButtonLink
                       href={createWhatsAppUrl()}
                       target="_blank"
                       rel="noreferrer"
                       variant="text"
                     >
-                      Conversar com a equipe <ArrowUpRight size={16} />
+                      Conversar com a {contactConfig.whatsapp.name}
+                      <ArrowUpRight size={16} aria-hidden="true" />
                     </ButtonLink>
                   </div>
                 </article>
                 <article>
-                  <Instagram />
+                  <ContactIcon>
+                    <InstagramIcon />
+                  </ContactIcon>
                   <div>
                     <h3>Nosso Instagram</h3>
-                    <a
+                    <ButtonLink
                       href={contactConfig.instagram!}
                       target="_blank"
                       rel="noreferrer"
+                      variant="text"
                     >
-                      @auzenpetresort ↗
-                    </a>
+                      @auzenpetresort
+                      <ArrowUpRight size={16} aria-hidden="true" />
+                    </ButtonLink>
                   </div>
                 </article>
                 <article>
-                  <MapPin />
+                  <ContactIcon>
+                    <MapPin strokeWidth={1.7} aria-hidden="true" />
+                  </ContactIcon>
                   <div>
                     <h3>Como chegar</h3>
                     <p>{contactConfig.address}</p>
@@ -638,25 +747,34 @@ export function ContactPage() {
                       rel="noreferrer"
                       variant="text"
                     >
-                      Abrir a região no mapa <ArrowUpRight size={16} />
+                      Abrir a região no mapa
+                      <ArrowUpRight size={16} aria-hidden="true" />
                     </ButtonLink>
                   </div>
                 </article>
                 <article>
-                  <Clock3 />
+                  <ContactIcon>
+                    <Clock3 strokeWidth={1.7} aria-hidden="true" />
+                  </ContactIcon>
                   <div>
                     <h3>Horários</h3>
-                    <p>
-                      Creche: 07h às 17h.
-                      <br />
-                      Hotel: entrada das 07h às 17h; saída até 09h.
-                    </p>
-                    <p>
+                    <ContactHours>
+                      <div>
+                        <dt>Creche</dt><dd>07h às 17h</dd>
+                      </div>
+                      <div>
+                        <dt>Hotel · check-in</dt><dd>07h às 17h</dd>
+                      </div>
+                      <div>
+                        <dt>Hotel · check-out</dt><dd>Até 09h</dd>
+                      </div>
+                    </ContactHours>
+                    <Note>
                       Transporte e visitas: mediante combinação com a equipe.
-                    </p>
+                    </Note>
                   </div>
                 </article>
-              </RuleList>
+              </ContactDetails>
             </div>
             <Photo>
               <img
