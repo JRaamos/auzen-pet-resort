@@ -1,5 +1,10 @@
 import { expect, test } from '@playwright/test'
 
+test.beforeEach(async ({ page }) => {
+  // Consent itself is covered by tests/marketing, including the 320px viewport.
+  await page.addLocatorHandler(page.getByRole('button', { name: 'Recusar opcionais' }), button => button.click())
+})
+
 test('service and privacy pages have unique metadata, usable photos, FAQs and mobile layout', async ({ page }, testInfo) => {
   const titles = new Set<string>()
   for (const path of ['/hotel', '/creche', '/privacidade']) {

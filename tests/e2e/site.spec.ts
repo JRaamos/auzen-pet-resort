@@ -1,5 +1,10 @@
 import { expect, test } from '@playwright/test'
 
+test.beforeEach(async ({ page }) => {
+  // Functional QA declines optional analytics through the actual consent UI.
+  await page.addLocatorHandler(page.getByRole('button', { name: 'Recusar opcionais' }), button => button.click())
+})
+
 test('contact details align their icons and identify Renata with her role', async ({ page }) => {
   await page.goto('/contato')
   const details = page.getByLabel('Canais de contato e informações')

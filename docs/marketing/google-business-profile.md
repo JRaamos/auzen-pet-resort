@@ -2,7 +2,7 @@
 
 Status: **PARCIAL**. Nenhuma ficha pública nova foi publicada nesta etapa. Não confundir a busca de região atualmente vinculada no site com uma ficha verificada do Auzen.
 
-Na sessão autenticada, o gerente mostrou zero empresas administradas. O assistente foi preenchido com Auzen Pet Resort, atendimento em loja física, categoria oferecida **Hotel para animais de estimação**, Rua da Jurema, Quingoma de Fora, Lauro de Freitas, Bahia. Ao avançar, a interface exibiu **O campo CEP é obrigatório**. O CEP não consta no site e foi solicitado ao proprietário; nenhum CEP ou pin foi estimado. O formulário permanece preparado, sem concluir publicação/verificação. Evidência: `qa/google-business-postal-code-required.png`.
+Na sessão autenticada, o gerente mostrou zero empresas administradas. O assistente foi preenchido com Auzen Pet Resort, atendimento em loja física, categoria oferecida **Hotel para animais de estimação**, Rua da Jurema, Quingoma de Fora, Lauro de Freitas, Bahia. Em 12/10/2026, o proprietário confirmou o **CEP 42725-430**, aceito pelo formulário. As sugestões de empresas existentes eram de outros nomes/endereços e não foram reivindicadas. O cadastro agora solicita posicionar o marcador exatamente no imóvel. Foi solicitado link do pin ou ajuste pelo proprietário; o marcador sugerido automaticamente não foi confirmado. Publicação/verificação permanecem pendentes.
 
 ## Elegibilidade e prevenção de duplicatas
 
@@ -18,7 +18,7 @@ A pesquisa pública pelo nome/Instagram não identificou uma ficha inequívoca d
 - Website: `https://auzenpetresort.com.br/?utm_source=google_business&utm_medium=organic&utm_campaign=perfil_empresa`.
 - Agendamento: `https://auzenpetresort.com.br/reservar?utm_source=google_business&utm_medium=organic&utm_campaign=perfil_empresa`.
 - Serviços: Hotel para cães; Creche para cães; Transporte mediante consulta.
-- Endereço textual: Rua da Jurema, Quingoma de Fora, Lauro de Freitas – BA. Não posicionar um pin estimado nem inventar CEP ou número.
+- Endereço textual: Rua da Jurema, Quingoma de Fora, Lauro de Freitas – BA, CEP 42725-430. Não posicionar um pin estimado nem inventar número.
 - Horários dos serviços: creche 07h–17h; check-in do hotel 07h–17h e check-out até 09h. Os dias semanais de recepção ainda precisam ser confirmados; não anunciar funcionamento 24 horas por causa do pernoite.
 
 Descrição pronta:
@@ -31,7 +31,7 @@ Fotos sugeridas: jardim, dois cães, área externa e foto de fachada/entrada a f
 
 Se Google solicitar vídeo, documento ou outra comprovação, o proprietário deve realizá-la. Não simular presença física ou identificação. A ficha só pode ser declarada verificada/publicada após confirmação na plataforma e no resultado público.
 
-Número/CEP/pin e dias de atendimento são lacunas reais do site, não pedidos para redigitar informações já publicadas. Confirmá-los apenas se a interface exigir ou antes de divulgar horários semanais.
+O CEP foi confirmado. Número/pin e dias de atendimento continuam sem confirmação. A interface já exige a localização exata; horários semanais precisam ser confirmados antes de divulgação.
 
 ## Outras presenças gratuitas
 

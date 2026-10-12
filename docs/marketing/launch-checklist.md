@@ -14,8 +14,11 @@
 
 - [x] Search Console: propriedade verificada e inspeções/indexação solicitada registradas.
 - [ ] Search Console: confirmar leitura bem-sucedida do sitemap (envio aceito, leitura com erro no painel).
-- [ ] GA4 do Auzen: propriedade correta, fluxo do domínio oficial, medição automática revisada.
-- [ ] Evento de teste visível no DebugView e em tempo real; cliques não confundidos com reservas.
+- [x] GA4 do Auzen: propriedade 558547876, fluxo G-Y0Z1M3Z4RX do domínio oficial, medição automática desligada e integração publicada.
+- [x] Teste de produção: ausência de coleta antes do consentimento; eventos enviados ao Google com HTTP 204; revogação validada.
+- [x] Eventos reais de QA confirmados no DebugView; cliques não confundidos com reservas.
+- [x] `whatsapp_click` marcado como evento principal, sem valor monetário fictício e sem duplicar o evento do código.
+- [ ] Confirmar consolidação nos relatórios normais de aquisição/engajamento e atribuição UTM após processamento.
 - [ ] GTM, se adotado, sem tag/visualização duplicada; Preview validado.
 - [ ] Perfil da Empresa: controle legítimo, endereço/pin e dias confirmados, verificação humana quando exigida.
 - [ ] Instagram/Facebook/WhatsApp Business: acesso administrativo legítimo e publicação confirmada.

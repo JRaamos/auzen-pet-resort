@@ -8,7 +8,16 @@ Data: 12/10/2026. Status técnico: **CONCLUÍDO**. Integrações de terceiros: *
 - `5096d7c0331c75d7102bb40efeebed5fb40fcbfe`: correção de contraste e hero imediatamente visível.
 - Push de ambos em `origin/main`, com identidade Git solicitada. Vercel confirmou deploy `dpl_CfsxE14o3sGo2LcEE4PNzoGDcJZk` **READY** para `5096d7c`.
 - Domínio de produção usado nos testes: `https://auzenpetresort.com.br`.
-- Variável pública `VITE_SITE_URL` de produção corrigida para esse domínio. Nenhum segredo ou arquivo `.env` foi commitado; IDs GA4/GTM continuam ausentes porque contas/fluxos não foram concluídos.
+- Variável pública `VITE_SITE_URL` de produção corrigida para esse domínio. Nenhum segredo ou arquivo `.env` foi commitado.
+- Continuação GA4: `e6f5c94`, deploy `dpl_8prEPYSGX5byyoawQmUmWxZRsFm7` READY, com `VITE_GA4_ID=G-Y0Z1M3Z4RX` em produção. `VITE_GTM_ID` permanece ausente.
+
+## Validação adicional do Analytics — 12/10/2026
+
+- 9/9 testes isolados de consentimento/eventos passaram novamente.
+- Teste real em produção: sem Google antes de consentir, ID correto, três pageviews para três rotas, eventos de Hotel/Creche e um clique WhatsApp por sessão, HTTP 204 do endpoint Google e script removido após revogação. Nenhuma mensagem enviada ou informação de formulário usada. Sessões de QA não representam leads.
+- Após a consulta inicial sem dados, o **DebugView confirmou às 07h27 (Bahia)** sete eventos da sessão consentida de 07h23: dois pageviews, dois CTAs, Hotel, Creche e WhatsApp. Evidência local `qa/ga4-debugview-confirmed.png`. A primeira visualização não estava em debug; o site enviou três visualizações para três rotas. A confirmação no painel é distinta do HTTP 204 e foi observada, não inferida.
+- `whatsapp_click` salvo como evento principal, sem valor monetário padrão, uma vez por evento e usando o código já instalado. Confirmado na lista de eventos principais (`qa/ga4-keyevent.png`). Nenhuma integração ou ativação de anúncios nesta etapa.
+- A primeira execução E2E com a nova configuração passou 15/18: três fluxos móveis encontraram o banner de consentimento sobre os controles. Os testes funcionais agora recusam cookies pela interface, mantendo a cobertura do consentimento na suíte específica. Nova execução em produção: **18/18 em 9,5 s**; lint passou. O site não foi alterado para esconder ou contornar o consentimento.
 
 ## Testes executados
 
@@ -48,4 +57,4 @@ Relatórios locais: `qa/lighthouse-home-mobile.json`, `qa/lighthouse-hotel-mobil
 
 ## Limites de homologação
 
-Search Console confirmou propriedade e solicitações de indexação; a home já estava indexada. Sitemap ainda com falha de leitura no Google, apesar de testes HTTP/XML válidos. Perfil da Empresa exige CEP; GA4 exige porte; GTM exige termos; Meta exige login; Ads exige confirmação de faturamento. Nenhum desses bloqueios deve ser descrito como integração funcionando. Nenhuma cobrança foi executada por este trabalho; histórico financeiro global da conta não foi auditado.
+Search Console confirmou propriedade e solicitações de indexação; a home já estava indexada. Sitemap ainda com falha de leitura no Google, apesar de testes HTTP/XML válidos. CEP e porte foram confirmados: Perfil da Empresa avançou até exigir o pin exato; GA4 foi criado/publicado, com transporte HTTP e recebimento no DebugView confirmados. GTM exige termos; Meta exige login; Ads exige confirmação de faturamento. Nenhuma cobrança foi executada por este trabalho; histórico financeiro global da conta não foi auditado.

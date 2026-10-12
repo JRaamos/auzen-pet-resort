@@ -18,8 +18,8 @@ Identidade existente preservada: verde, creme, terracota, fontes locais, fotogra
 | SEO técnico/local | CONCLUÍDO | Onze rotas com HTML pré-renderizado, metas únicas, canonical oficial, schema, robots e sitemap. 404 HTTP real. |
 | Hotel, Creche e WhatsApp | CONCLUÍDO | Páginas próprias, fotografias reais, FAQs, CTAs e reserva existente testados em produção. |
 | Search Console | PARCIAL | Propriedade verificada. Home já indexada. Indexação solicitada para home, Hotel e Creche. Sitemap enviado; leitura pelo Google pendente de correção/confirmação. |
-| Perfil da Empresa/Maps | PARCIAL | Sessão acessível, gerente sem empresas. Nome/categoria/endereço preparados; campo CEP obrigatório bloqueia avanço. |
-| GA4 | PARCIAL | Implementação testada; assistente na conta autorizada preparado, mas exige porte da empresa. Sem fluxo/ID real instalado. |
+| Perfil da Empresa/Maps | PARCIAL | CEP 42725-430 confirmado e aceito; Google solicitou posição exata no mapa. Confirmação do pin/verificação ainda pendente. |
+| GA4 | CONFIGURADO E PUBLICADO | Conta e propriedade próprias criadas; G-Y0Z1M3Z4RX publicado. Eventos consentidos confirmados no DebugView, incluindo WhatsApp, hotel, creche e visualizações. |
 | GTM | BLOQUEADO POR VERIFICAÇÃO | Conta autenticada sem contêineres. Formulário Auzen/Web/Brasil preparado; aceite explícito dos termos pendente do responsável. |
 | Instagram/Facebook | BLOQUEADO POR VERIFICAÇÃO | Instagram público existente; Meta Business solicita login do Instagram. Sem administração ou publicação alegada. |
 | WhatsApp Business | PARCIAL | Links e mensagens do site funcionando; perfil Business/gestão do número não comprovados. Respostas prontas sem migração. |
@@ -40,8 +40,8 @@ Identidade existente preservada: verde, creme, terracota, fontes locais, fotogra
 
 ## Ações estritamente do proprietário
 
-1. Confirmar CEP exato, número/pin e dias de recepção, dados ausentes do site.
-2. Informar faixa de funcionários exigida pelo GA4 e aceitar termos das ferramentas quando solicitado.
+1. Confirmar número/pin e dias de recepção. CEP 42725-430 já confirmado e aceito no Google.
+2. Aceitar termos das ferramentas quando solicitado. Porte do GA4 já confirmado (9 funcionários), cadastro concluído.
 3. Autenticar a conta que administra o Instagram/Meta do Auzen e realizar 2FA/verificação quando exigida.
 4. Resolver o faturamento do Ads apenas após revisão; não confirmar oferta que exija gasto acima de R$ 150. Depois, ativação exige autorização separada.
 5. Realizar a verificação presencial/documental do Perfil da Empresa, se Google a solicitar após completar o endereço.

@@ -1,12 +1,16 @@
 # Medição, consentimento e conversões
 
-Status: **PARCIAL**. Implementação e testes locais concluídos; recebimento real em GA4/DebugView e GTM Preview não se presume pelo código ou pela fila do navegador.
+Status: **CONFIGURADO, PUBLICADO E RECEBIMENTO CONFIRMADO NO DEBUGVIEW**. Fluxo real e integração de produção concluídos. Além do HTTP 204, o painel do Google exibiu os eventos consentidos do site.
 
 ## Estado das contas em 12/10/2026
 
 Na sessão Google autorizada, as propriedades existentes eram de outros projetos; nenhuma foi reutilizada. O cadastro próprio do Auzen foi concluído com Brasil, fuso Bahia, BRL, setor Animais de estimação e animais, compartilhamentos opcionais desligados e faixa de 1 a 10 funcionários (9 confirmados pelo proprietário). Objetivos: gerar leads e entender o tráfego.
 
-Fluxo Web criado: **Auzen Pet Resort - Site**, URL `https://auzenpetresort.com.br`, ID público de medição **`G-Y0Z1M3Z4RX`**. A métrica otimizada foi desativada na criação, evitando eventos automáticos de formulários, links de saída e histórico. Integração direta por `VITE_GA4_ID`, sem depender do contêiner GTM pendente. Publicação e recebimento real ainda precisam ser validados; criar o fluxo não comprova coleta.
+Conta **Auzen Pet Resort**, propriedade **Auzen Pet Resort - Site** (`558547876`). Fluxo Web: **Auzen Pet Resort - Site**, URL `https://auzenpetresort.com.br`, ID público de medição **`G-Y0Z1M3Z4RX`**. A métrica otimizada foi desativada na criação, evitando eventos automáticos de formulários, links de saída e histórico. Integração direta por `VITE_GA4_ID` de produção na Vercel, sem depender do contêiner GTM pendente.
+
+Deploy `e6f5c94` confirmado READY e testado no domínio oficial em 12/10/2026. Em sessões isoladas de QA, nenhum pedido ao Google antes do consentimento; após aceitar, `page_view`, `view_hotel`, `view_daycare` e `whatsapp_click` foram enviados ao ID correto, com respostas HTTP 204. Três rotas produziram três pageviews; o clique não abriu/enviou mensagem WhatsApp. Revogar consentimento descarregou o script. Nenhum formulário foi preenchido nessas sessões de medição.
+
+Na consulta inicial, Tempo real/DebugView ainda não mostravam os eventos. A confirmação chegou no **DebugView às 07h27 (Bahia)**: sete eventos da sessão de 07h23, sendo dois `page_view`, dois `cta_click`, um `view_hotel`, um `view_daycare` e um `whatsapp_click`. A primeira página não estava em debug. A tela também mostrou `non_personalized_ads = 1`. Evidência local: `qa/ga4-debugview-confirmed.png`. Debug foi limitado ao navegador de QA; não está ligado globalmente na produção. Cliques de teste não são leads comerciais.
 
 O Tag Manager abriu autenticado sem contas/contêineres. Formulário preparado para Auzen Pet Resort, país Brasil e contêiner Web `auzenpetresort.com.br`, sem compartilhamento anônimo. A criação chegou ao contrato e aceite dos termos de tratamento de dados. Não foi aceito em nome do responsável. Portanto, não há contêiner publicado nem Preview validado. Após consentimento do proprietário e conclusão do GA4, concluir a configuração e testar recebimento real antes de habilitar anúncios.
 
@@ -33,7 +37,7 @@ GA4 direto usa `send_page_view: false`; o app envia as visualizações. Na propr
 
 Se optar por GTM, configurar uma Google tag para a propriedade correta, com pageview automático desativado. Criar acionador de evento personalizado para os nomes da tabela e mapear somente as variáveis documentadas; não criar acionadores genéricos de cliques/formulários. Verificar consentimento obrigatório de analytics em cada tag. Não publicar tags de anúncios nesta missão.
 
-Marcar `whatsapp_click` como evento principal no GA4 apenas após validação. No Google Ads, importar uma única origem dessa ação, se adequado, evitando tag Ads + importação GA4 duplicadas. Não chamar esse evento de reserva/venda.
+Após confirmação no DebugView, **`whatsapp_click` foi marcado como evento principal** no GA4, com contagem uma vez por evento e **sem valor monetário padrão**. Usada a opção “Criar com código”, aproveitando o evento já emitido pelo site, sem regra derivada de pageview que duplicaria cliques. A lista de eventos principais confirmou a configuração (`qa/ga4-keyevent.png`). No Google Ads, importar uma única origem dessa ação, se adequado, evitando tag Ads + importação GA4 duplicadas. Não chamar esse evento de reserva/venda. Ads não foi vinculado nem ativado nesta etapa.
 
 ## Consentimento
 
@@ -49,7 +53,7 @@ Isso é uma implementação técnica, não parecer nem garantia de conformidade 
 
 `pnpm exec playwright test --config playwright.marketing.config.ts`: nove testes em desktop, mobile de 320 px e tablet, com requisições dos fornecedores interceptadas. Eles verificam ausência de chamadas antes da autorização, recusa persistente, um pageview e clique, prioridade GTM, SPA, atribuição e revogação. IDs fictícios ficam exclusivamente nos servidores dos testes, não no deploy.
 
-DebugView/Preview e recebimento de eventos reais são uma etapa distinta e precisam ser registrados depois da configuração da conta. Antes da ativação de anúncios, executar uma visita de teste consentida com UTM e conferir `whatsapp_click` real (sem enviar mensagem ao negócio).
+Recebimento dos eventos reais confirmado no DebugView, além do HTTP 204. GTM Preview não se aplica à instalação direta usada; o contêiner continua pendente. Antes da ativação de anúncios, validar também atribuição por UTM e eventual importação de conversão, sem duplicidade. Não classificar cliques de QA como leads comerciais.
 
 [Painel local gratuito](results-dashboard.html) e [modelo agregado](results-template.json) preparados. Abra o HTML no navegador e importe o JSON preenchido com resultados reais do mesmo período. O arquivo fica local, não é enviado nem persistido. Dados ausentes aparecem como indisponíveis; nenhuma métrica comercial foi inventada. Cliques, conversas, leads qualificados e reservas são medidas distintas. Para reservas futuras, usar inicialmente controle comercial agregado, sem introduzir dados pessoais no GA4.
 
