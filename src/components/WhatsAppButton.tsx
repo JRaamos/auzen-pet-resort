@@ -3,9 +3,9 @@ import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useLocation } from 'react-router-dom'
 import { contactConfig, createWhatsAppUrl } from '../config/contact'
-import { trackEvent } from '../utils/analytics'
 
 const FloatingLink = styled.a<{ $visible: boolean }>`
+  body.consent-open & { visibility: hidden; pointer-events: none; }
   position: fixed;
   z-index: 45;
   right: clamp(1rem, 2.4vw, 2rem);
@@ -82,7 +82,6 @@ export function WhatsAppButton() {
       target="_blank"
       rel="noreferrer"
       aria-label={`Falar com o Auzen pelo WhatsApp ${contactConfig.whatsapp.display}`}
-      onClick={() => trackEvent('whatsapp_click', 'floating_button')}
     >
       <MessageCircle size={20} aria-hidden="true" />
       <span>Falar com o Auzen</span>

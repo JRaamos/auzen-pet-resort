@@ -5,7 +5,6 @@ import { Container } from '../components/Container'
 import { ResponsiveImage } from '../components/ResponsiveImage'
 import { Reveal } from '../components/Reveal'
 import { createWhatsAppUrl } from '../config/contact'
-import { trackEvent } from '../utils/analytics'
 
 const Shell = styled.section`
   position: relative;
@@ -121,7 +120,6 @@ export function FinalCTA() {
             target="_blank"
             rel="noreferrer"
             variant="light"
-            onClick={() => trackEvent('whatsapp_click', 'final_cta')}
           >
             <MessageCircle size={18} aria-hidden="true" /> Chamar o Auzen no WhatsApp
           </FinalLink>

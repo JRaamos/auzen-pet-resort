@@ -4,7 +4,6 @@ import { ButtonLink } from '../components/Button'
 import { Container } from '../components/Container'
 import { ResponsiveImage } from '../components/ResponsiveImage'
 import { Reveal } from '../components/Reveal'
-import { trackEvent } from '../utils/analytics'
 
 const ServicesShell = styled.section`
   padding: ${({ theme }) => theme.spacing.section} 0;
@@ -202,11 +201,10 @@ export function Services() {
                 Hospedagem · períodos de ausência · ambiente acolhedor
               </Keywords>
               <StyledTextButton
-                href="/reservar?servico=hotel"
+                href="/hotel"
                 variant="text"
-                onClick={() => trackEvent('reservation_start', 'hotel')}
               >
-                Planejar hospedagem{' '}
+                Conhecer a hospedagem{' '}
                 <ArrowUpRight size={17} aria-hidden="true" />
               </StyledTextButton>
             </Reveal>
@@ -238,9 +236,8 @@ export function Services() {
                 Brincadeiras · convivência · tempo ao ar livre
               </Keywords>
               <StyledTextButton
-                href="/reservar?servico=daycare"
+                href="/creche"
                 variant="text"
-                onClick={() => trackEvent('reservation_start', 'daycare')}
               >
                 Quero conhecer a creche{' '}
                 <ArrowUpRight size={17} aria-hidden="true" />

@@ -6,7 +6,6 @@ import { Reveal } from '../components/Reveal'
 import { SectionHeading } from '../components/SectionHeading'
 import { createWhatsAppUrl } from '../config/contact'
 import { faqItems } from '../data/faq'
-import { trackEvent } from '../utils/analytics'
 
 const FaqShell = styled.section`
   padding: ${({ theme }) => theme.spacing.section} 0;
@@ -109,7 +108,6 @@ export function Faq() {
               href={createWhatsAppUrl('general')}
               target="_blank"
               rel="noreferrer"
-              onClick={() => trackEvent('whatsapp_click', 'faq_intro')}
             >
               <MessageCircle size={18} aria-hidden="true" /> Tirar uma dúvida
             </ButtonLink>
@@ -128,7 +126,7 @@ export function Faq() {
                     href={createWhatsAppUrl(item.intent)}
                     target="_blank"
                     rel="noreferrer"
-                    onClick={() => trackEvent('whatsapp_click', `faq_${item.intent}`)}
+                    data-service={item.intent}
                   >
                     {item.linkLabel} <ArrowUpRight size={14} aria-hidden="true" />
                   </a>

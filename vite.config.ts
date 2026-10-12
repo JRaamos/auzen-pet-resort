@@ -1,12 +1,13 @@
 import { defineConfig, loadEnv } from 'vite'
 import react from '@vitejs/plugin-react'
+import { publicPaths } from './src/config/seo.ts'
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '')
   const rawUrl = (
     process.env.VITE_SITE_URL ||
     env.VITE_SITE_URL ||
-    'https://auzen-pet-resort.vercel.app'
+    'https://auzenpetresort.com.br'
   ).trim()
   const parsedUrl = rawUrl ? new URL(rawUrl) : null
   if (
@@ -25,6 +26,8 @@ export default defineConfig(({ mode }) => {
   const siteUrl = parsedUrl?.origin ?? ''
 
   return {
+    define: { 'import.meta.env.VITE_SITE_URL': JSON.stringify(siteUrl) },
+    ssr: { noExternal: ['styled-components'] },
     plugins: [
       react(),
       {
@@ -58,16 +61,7 @@ export default defineConfig(({ mode }) => {
             source: `User-agent: *\nAllow: /\n${siteUrl ? `\nSitemap: ${siteUrl}/sitemap.xml\n` : ''}`,
           })
           if (siteUrl) {
-            const paths = [
-              '/',
-              '/quem-somos',
-              '/servicos',
-              '/promocoes',
-              '/espaco',
-              '/contato',
-              '/informacoes',
-              '/reservar',
-            ]
+            const paths = publicPaths
             this.emitFile({
               type: 'asset',
               fileName: 'sitemap.xml',

@@ -1215,6 +1215,8 @@ export function BookingPage() {
                   <ActionButton
                     as="a"
                     href={bookingWhatsAppUrl(booking)}
+                    data-service={booking.service}
+                    data-analytics-location="booking_review"
                     target="_blank"
                     rel="noreferrer"
                     onClick={(event) => {
@@ -1238,7 +1240,7 @@ export function BookingPage() {
               src="/images/garden-dog-900.jpg"
               alt="Cão no jardim do Auzen"
             />
-            <details open={window.matchMedia('(min-width: 901px)').matches}>
+            <details open={typeof window !== 'undefined' && window.matchMedia('(min-width: 901px)').matches}>
               <summary>
                 <Heading>Seu resumo</Heading>
                 <span className="compact-total">

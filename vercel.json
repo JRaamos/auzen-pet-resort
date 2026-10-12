@@ -4,10 +4,8 @@
   "installCommand": "pnpm install --frozen-lockfile",
   "buildCommand": "pnpm build",
   "outputDirectory": "dist",
-  "rewrites": [
-    {
-      "source": "/((?!images/|media/|assets/|favicon.svg|robots.txt|sitemap.xml).*)",
-      "destination": "/index.html"
-    }
-  ]
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [{ "source": "/:path*", "has": [{ "type": "host", "value": "auzen-pet-resort.vercel.app" }], "destination": "https://auzenpetresort.com.br/:path*", "permanent": true }],
+  "headers": [{ "source": "/(.*)", "headers": [{ "key": "X-Content-Type-Options", "value": "nosniff" }, { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }, { "key": "X-Frame-Options", "value": "SAMEORIGIN" }] }]
 }

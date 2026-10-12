@@ -291,6 +291,7 @@ export function ServicesPage() {
               <ButtonLink href="/reservar?servico=hotel">
                 Planejar hospedagem <ArrowRight size={17} />
               </ButtonLink>
+              <p><Link to="/hotel">Conheça todos os detalhes do hotel →</Link></p>
             </div>
           </PricingRow>
           <PricingRow id="creche">
@@ -322,6 +323,7 @@ export function ServicesPage() {
               <ButtonLink href="/reservar?servico=daycare">
                 Planejar dia de creche <ArrowRight size={17} />
               </ButtonLink>
+              <p><Link to="/creche">Conheça todos os detalhes da creche →</Link></p>
             </div>
           </PricingRow>
           <PricingRow id="transporte">

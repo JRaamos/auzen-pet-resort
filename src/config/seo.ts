@@ -1,0 +1,15 @@
+export const pageMetadata: Record<string, { title: string; description: string; image?: string }> = {
+  '/': { title: 'Hotel e creche para cães em Lauro de Freitas | Auzen Pet Resort', description: 'Conheça o Auzen Pet Resort em Quingoma de Fora, Lauro de Freitas: hotel e creche para cães com espaço ao ar livre. Consulte datas pelo WhatsApp.' },
+  '/hotel': { title: 'Hotel para cachorros em Lauro de Freitas | Auzen', description: 'Hospedagem para cães no Auzen Pet Resort, em Lauro de Freitas, BA. Conheça os horários, cuidados e orientações e consulte disponibilidade pelo WhatsApp.', image: 'hotel-rest-900.jpg' },
+  '/creche': { title: 'Creche para cães em Lauro de Freitas | Auzen', description: 'Creche canina e day care no Auzen, em Lauro de Freitas. Das 07h às 17h, com espaço ao ar livre. Converse com a equipe sobre adaptação e disponibilidade.', image: 'daycare-play-900.jpg' },
+  '/quem-somos': { title: 'Nossa história e o legado de Auzencio | Auzen Pet Resort', description: 'Conheça a história da família e o amor pelos animais que inspiraram o Auzen Pet Resort, hotel e creche para cães em Lauro de Freitas.' },
+  '/servicos': { title: 'Serviços, horários e estimativa de diárias | Auzen', description: 'Compare hotel e creche para cães no Auzen. Consulte horários, estimativas de diárias e transporte mediante disponibilidade em Lauro de Freitas.' },
+  '/promocoes': { title: 'Condições para estadias e consultas | Auzen Pet Resort', description: 'Veja as condições iniciais para estadias no Auzen e planeje os dias do seu cão. Valores, descontos e disponibilidade sujeitos à confirmação da equipe.' },
+  '/espaco': { title: 'Conheça o espaço e o jardim | Auzen Pet Resort', description: 'Veja fotos do jardim e dos cães no Auzen Pet Resort, em Quingoma de Fora, Lauro de Freitas. Combine uma visita com a equipe pelo WhatsApp.' },
+  '/contato': { title: 'Contato e localização em Lauro de Freitas | Auzen', description: 'Fale com Renata, coordenadora de comunicações do Auzen: (71) 98241-2339. Rua da Jurema, Quingoma de Fora, Lauro de Freitas, BA. Visitas combinadas.' },
+  '/informacoes': { title: 'O que levar e como preparar seu cão | Auzen Pet Resort', description: 'Prepare a carteira de vacinação, alimentação habitual e informações sobre saúde e rotina do seu cão. Confira as orientações para hotel e creche Auzen.' },
+  '/reservar': { title: 'Solicitar reserva de hotel ou creche | Auzen Pet Resort', description: 'Escolha serviço e datas, informe a rotina do seu cão e prepare sua solicitação pelo WhatsApp. A equipe do Auzen confirma valores e disponibilidade.' },
+  '/privacidade': { title: 'Privacidade e preferências de cookies | Auzen Pet Resort', description: 'Saiba como o Auzen trata os dados da solicitação de reserva, o contato pelo WhatsApp e suas preferências de medição de visitas.' },
+}
+export const notFoundMetadata = { title: 'Página não encontrada | Auzen Pet Resort', description: 'Este caminho não existe. Volte ao início ou conheça o hotel e a creche do Auzen Pet Resort.' }
+export const publicPaths = Object.keys(pageMetadata)

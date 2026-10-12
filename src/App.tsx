@@ -18,6 +18,11 @@ import { getLocalBusinessData } from './utils/structuredData'
 import { Container } from './components/Container'
 import { siteConfig } from './config/site'
 import { HomeNews } from './sections/HomeNews'
+import { pageMetadata, notFoundMetadata } from './config/seo'
+import { ServicePage } from './pages/ServicePage'
+import { PrivacyPage } from './pages/PrivacyPage'
+import { ConsentBanner } from './components/ConsentBanner'
+import { installClickTracking, trackPage } from './utils/analytics'
 
 const BookingPage = lazy(() =>
   import('./pages/BookingPage').then((module) => ({
@@ -79,16 +84,6 @@ const SkipLink = styled.a`
   }
 `
 
-const pageNames: Record<string, string> = {
-  '/': 'Hotel e creche para cães em Lauro de Freitas',
-  '/quem-somos': 'Quem somos',
-  '/servicos': 'Serviços, horários e valores',
-  '/promocoes': 'Promoções',
-  '/espaco': 'Nosso espaço e galeria',
-  '/contato': 'Contato e localização',
-  '/informacoes': 'Orientações antes da estadia',
-  '/reservar': 'Solicitar reserva',
-}
 function HomePage() {
   return (
     <>
@@ -109,15 +104,28 @@ function HomePage() {
 
 function App() {
   const location = useLocation()
+  useEffect(installClickTracking, [])
   useEffect(() => {
-    const title = `Auzen Pet Resort | ${pageNames[location.pathname] || 'Página não encontrada'}`
+    const metadata = pageMetadata[location.pathname] || notFoundMetadata
+    const { title } = metadata
     document.title = title
     document
       .querySelector('meta[property="og:title"]')
       ?.setAttribute('content', title)
     document
       .querySelector('meta[name="description"]')
-      ?.setAttribute('content', siteConfig.description)
+      ?.setAttribute('content', metadata.description)
+    const updateMeta = (selector: string, attribute: 'name' | 'property', key: string, content: string) => {
+      let meta = document.querySelector<HTMLMetaElement>(selector)
+      if (!meta) { meta = document.createElement('meta'); meta.setAttribute(attribute, key); document.head.appendChild(meta) }
+      meta.content = content
+    }
+    updateMeta('meta[property="og:description"]', 'property', 'og:description', metadata.description)
+    updateMeta('meta[property="og:image"]', 'property', 'og:image', `${siteConfig.siteUrl}/images/${'image' in metadata && metadata.image ? metadata.image : 'hero-garden-1600.jpg'}`)
+    updateMeta('meta[name="robots"]', 'name', 'robots', pageMetadata[location.pathname] ? 'index,follow' : 'noindex,follow')
+    updateMeta('meta[name="twitter:title"]', 'name', 'twitter:title', title)
+    updateMeta('meta[name="twitter:description"]', 'name', 'twitter:description', metadata.description)
+    updateMeta('meta[name="twitter:image"]', 'name', 'twitter:image', `${siteConfig.siteUrl}/images/${'image' in metadata && metadata.image ? metadata.image : 'hero-garden-1600.jpg'}`)
     let canonical = document.querySelector<HTMLLinkElement>(
       'link[rel="canonical"]',
     )
@@ -126,10 +134,11 @@ function App() {
       canonical.rel = 'canonical'
       document.head.appendChild(canonical)
     }
-    canonical.href = `${siteConfig.siteUrl}${location.pathname}`
+    canonical.href = `${siteConfig.siteUrl}${pageMetadata[location.pathname] ? location.pathname : '/404'}`
     document
       .querySelector('meta[property="og:url"]')
       ?.setAttribute('content', canonical.href)
+    trackPage(location.pathname, title)
     const frame = requestAnimationFrame(() => {
       if (location.hash)
         document.getElementById(location.hash.slice(1))?.scrollIntoView()
@@ -142,7 +151,7 @@ function App() {
     })
     return () => cancelAnimationFrame(frame)
   }, [location.pathname, location.hash])
-  const structuredData = getLocalBusinessData()
+  const structuredData = getLocalBusinessData(location.pathname)
   return (
     <>
       {structuredData && (
@@ -165,6 +174,9 @@ function App() {
         >
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/hotel" element={<ServicePage service="hotel" />} />
+            <Route path="/creche" element={<ServicePage service="daycare" />} />
+            <Route path="/privacidade" element={<PrivacyPage />} />
             <Route path="/quem-somos" element={<AboutPage />} />
             <Route path="/servicos" element={<ServicesPage />} />
             <Route path="/promocoes" element={<PromotionsPage />} />
@@ -181,6 +193,7 @@ function App() {
       </main>
       <Footer />
       <WhatsAppButton />
+      <ConsentBanner />
     </>
   )
 }

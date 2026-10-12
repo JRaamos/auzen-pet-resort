@@ -12,6 +12,7 @@ export default defineConfig({
   outputDir: 'qa/test-results',
   projects: [
     { name: 'desktop', use: { viewport: { width: 1440, height: 1000 } } },
+    { name: 'tablet', use: { viewport: { width: 768, height: 1024 }, hasTouch: true } },
     {
       name: 'small-mobile',
       use: {

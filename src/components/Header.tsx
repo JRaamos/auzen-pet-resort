@@ -4,7 +4,6 @@ import styled from 'styled-components'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { contactConfig, createWhatsAppUrl } from '../config/contact'
 import { navigationItems } from '../config/navigation'
-import { trackEvent } from '../utils/analytics'
 import { Brand } from './Brand'
 import { ResponsiveImage } from './ResponsiveImage'
 
@@ -417,7 +416,6 @@ export function Header() {
             target="_blank"
             rel="noreferrer"
             tabIndex={menuOpen ? 0 : -1}
-            onClick={() => trackEvent('whatsapp_click', 'mobile_menu')}
           >
             <MessageCircle size={17} aria-hidden="true" /> Vamos conversar?
           </a>

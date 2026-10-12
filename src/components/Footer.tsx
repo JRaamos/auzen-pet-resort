@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { contactConfig, createWhatsAppUrl } from '../config/contact'
 import { navigationItems } from '../config/navigation'
-import { trackEvent } from '../utils/analytics'
+import { openConsentPreferences } from '../utils/analytics'
 import { Brand } from './Brand'
 import { Container } from './Container'
 
@@ -123,6 +123,8 @@ export function Footer() {
             ))}
             <Link to="/reservar">Fazer reserva</Link>
             <Link to="/informacoes">Antes da estadia</Link>
+            <Link to="/hotel">Hotel para cães</Link>
+            <Link to="/creche">Creche para cães</Link>
           </nav>
         </FooterColumn>
         <FooterColumn>
@@ -132,7 +134,6 @@ export function Footer() {
               href={createWhatsAppUrl('general')}
               target="_blank"
               rel="noreferrer"
-              onClick={() => trackEvent('whatsapp_click', 'footer')}
             >
               {contactConfig.whatsapp.display}{' '}
               <ArrowUpRight size={14} aria-hidden="true" />
@@ -166,6 +167,8 @@ export function Footer() {
             {item.label}
           </a>
         ))}
+        <Link to="/privacidade">Privacidade</Link>
+        <button type="button" onClick={openConsentPreferences} style={{ color: 'inherit', background: 'none', border: 0, cursor: 'pointer', padding: '.6rem' }}>Preferências de cookies</button>
         <Link to="/#inicio">
           Voltar ao início <ArrowUp size={14} aria-hidden="true" />
         </Link>
