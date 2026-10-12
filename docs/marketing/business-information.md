@@ -10,6 +10,8 @@ Inventário em 12/10/2026. Fonte primária: site/repositório existente, materia
 | WhatsApp | +55 71 98241-2339 |
 | Contato | Coordenadora de comunicações — Renata |
 | Endereço publicado | Rua da Jurema, Quingoma de Fora, Lauro de Freitas – BA |
+| CEP | 42725-430, confirmado pelo proprietário em 12/10/2026 |
+| Porte para cadastro no Analytics | 9 funcionários; faixa de 1 a 10, confirmada pelo proprietário |
 | Referências publicadas | Próximo ao Terraço Mineira e à Capela São José |
 | Creche | 07h às 17h; confirmar dias e disponibilidade com a equipe |
 | Hotel | Check-in 07h às 17h; check-out até 09h do dia seguinte |
@@ -18,7 +20,7 @@ Inventário em 12/10/2026. Fonte primária: site/repositório existente, materia
 
 ## Ainda não confirmado
 
-- Número, CEP e coordenadas do imóvel; o endereço textual já existente foi reutilizado. O link atual de Maps é uma busca pela região, não uma ficha empresarial verificada.
+- Número e coordenadas do imóvel; o endereço textual já existente foi reutilizado. O link atual de Maps é uma busca pela região, não uma ficha empresarial verificada. O CEP foi confirmado separadamente pelo proprietário.
 - Dias de funcionamento da semana, horários de recepção por dia e feriados. Hotel com pernoite não autoriza anunciar recepção 24 horas.
 - E-mail comercial; não foi criado um e-mail fictício nem publicado `mailto:` inventado.
 - Propriedade administrativa de Instagram/Facebook/WhatsApp Business; perfil público não comprova acesso administrativo.

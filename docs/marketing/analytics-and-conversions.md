@@ -4,7 +4,9 @@ Status: **PARCIAL**. Implementação e testes locais concluídos; recebimento re
 
 ## Estado das contas em 12/10/2026
 
-Na sessão Google autorizada, as propriedades existentes eram de outros projetos; nenhuma foi reutilizada. O assistente do Auzen foi preparado com nome próprio, Brasil, fuso Bahia, BRL, setor Animais de estimação e animais, e compartilhamentos opcionais desligados. A etapa exige faixa de funcionários, ausente do site e já solicitada ao proprietário. A conta/propriedade/fluxo Auzen ainda não foi concluída; não há ID real instalado nem coleta ativa em produção.
+Na sessão Google autorizada, as propriedades existentes eram de outros projetos; nenhuma foi reutilizada. O cadastro próprio do Auzen foi concluído com Brasil, fuso Bahia, BRL, setor Animais de estimação e animais, compartilhamentos opcionais desligados e faixa de 1 a 10 funcionários (9 confirmados pelo proprietário). Objetivos: gerar leads e entender o tráfego.
+
+Fluxo Web criado: **Auzen Pet Resort - Site**, URL `https://auzenpetresort.com.br`, ID público de medição **`G-Y0Z1M3Z4RX`**. A métrica otimizada foi desativada na criação, evitando eventos automáticos de formulários, links de saída e histórico. Integração direta por `VITE_GA4_ID`, sem depender do contêiner GTM pendente. Publicação e recebimento real ainda precisam ser validados; criar o fluxo não comprova coleta.
 
 O Tag Manager abriu autenticado sem contas/contêineres. Formulário preparado para Auzen Pet Resort, país Brasil e contêiner Web `auzenpetresort.com.br`, sem compartilhamento anônimo. A criação chegou ao contrato e aceite dos termos de tratamento de dados. Não foi aceito em nome do responsável. Portanto, não há contêiner publicado nem Preview validado. Após consentimento do proprietário e conclusão do GA4, concluir a configuração e testar recebimento real antes de habilitar anúncios.
 
