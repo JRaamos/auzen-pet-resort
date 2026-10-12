@@ -61,7 +61,7 @@ export const Photo = styled.figure`
   figcaption {
     font-size: 0.75rem;
     margin-top: 0.8rem;
-    color: ${({ theme }) => theme.colors.forestMuted};
+    color: ${({ theme }) => theme.colors.brown};
   }
 `
 export const Actions = styled.div`

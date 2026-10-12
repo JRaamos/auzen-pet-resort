@@ -27,6 +27,7 @@ const Shell = styled.section`
   }
   a {
     font-size: 0.8rem;
+    color: ${({ theme }) => theme.colors.terracottaDark};
   }
   small {
     display: block;

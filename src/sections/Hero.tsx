@@ -349,7 +349,7 @@ export function Hero() {
       <OrganicLine aria-hidden="true" />
       <HeroInner>
         <HeroContent
-          initial={reduceMotion ? false : 'hidden'}
+          initial={false}
           animate="visible"
           variants={{
             hidden: { opacity: 0 },
