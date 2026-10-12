@@ -1,0 +1,17 @@
+{
+  "period": "Preencher o intervalo e a data da extração",
+  "source": "GA4 / Google Ads / controle comercial: informar fontes reais",
+  "visitors": null,
+  "sessions": null,
+  "sessionsWithWhatsappClick": null,
+  "whatsappClicks": null,
+  "adClicks": null,
+  "adSpendBRL": null,
+  "paidWhatsappClicks": null,
+  "qualifiedLeads": null,
+  "confirmedBookings": null,
+  "traffic": [],
+  "pages": [],
+  "services": [],
+  "keyEvents": []
+}

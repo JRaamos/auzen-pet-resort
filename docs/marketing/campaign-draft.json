@@ -1,0 +1,50 @@
+{
+  "state": "LOCAL_DRAFT_NOT_UPLOADED",
+  "activationAuthorized": false,
+  "name": "AUZEN | Pesquisa Local | Hotel e Creche | Teste 01",
+  "channel": "SEARCH",
+  "status": "PAUSED",
+  "currency": "BRL",
+  "totalBudget": 150,
+  "durationDays": 15,
+  "startDate": null,
+  "endDate": null,
+  "budgetType": "CAMPAIGN_TOTAL_IF_AVAILABLE",
+  "dailyBudgetFallback": "DO_NOT_ACTIVATE_WITHOUT_REVIEWED_HARD_CAP",
+  "networks": { "googleSearch": true, "searchPartners": false, "display": false },
+  "languages": ["pt"],
+  "country": "BR",
+  "location": { "city": "Lauro de Freitas", "state": "BA", "mode": "PRESENCE", "radiusKm": null, "expandAutomatically": false },
+  "bidding": { "candidate": "MAXIMIZE_CLICKS_WITH_CPC_LIMIT", "maxCpcBRL": null, "requiresKeywordPlannerReview": true },
+  "conversion": { "candidate": "whatsapp_click", "meaning": "Clique de intenção; não comprova mensagem, lead ou reserva", "configuredInAds": false },
+  "autoTagging": true,
+  "finalUrlSuffix": "utm_source=google&utm_medium=cpc&utm_campaign=auzen_pesquisa_local_teste_01",
+  "negativePhraseKeywords": ["adoção", "doação", "vaga de emprego", "vagas de emprego", "currículo", "curso", "treinamento profissional", "cachorro para comprar", "grátis", "gratuito", "hotel para gatos"],
+  "adGroups": [
+    {
+      "name": "Hotel | Hospedagem", "status": "PAUSED",
+      "finalUrl": "https://auzenpetresort.com.br/hotel",
+      "utmContent": "hotel",
+      "phraseKeywords": ["hotel para cachorro", "hotel para cães", "hospedagem para cachorro", "hospedagem canina", "hotel canino", "hotel para cachorro lauro de freitas"],
+      "exactKeywords": ["hotel para cachorro", "hotel para cães", "hospedagem canina", "hotel canino", "hotel para cachorro lauro de freitas"],
+      "headlines": ["Auzen Pet Resort", "Hotel para Cães", "Hotel em Lauro de Freitas", "Hospedagem para Seu Cão", "Conheça o Espaço do Auzen", "Consulte Datas no WhatsApp", "Planeje a Estadia do Seu Cão", "Cuidado e Acolhimento", "Um Jardim para Explorar", "Fale com a Equipe Auzen"],
+      "descriptions": ["Vai viajar? Conheça o hotel para cães do Auzen e consulte as datas pelo WhatsApp.", "Em Quingoma de Fora, Lauro de Freitas. Combine uma visita para conhecer nosso espaço.", "Entrada das 07h às 17h e saída até 09h do dia seguinte. Confirme sua estadia com a equipe.", "Conte a rotina do seu cão e planeje a hospedagem. Valores e vagas sujeitos à confirmação."]
+    },
+    {
+      "name": "Creche | Day Care", "status": "PAUSED",
+      "finalUrl": "https://auzenpetresort.com.br/creche",
+      "utmContent": "creche",
+      "phraseKeywords": ["creche para cachorro", "creche canina", "day care cachorro", "creche para cães", "creche para cachorro lauro de freitas"],
+      "exactKeywords": ["creche para cachorro", "creche canina", "day care cachorro", "creche para cães", "creche para cachorro lauro de freitas"],
+      "headlines": ["Creche para Cães | Auzen", "Auzen em Lauro de Freitas", "Um Dia Diferente para Seu Cão", "Creche das 07h às 17h", "Conheça Nossa Creche", "Converse Pelo WhatsApp", "Espaço ao Ar Livre", "Saiba Como Funciona", "Consulte a Disponibilidade", "Planeje a Rotina do Seu Cão"],
+      "descriptions": ["Conheça a creche canina do Auzen em Lauro de Freitas. Fale com nossa equipe pelo WhatsApp.", "Das 07h às 17h, com espaço ao ar livre. Combine a adaptação e os dias com a equipe.", "Conte como é a rotina do seu cão. Consulte condições e disponibilidade para a creche.", "Hotel ou creche? Conheça as opções e escolha com a equipe o que faz sentido para seu cão."]
+    }
+  ],
+  "sitelinks": [
+    { "text": "Conheça o Hotel", "url": "https://auzenpetresort.com.br/hotel" },
+    { "text": "Conheça a Creche", "url": "https://auzenpetresort.com.br/creche" },
+    { "text": "Nosso Espaço", "url": "https://auzenpetresort.com.br/espaco" },
+    { "text": "Solicitar Reserva", "url": "https://auzenpetresort.com.br/reservar" }
+  ],
+  "launchGates": ["Autorização explícita de ativação em etapa separada", "Conta empresarial e moeda verificadas", "Nenhuma campanha alheia alterada", "Inventário de campanhas ativas revisado", "GA4 DebugView e conversão Ads validados", "Teto total de R$150 confirmado na interface", "Datas inclusivas de 15 dias escolhidas", "CPC avaliado no Planejador", "Pagamento realizado exclusivamente pelo proprietário"]
+}
