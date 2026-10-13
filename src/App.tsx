@@ -23,6 +23,8 @@ import { ServicePage } from './pages/ServicePage'
 import { PrivacyPage } from './pages/PrivacyPage'
 import { ConsentBanner } from './components/ConsentBanner'
 import { installClickTracking, trackPage } from './utils/analytics'
+import { GuidesPage } from './pages/GuidesPage'
+import { guides } from './data/guides'
 
 const BookingPage = lazy(() =>
   import('./pages/BookingPage').then((module) => ({
@@ -176,6 +178,8 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/hotel" element={<ServicePage service="hotel" />} />
             <Route path="/creche" element={<ServicePage service="daycare" />} />
+            <Route path="/guias" element={<GuidesPage />} />
+            {guides.map(guide => <Route key={guide.slug} path={`/guias/${guide.slug}`} element={<GuidesPage />} />)}
             <Route path="/privacidade" element={<PrivacyPage />} />
             <Route path="/quem-somos" element={<AboutPage />} />
             <Route path="/servicos" element={<ServicesPage />} />

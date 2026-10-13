@@ -1,0 +1,29 @@
+export const guides = [
+  {
+    slug: 'hotel-ou-creche',
+    title: 'Hotel ou creche para cães: qual escolher?',
+    description: 'Entenda a diferença entre passar o dia e dormir fora de casa e planeje a rotina do seu cachorro em Lauro de Freitas.',
+    image: 'garden-friends', alt: 'Cães no jardim do Auzen Pet Resort',
+    sections: [
+      { id: 'diferenca', title: 'A diferença está no pernoite', paragraphs: ['A creche atende quem precisa de um lugar para o cão passar o dia e retornar para casa. O hotel inclui a noite e pode acompanhar uma viagem ou outro período em que o tutor estará fora.', 'No Auzen, em Quingoma de Fora, Lauro de Freitas, a creche funciona das 7h às 17h. No hotel, o check-in acontece das 7h às 17h e o check-out até as 9h do dia seguinte. A recepção atende todos os dias das 7h às 17h; hospedagem com pernoite não significa recepção aberta 24 horas.'] },
+      { id: 'rotina', title: 'Escolha a partir da sua rotina — e da dele', paragraphs: ['Para um compromisso durante o dia, converse sobre a creche. Se você vai dormir fora, consulte as datas de hospedagem. Informe a hora prevista de chegada e de saída antes de fechar: isso ajuda a equipe a orientar o serviço e o cálculo da estadia.', 'Conte como seu cachorro reage a pessoas e outros animais, quais são os momentos de descanso e como costuma se alimentar. A adaptação e a convivência precisam ser combinadas conforme o perfil dele; não são iguais para todos os cães.'] },
+      { id: 'comparar', title: 'O que perguntar antes de decidir', paragraphs: ['Peça informações sobre o espaço de descanso, a convivência entre cães, a alimentação e os cuidados que seu pet necessita. Combine uma visita para conhecer o ambiente e tirar dúvidas com a equipe.', 'Compare o valor para o porte do seu cão, o período solicitado e os serviços incluídos. Transporte, quando disponível, deve ser consultado separadamente, com rota e valor combinados. Não escolha apenas pelo preço: entenda primeiro como a rotina será organizada.'] },
+      { id: 'preparar', title: 'Como preparar a primeira visita ao Auzen', paragraphs: ['Separe a carteira de vacinação e as informações de saúde, alimentação e comportamento. Leve a alimentação habitual com as porções e horários identificados. Caso existam medicamentos ou cuidados específicos, converse com a equipe antes de agendar.', 'Estamos na Rua da Jurema, Quingoma de Fora, Lauro de Freitas, BA, CEP 42725-430. Combine a visita e confirme o ponto exato da entrada pelo WhatsApp antes de sair.'] },
+      { id: 'reservar', title: 'Da consulta à reserva', paragraphs: ['No formulário do site, escolha Hotel ou Creche, informe as datas e preencha os dados do tutor e do cachorro. Você poderá revisar a solicitação antes de abrir a mensagem no WhatsApp.', 'O envio é uma solicitação. A equipe precisa confirmar a disponibilidade, os cuidados combinados e o valor final para que a reserva seja concluída.'] },
+    ],
+  },
+  {
+    slug: 'hospedagem-feriados', title: 'Vai viajar? Planeje a hospedagem do seu cachorro.',
+    description: 'Um roteiro para organizar datas, horários, alimentação e contato antes de deixar seu cão em um hotel em Lauro de Freitas.',
+    image: 'hotel-rest', alt: 'Cão descansando na área coberta do Auzen',
+    sections: [
+      { id: 'datas', title: 'Comece pelas datas e pelos horários', paragraphs: ['Antes de uma viagem de fim de semana ou feriado prolongado, consulte a disponibilidade para todo o período. Reservar com antecedência ajuda a organizar a chegada; uma consulta não garante vaga.', 'No Auzen, o check-in do hotel é das 7h às 17h e o check-out até as 9h do dia seguinte. A recepção funciona todos os dias das 7h às 17h. Se o horário da sua viagem não coincide com esses períodos, converse com a equipe antes de confirmar qualquer condição.'] },
+      { id: 'orcamento', title: 'Confira o que entra no orçamento', paragraphs: ['Informe o porte do cachorro e as datas de entrada e saída para consultar a estimativa. Confira os valores e condições vigentes na página de serviços e peça a confirmação do total pelo WhatsApp.', 'Se precisar de transporte, informe a região de busca e retorno. Esse serviço depende de rota, disponibilidade e valor combinados à parte. Pergunte também sobre condições de pagamento e alterações de datas antes de concluir a reserva.'] },
+      { id: 'bagagem', title: 'Prepare a bagagem com a rotina dele', paragraphs: ['Separe a alimentação habitual em quantidade suficiente para a estadia e identifique as porções e os horários. Tenha a carteira de vacinação atualizada em mãos e informe à equipe os cuidados contra parasitas.', 'Compartilhe alergias, medicamentos, comportamento, hábitos de sono e um contato para emergências. Cuidados específicos devem ser combinados antes da chegada. Para dúvidas sobre a saúde do seu cão, procure o veterinário que o acompanha.'] },
+      { id: 'visita', title: 'Conheça o espaço e combine a chegada', paragraphs: ['Uma visita combinada permite conhecer o ambiente e conversar sobre o perfil do seu cão. O Auzen fica na Rua da Jurema, Quingoma de Fora, em Lauro de Freitas, BA, CEP 42725-430.', 'Antes de sair, confirme com a equipe o ponto da entrada e o horário agendado. Leve as informações já combinadas e reserve um momento para explicar a rotina do cachorro.'] },
+      { id: 'confirmacao', title: 'Só considere concluído depois da confirmação', paragraphs: ['O formulário organiza os dados da estadia em uma mensagem para o WhatsApp. Revise as datas, os dados do pet e a estimativa antes de enviar.', 'A solicitação pelo site não é uma confirmação automática. Aguarde a resposta da equipe sobre disponibilidade e valor final. Guarde as condições combinadas e avise caso seus planos mudem.'] },
+    ],
+  },
+] as const
+
+export const getGuide = (path: string) => guides.find(guide => path === `/guias/${guide.slug}`)

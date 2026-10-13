@@ -4,6 +4,7 @@ export type WhatsAppIntent =
 interface ContactConfig {
   whatsapp: { display: string; digits: string; name: string; role: string }
   address: string | null
+  postalCode: string
   instagram: string | null
   openingHours: string | null
   legalLinks: { label: string; href: string }[]
@@ -17,9 +18,10 @@ export const contactConfig: ContactConfig = {
     role: 'Atendimento e reservas',
   },
   address: 'Rua da Jurema, Quingoma de Fora, Lauro de Freitas – BA',
+  postalCode: '42725-430',
   instagram: 'https://www.instagram.com/auzenpetresort/',
   openingHours:
-    'Creche: 7h às 17h · Hotel: check-in das 7h às 17h e check-out até as 9h',
+    'Recepção todos os dias: 7h às 17h · Creche: 7h às 17h · Hotel: check-in das 7h às 17h e check-out até as 9h',
   legalLinks: [],
 }
 

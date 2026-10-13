@@ -44,6 +44,7 @@ export function ServicePage({ service }: { service: 'hotel' | 'daycare' }) {
       <Questions>{info.faqs.map((faq) => <details key={faq.question}><summary>{faq.question}</summary><p>{faq.answer}</p></details>)}</Questions>
       <Actions><ButtonLink href={createWhatsAppUrl(service)} target="_blank" rel="noreferrer" data-service={service} data-analytics-location="service_faq"><WhatsAppIcon width={19} height={19} /> Falar com a equipe</ButtonLink><ButtonLink href="/servicos" variant="text">Consultar serviços e valores <ArrowUpRight size={17} /></ButtonLink></Actions>
       <Note>Valores e disponibilidade são confirmados pela equipe. A solicitação pelo site não confirma uma reserva.</Note>
+      <Note>Para planejar: <Link to="/guias/hotel-ou-creche">hotel ou creche: qual escolher?</Link> · <Link to="/guias/hospedagem-feriados">hospedagem em viagens e feriados</Link></Note>
     </Container></Section>
   </PageShell>
 }

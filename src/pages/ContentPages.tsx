@@ -739,7 +739,7 @@ export function ContactPage() {
                   </ContactIcon>
                   <div>
                     <h3>Como chegar</h3>
-                    <p>{contactConfig.address}</p>
+                    <p>{contactConfig.address} · CEP {contactConfig.postalCode}</p>
                     <p>Próximo ao Terraço Mineira e à Capela São José.</p>
                     <Note>
                       Combine a visita e confirme o ponto exato com a equipe
@@ -762,6 +762,7 @@ export function ContactPage() {
                   </ContactIcon>
                   <div>
                     <h3>Horários</h3>
+                    <p>Recepção todos os dias, das 7h às 17h.</p>
                     <ContactHours>
                       <div>
                         <dt>Creche</dt><dd>7h às 17h</dd>

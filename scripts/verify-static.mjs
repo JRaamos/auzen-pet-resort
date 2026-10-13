@@ -12,7 +12,19 @@ for (const path of [...publicPaths, '/404']) {
   titles.add(title)
   if (pageMetadata[path]) assert.match(html, /content="index,follow"/)
   else assert.match(html, /content="noindex,follow"/)
-  for (const match of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) JSON.parse(match[1])
+  for (const match of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
+    const graph = JSON.parse(match[1])['@graph']
+    const business = graph.find(item => item['@type'] === 'LocalBusiness')
+    assert.equal(business.address.postalCode, '42725-430')
+    assert.equal(business.openingHoursSpecification[0].dayOfWeek.length, 7)
+    assert.equal(business.openingHoursSpecification[0].closes, '17:00')
+    if (path.startsWith('/guias/')) {
+      const article = graph.find(item => item['@type'] === 'Article')
+      assert.ok(article && html.includes(article.headline), `${path}: visible article headline`)
+      assert.equal(graph.find(item => item['@type'] === 'BreadcrumbList').itemListElement.length, 3)
+      assert.match(html, /<article[\s>]/)
+    }
+  }
   assert.ok(!html.includes('https://auzen-pet-resort.vercel.app'))
 }
 const sitemap = await readFile('dist/sitemap.xml', 'utf8')

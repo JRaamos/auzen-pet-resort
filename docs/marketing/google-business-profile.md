@@ -1,5 +1,17 @@
 # Perfil da Empresa, Maps e citações locais
 
+## Revalidação e ajustes salvos — 13/10/2026
+
+A ficha existente **Auzen Pet Resort** foi localizada na conta autenticada. Continua com **Verificação obrigatória / Não visível publicamente**. Não foi criada ficha duplicada.
+
+- Telefone atualizado e confirmado na interface: **(71) 99397-2239**.
+- Chat WhatsApp atualizado e confirmado: `https://wa.me/5571993972239`.
+- Recepção salva **domingo a sábado, 07:00–17:00**, conforme confirmação explícita do proprietário. Hospedagem com pernoite não foi divulgada como recepção 24 horas.
+- Site com UTM orgânico, Instagram, descrição e endereço textual já estavam preenchidos e foram preservados.
+- Pin exato e verificação continuam dependendo do proprietário. Não foram inventadas coordenadas, número, avaliações ou instalações.
+
+As seções seguintes registram a etapa anterior de preparação e devem ser lidas junto desta atualização.
+
 Status: **PARCIAL**. Nenhuma ficha pública nova foi publicada nesta etapa. Não confundir a busca de região atualmente vinculada no site com uma ficha verificada do Auzen.
 
 Na sessão autenticada, o gerente mostrou zero empresas administradas. O assistente foi preenchido com Auzen Pet Resort, atendimento em loja física, categoria oferecida **Hotel para animais de estimação**, Rua da Jurema, Quingoma de Fora, Lauro de Freitas, Bahia. Em 12/10/2026, o proprietário confirmou o **CEP 42725-430**, aceito pelo formulário. As sugestões de empresas existentes eram de outros nomes/endereços e não foram reivindicadas. O cadastro agora solicita posicionar o marcador exatamente no imóvel. Foi solicitado link do pin ou ajuste pelo proprietário; o marcador sugerido automaticamente não foi confirmado. Publicação/verificação permanecem pendentes.
@@ -14,12 +26,12 @@ A pesquisa pública pelo nome/Instagram não identificou uma ficha inequívoca d
 
 - Nome: Auzen Pet Resort, sem acrescentar palavras-chave ao nome oficial.
 - Categoria principal candidata: hospedagem para animais/hotel para cães; escolher a categoria equivalente disponível na interface. Secundária: creche para cães, se existente.
-- Telefone: +55 71 98241-2339.
+- Telefone atual: +55 71 99397-2239.
 - Website: `https://auzenpetresort.com.br/?utm_source=google_business&utm_medium=organic&utm_campaign=perfil_empresa`.
 - Agendamento: `https://auzenpetresort.com.br/reservar?utm_source=google_business&utm_medium=organic&utm_campaign=perfil_empresa`.
 - Serviços: Hotel para cães; Creche para cães; Transporte mediante consulta.
 - Endereço textual: Rua da Jurema, Quingoma de Fora, Lauro de Freitas – BA, CEP 42725-430. Não posicionar um pin estimado nem inventar número.
-- Horários dos serviços: creche 07h–17h; check-in do hotel 07h–17h e check-out até 09h. Os dias semanais de recepção ainda precisam ser confirmados; não anunciar funcionamento 24 horas por causa do pernoite.
+- Horários dos serviços: creche 07h–17h; check-in do hotel 07h–17h e check-out até 09h. Recepção confirmada todos os dias, 07h–17h; não anunciar funcionamento 24 horas por causa do pernoite.
 
 Descrição pronta:
 
@@ -31,7 +43,7 @@ Fotos sugeridas: jardim, dois cães, área externa e foto de fachada/entrada a f
 
 Se Google solicitar vídeo, documento ou outra comprovação, o proprietário deve realizá-la. Não simular presença física ou identificação. A ficha só pode ser declarada verificada/publicada após confirmação na plataforma e no resultado público.
 
-O CEP foi confirmado. Número/pin e dias de atendimento continuam sem confirmação. A interface já exige a localização exata; horários semanais precisam ser confirmados antes de divulgação.
+O CEP e os dias de recepção foram confirmados. Número/pin continuam sem confirmação. A verificação oficial precisa ser concluída pelo proprietário.
 
 ## Outras presenças gratuitas
 

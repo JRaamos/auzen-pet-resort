@@ -125,6 +125,7 @@ export function Footer() {
             <Link to="/informacoes">Antes da estadia</Link>
             <Link to="/hotel">Hotel para cães</Link>
             <Link to="/creche">Creche para cães</Link>
+            <Link to="/guias">Guias para tutores</Link>
           </nav>
         </FooterColumn>
         <FooterColumn>
@@ -140,7 +141,7 @@ export function Footer() {
             </a>
             <span>Informações e reservas pelo WhatsApp.</span>
             {contactConfig.address && (
-              <address>{contactConfig.address}</address>
+              <address>{contactConfig.address} · CEP {contactConfig.postalCode}</address>
             )}
             {contactConfig.openingHours && (
               <span>{contactConfig.openingHours}</span>

@@ -1,5 +1,22 @@
 # SEO técnico e local
 
+## Expansão orgânica — 13/10/2026
+
+Implementado localmente, ainda sem commit, push ou publicação nesta etapa:
+
+- Hub `/guias` e dois conteúdos próprios: `/guias/hotel-ou-creche` e `/guias/hospedagem-feriados`, com fotos reais, índice de leitura, links para serviços, preparação da estadia e reserva.
+- Pré-renderização de rotas aninhadas, sitemap com 14 URLs, metadados únicos e dados estruturados Article, BreadcrumbList, WebPage e WebSite.
+- CEP 42725-430 e recepção todos os dias das 7h às 17h, confirmados pelo proprietário, no contato, rodapé e LocalBusiness. Pernoite não implica recepção 24 horas.
+- Teste adicional de descoberta dos guias, navegação, imagens, JSON-LD, canonical e ausência de overflow em desktop, tablet e celular de 320 px.
+
+Validação concluída: build, lint, 17 testes unitários, verificador de 14 páginas públicas + 404 e 24 testes E2E aprovados. Após ajustar o enquadramento das fotos, os três testes dos guias foram repetidos e aprovados. Prévia validada em `http://127.0.0.1:4182/guias`. O servidor em 4178 pertencia a outra cópia local (`/Users/jonathanfebraio/auzen-pet-resort`); não foi encerrado ou alterado. Para evitar validar essa cópia antiga, esta rodada usou `QA_BASE_URL=http://127.0.0.1:4182 pnpm test:e2e`.
+
+Rotina recomendada depois da publicação: acompanhar consultas, impressões e cliques no Search Console semanalmente; comparar períodos completos de 28 dias. No GA4, acompanhar Organic Search e contatos por WhatsApp, sem classificá-los como reservas confirmadas. Revisar mensalmente conteúdo a partir de dúvidas reais dos tutores. Publicar fotos reais e solicitar avaliações honestas de clientes, sem incentivos ou seleção apenas de avaliações positivas.
+
+Prioridade externa: concluir a verificação do Perfil da Empresa e confirmar o pin exato da entrada. O Google confirmou `/hotel` e `/creche` indexados nesta auditoria; o relatório do sitemap ainda mostra falha de leitura, apesar de o endpoint responder 200 XML com HTTPS válido. Não prometer posição nem prazo para tráfego.
+
+Referências: [guia de SEO do Google](https://developers.google.com/search/docs/fundamentals/seo-starter-guide) e [visibilidade local](https://support.google.com/business/answer/7091?hl=pt-BR).
+
 ## Implementação
 
 - React 19, TypeScript, Vite 8, React Router e styled-components mantidos; sem migração e sem backend novo.

@@ -1,4 +1,8 @@
+import { guides } from '../data/guides'
+
 export const pageMetadata: Record<string, { title: string; description: string; image?: string }> = {
+  '/guias': { title: 'Guias de hotel e creche para cães | Auzen Pet Resort', description: 'Planeje a estadia do seu cachorro: diferenças entre hotel e creche, preparação para viagens e orientações do Auzen em Lauro de Freitas.' },
+  ...Object.fromEntries(guides.map(guide => [`/guias/${guide.slug}`, { title: `${guide.title} | Auzen`, description: guide.description, image: `${guide.image}-900.jpg` }])),
   '/': { title: 'Hotel e creche para cães em Lauro de Freitas | Auzen Pet Resort', description: 'Conheça o Auzen Pet Resort em Quingoma de Fora, Lauro de Freitas: hotel e creche para cães com espaço ao ar livre. Consulte datas pelo WhatsApp.' },
   '/hotel': { title: 'Hotel para cachorros em Lauro de Freitas | Auzen', description: 'Hospedagem para cães no Auzen Pet Resort, em Lauro de Freitas, BA. Conheça os horários, cuidados e orientações e consulte disponibilidade pelo WhatsApp.', image: 'hotel-rest-900.jpg' },
   '/creche': { title: 'Creche para cães em Lauro de Freitas | Auzen', description: 'Creche canina e day care no Auzen, em Lauro de Freitas. Das 7h às 17h, com espaço ao ar livre. Converse com a equipe sobre adaptação e disponibilidade.', image: 'garden-friends-900.jpg' },

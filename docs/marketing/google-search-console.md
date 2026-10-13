@@ -1,5 +1,12 @@
 # Google Search Console
 
+## Revalidação de 13/10/2026
+
+- Inspeção individual de `/hotel` e `/creche`: **O URL está no Google**, **A página está indexada** e HTTPS. Os estados antigos abaixo ficam como histórico, não como situação atual.
+- Visão geral ainda mostra 0 cliques; agregados de indexação em processamento e sem Core Web Vitals de campo suficiente.
+- Sitemap submetido em 12/10 continua com **Não foi possível buscar/ler o sitemap**, sem causa detalhada. Requisição independente atual retorna HTTP 200, XML e TLS válido; robots permite rastreamento. Não houve reenvio repetitivo nem alteração de DNS.
+- Os novos guias estão apenas no build local. Depois do deploy, validar seus HTTP 200/canonicals e só então solicitar inspeção/indexação; não solicitar indexação de URLs ainda não publicadas.
+
 Status: **PARCIAL** — propriedade efetivamente verificada; sitemap enviado, mas a plataforma ainda informa falha de leitura. Não declarar o sitemap processado.
 
 ## Configuração realizada
