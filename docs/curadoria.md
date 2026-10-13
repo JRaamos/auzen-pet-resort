@@ -34,3 +34,7 @@ Todos os arquivos abaixo são de 29/09/2026; a identificação mantém horário 
 - `12.42.58`: aproximadamente 46 s, cães e passeio pelo quintal. Foram examinados cinco momentos. O intervalo a partir de 7 s, por 18 s, foi exportado sem áudio como `public/media/space-tour.mp4`.
 
 As fotos originais receberam derivados para web e recortes de layout. Após a primeira entrega, o usuário solicitou uma imagem gerada para o hero mobile: a composição usa os dois cães e o jardim como referência, conforme `hero-mobile-image.md`. Desktop e demais seções mantêm fotos reais. AVIF/JPEG derivados não carregam os originais completos para cada miniatura.
+
+## Atualização de 13/10/2026
+
+Adicionadas as duas fotografias enviadas pelo cliente em 11/10: cães se encontrando no gramado (`garden-friends`) e cão com vestido vermelho (`garden-red-dress`). Ambas entram no início da galeria; a primeira também ilustra a creche e a segunda aparece na página de promoções. Derivados AVIF/JPEG em 480 e 900 px, sem alterar os originais; removida a faixa preta inferior. O cartaz de 02/10 serviu de referência para o contato comercial.

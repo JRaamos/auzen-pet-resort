@@ -56,7 +56,7 @@ export function ReserveCallout() {
       <Container>
         <div>
           <Eyebrow>O próximo dia de diversão</Eyebrow>
-          <Heading>Um lugar de carinho espera pelo seu cão.</Heading>
+          <Heading>Carinho e diversão esperam pelo seu cão.</Heading>
         </div>
         <ButtonLink href="/reservar">
           Planejar minha reserva <ArrowUpRight size={18} />

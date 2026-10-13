@@ -649,8 +649,8 @@ export function BookingPage() {
           <Eyebrow>Sua próxima reserva</Eyebrow>
           <DisplayTitle>Vamos planejar os dias do seu cão?</DisplayTitle>
           <p>
-            Conte um pouco sobre vocês. Ao final, sua solicitação segue completa
-            para a equipe no WhatsApp.
+            Conte um pouco sobre você e seu cão. Ao final, revise a mensagem
+            e envie sua solicitação à equipe pelo WhatsApp.
           </p>
         </Intro>
         <Progress aria-label="Etapas da solicitação">
@@ -726,10 +726,9 @@ export function BookingPage() {
                             <span>
                               {service === 'hotel'
                                 ? 'Hotel · hospedagem'
-                                : 'Creche · Day Care'}
+                                : 'Creche para cães'}
                               <small>
-                                {money(bookingConfig.rates[service])} / diária
-                                por cão
+                                Pequeno: {money(bookingConfig.rates[service].Pequeno)} · Médio: {money(bookingConfig.rates[service].Médio)} por diária
                               </small>
                             </span>
                           </label>
@@ -771,7 +770,7 @@ export function BookingPage() {
                       <Field
                         name="arrival"
                         label="Horário de entrada *"
-                        hint="Entre 07h e 17h."
+                        hint="Entre 7h e 17h."
                       >
                         <select
                           id="arrival"
@@ -790,7 +789,7 @@ export function BookingPage() {
                         label="Horário de saída *"
                         hint={
                           booking.service === 'hotel'
-                            ? 'Check-out do hotel até 09h.'
+                            ? 'Check-out do hotel até as 9h.'
                             : 'Saída da creche até 17h, em cada dia.'
                         }
                       >
@@ -1040,7 +1039,7 @@ export function BookingPage() {
                       <p>
                         {booking.service === 'hotel' ? 'Hotel' : 'Creche'} ·{' '}
                         {quote.units}{' '}
-                        {booking.service === 'hotel' ? 'noite(s)' : 'dia(s)'}
+                        {booking.service === 'hotel' ? (quote.units === 1 ? 'noite' : 'noites') : (quote.units === 1 ? 'dia' : 'dias')}
                       </p>
                       <p>
                         {displayDate(booking.startDate)} às {booking.arrival} →{' '}
@@ -1244,7 +1243,7 @@ export function BookingPage() {
               <summary>
                 <Heading>Seu resumo</Heading>
                 <span className="compact-total">
-                  {quote.units ? money(quote.total) : 'Ver estimativa'}
+                  {quote.units && quote.total !== null ? money(quote.total) : 'Valor a consultar'}
                 </span>
                 <ChevronDown size={18} />
               </summary>
@@ -1270,13 +1269,15 @@ export function BookingPage() {
                     {quote.units || '—'} × {booking.pets.length}
                   </dd>
                 </div>
-                <div>
-                  <dt>Por diária / cão</dt>
-                  <dd>{money(quote.rate)}</dd>
-                </div>
+                {booking.pets.map((pet, index) => (
+                  <div key={index}>
+                    <dt>{pet.name || `Cão ${index + 1}`} · diária</dt>
+                    <dd>{quote.rates[index] === null ? 'Sob consulta' : money(quote.rates[index])}</dd>
+                  </div>
+                ))}
                 <div>
                   <dt>Subtotal</dt>
-                  <dd>{money(quote.subtotal)}</dd>
+                  <dd>{quote.subtotal === null ? 'Sob consulta' : money(quote.subtotal)}</dd>
                 </div>
                 {quote.discount > 0 && (
                   <div>
@@ -1287,7 +1288,7 @@ export function BookingPage() {
                 <div className="total">
                   <dt>Total estimado</dt>
                   <dd aria-live="polite">
-                    {quote.units ? money(quote.total) : '—'}
+                    {quote.units && quote.total !== null ? money(quote.total) : 'Sob consulta'}
                   </dd>
                 </div>
               </dl>
@@ -1295,8 +1296,9 @@ export function BookingPage() {
                 {booking.transport !== 'Não preciso'
                   ? '+ Transporte: valor a combinar. '
                   : ''}
-                Tabela provisória. Valor final e disponibilidade confirmados
-                pela equipe. Sem pagamento pelo site.
+                Informe o porte de cada cão para calcular a estimativa. Portes
+                grande e gigante: valores sob consulta. A equipe confirma o valor
+                final e a disponibilidade. Não há pagamento pelo site.
               </Note>
             </details>
           </Summary>

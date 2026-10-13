@@ -19,7 +19,7 @@ export function PrivacyPage() {
       <p>Você pode recusar os opcionais ou mudar sua escolha a qualquer momento. A revogação remove os cookies de análise acessíveis ao site e recarrega a página para interromper a medição. Se estiver preenchendo uma reserva, finalize ou guarde suas informações antes de mudar a preferência.</p>
       <button type="button" onClick={openConsentPreferences} style={{ padding: '1rem', cursor: 'pointer' }}>Revisar preferências de cookies</button>
       <Heading as="h2" style={{ marginTop: '3rem' }}>Contato sobre seus dados</Heading>
-      <p>Para solicitar informações, correção ou exclusão dos dados tratados no atendimento, fale com o Auzen pelo contato comercial, aos cuidados de {contactConfig.whatsapp.name}. A equipe avaliará a solicitação e eventuais obrigações de conservação.</p>
+      <p>Para solicitar informações, correção ou exclusão dos dados tratados no atendimento, fale com o Auzen pelo WhatsApp {contactConfig.whatsapp.display}. A equipe avaliará a solicitação e eventuais obrigações de conservação.</p>
       <ButtonLink href={createWhatsAppUrl('general')} target="_blank" rel="noreferrer">Falar com o Auzen</ButtonLink>
       <p>Os serviços Google, Meta e Vercel podem processar informações fora do Brasil. Consulte suas políticas: <a href="https://policies.google.com/privacy" target="_blank" rel="noreferrer">Google</a>, <a href="https://www.whatsapp.com/legal/privacy-policy" target="_blank" rel="noreferrer">WhatsApp</a> e <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noreferrer">Vercel</a>.</p>
     </Container></Section></PageShell>

@@ -1,12 +1,14 @@
 export const bookingConfig = {
-  rates: { hotel: 100, daycare: 65 },
+  rates: {
+    hotel: { Pequeno: 105, Médio: 115 },
+    daycare: { Pequeno: 65, Médio: 75 },
+  },
   promotion: { code: 'MAISDIAS', minUnits: 5, percent: 10 },
   checkIn: { start: '07:00', end: '17:00' },
   hotelCheckOut: { start: '07:00', end: '09:00' },
   daycareCheckOut: { start: '07:00', end: '17:00' },
   maxPets: 4,
   maxDays: 60,
-  provisional: true,
 } as const
 
 export const paymentOptions = [
@@ -45,11 +47,11 @@ export const preparationItems = [
   {
     title: 'Entrada e saída',
     detail:
-      'Combine os horários: entrada das 07h às 17h; no hotel, saída até 09h. A creche encerra às 17h.',
+      'Combine os horários: entrada das 7h às 17h; no hotel, saída até as 9h. A creche encerra às 17h.',
   },
   {
     title: 'Reserve com antecedência',
     detail:
-      'Finais de semana e feriados prolongados merecem planejamento. A vaga é confirmada pela equipe no WhatsApp.',
+      'Fins de semana e feriados prolongados merecem planejamento. A vaga é confirmada pela equipe no WhatsApp.',
   },
 ] as const

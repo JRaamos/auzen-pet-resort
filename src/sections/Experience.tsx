@@ -8,8 +8,8 @@ import { Reveal } from '../components/Reveal'
 const steps = [
   { number: '01', title: 'Chegar', text: 'Sentir o ambiente e olhar tudo ao redor.' },
   { number: '02', title: 'Explorar', text: 'Farejar, caminhar e encontrar novos cantos.' },
-  { number: '03', title: 'Brincar', text: 'Gastar energia e viver o lado de fora.' },
-  { number: '04', title: 'Descansar', text: 'Ter tempo para respirar e fazer uma pausa.' },
+  { number: '03', title: 'Brincar', text: 'Gastar energia e aproveitar o ar livre.' },
+  { number: '04', title: 'Descansar', text: 'Recuperar as energias entre uma brincadeira e outra.' },
   { number: '05', title: 'Voltar feliz', text: 'Levar para casa um dia cheio de histórias.' },
 ]
 
@@ -209,13 +209,13 @@ export function Experience() {
       <Top>
         <Reveal>
           <TitleWrap>
-            <p>Uma jornada possível</p>
+            <p>Um dia no Auzen</p>
             <h2 id="experience-title">Cada dia encontra o próprio ritmo.</h2>
           </TitleWrap>
         </Reveal>
         <Reveal delay={0.12}>
           <div>
-            <Note>Não é uma agenda rígida. É uma forma de imaginar os momentos que cabem em um dia com mais espaço.</Note>
+            <Note>Brincadeiras, descobertas e descanso, respeitando o ritmo e as necessidades de cada cão.</Note>
             <DownCue>
               Acompanhe <ArrowDown size={14} aria-hidden="true" />
             </DownCue>

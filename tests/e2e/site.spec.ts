@@ -5,10 +5,10 @@ test.beforeEach(async ({ page }) => {
   await page.addLocatorHandler(page.getByRole('button', { name: 'Recusar opcionais' }), button => button.click())
 })
 
-test('contact details align their icons and identify Renata with her role', async ({ page }) => {
+test('contact details align their icons and identify the commercial team', async ({ page }) => {
   await page.goto('/contato')
   const details = page.getByLabel('Canais de contato e informações')
-  await expect(details).toContainText('Coordenadora de comunicações - Renata')
+  await expect(details).toContainText('Atendimento e reservas · Equipe Auzen')
   await expect(details).not.toContainText('Renato')
   await expect(details.locator(':scope > article')).toHaveCount(4)
   for (const row of await details.locator(':scope > article').all()) {
@@ -21,10 +21,10 @@ test('contact details align their icons and identify Renata with her role', asyn
     expect(Math.abs(icon!.y - content!.y)).toBeLessThan(2)
     await expect(row.locator(':scope > span > svg')).toHaveAttribute('aria-hidden', 'true')
   }
-  await expect(details.getByRole('link', { name: 'Conversar com a Renata' })).toHaveAttribute('href', /wa.me\/5571982412339/)
-  await expect(details.getByRole('link', { name: '(71) 98241-2339' })).toHaveAttribute('href', 'tel:+5571982412339')
+  await expect(details.getByRole('link', { name: 'Conversar com a equipe' })).toHaveAttribute('href', /wa.me\/5571993972239/)
+  await expect(details.getByRole('link', { name: '(71) 99397-2239' })).toHaveAttribute('href', 'tel:+5571993972239')
   await expect(details.getByRole('link', { name: '@auzenpetresort' })).toHaveAttribute('href', 'https://www.instagram.com/auzenpetresort/')
-  await expect(details.locator('dl')).toContainText('Até 09h')
+  await expect(details.locator('dl')).toContainText('Até as 9h')
   await details.scrollIntoViewIfNeeded()
   await expect(page.locator('[data-floating-contact]')).not.toBeVisible()
 })
@@ -48,7 +48,7 @@ test('all routes load directly, render without overflow and keep the new contact
     await page.goto(route)
     await expect(page.locator('main h1')).toBeVisible()
     await expect(page.locator('footer')).toContainText('Febraio Tech')
-    await expect(page.locator('footer')).toContainText('(71) 98241-2339')
+    await expect(page.locator('footer')).toContainText('(71) 99397-2239')
     expect(
       await page.evaluate(
         () => document.documentElement.scrollWidth <= window.innerWidth,
@@ -113,7 +113,7 @@ test('complete reservation validates, supports two dogs and prepares one WhatsAp
     }))
       await page.locator(`#pet-${index}-${key}`).fill(value)
     for (const [key, value] of Object.entries({
-      size: 'Médio',
+      size: index === 0 ? 'Pequeno' : 'Médio',
       sex: 'Macho',
       neutered: 'Sim',
       vaccination: 'Em dia — apresentarei a carteira',
@@ -128,7 +128,7 @@ test('complete reservation validates, supports two dogs and prepares one WhatsAp
   await page.getByRole('button', { name: 'Continuar', exact: true }).click()
   await expect(
     page.getByRole('complementary', { name: 'Estimativa da reserva' }),
-  ).toContainText('900,00')
+  ).toContainText('990,00')
   const final = page.getByRole('link', {
     name: 'Abrir solicitação no WhatsApp',
   })
@@ -138,14 +138,14 @@ test('complete reservation validates, supports two dogs and prepares one WhatsAp
   await page.locator('#notes').fill('Favor combinar a busca')
   await page.getByRole('checkbox').check()
   const destination = new URL((await final.getAttribute('href'))!)
-  expect(destination.pathname).toBe('/5571982412339')
+  expect(destination.pathname).toBe('/5571993972239')
   const text = destination.searchParams.get('text')!
   for (const value of [
     'Ana Teste',
     'Carlos Teste',
     'Bento',
     'Mel',
-    '900,00',
+    '990,00',
     'Cartão de crédito',
     'Favor combinar a busca',
     'Ração habitual',
@@ -185,4 +185,25 @@ test('daycare preselection and visual pages', async ({ page }) => {
       fullPage: true,
     })
   }
+})
+
+test('new pricing, promotion examples and client photographs are available', async ({ page }) => {
+  await page.goto('/servicos')
+  for (const value of ['105,00', '115,00', '65,00', '75,00'])
+    await expect(page.locator('main')).toContainText(value)
+  await page.goto('/promocoes')
+  await expect(page.getByRole('heading', { name: 'Mais dias juntos. 10% de desconto.' })).toBeVisible()
+  for (const value of ['472,50', '517,50', '292,50', '337,50'])
+    await expect(page.locator('main')).toContainText(value)
+  await page.goto('/espaco')
+  for (const base of ['garden-friends', 'garden-red-dress']) {
+    const photo = page.locator(`#galeria img[src*="${base}"]`)
+    await photo.scrollIntoViewIfNeeded()
+    await photo.evaluate((img: HTMLImageElement) => img.decode())
+    await expect(photo).toBeVisible()
+  }
+  await page.locator('#galeria button').first().click()
+  await expect(page.getByRole('dialog')).toBeVisible()
+  await page.keyboard.press('Escape')
+  await page.screenshot({ path: `qa/new-gallery-${test.info().project.name}.png`, fullPage: true })
 })

@@ -38,7 +38,7 @@ import { contactConfig, createWhatsAppUrl } from '../config/contact'
 import { Faq } from '../sections/Faq'
 import { Gallery } from '../sections/Gallery'
 import { Space } from '../sections/Space'
-import { money } from '../utils/booking'
+import { calculateQuote, emptyPet, money } from '../utils/booking'
 
 const Portrait = styled.figure`
   margin: 0;
@@ -111,8 +111,8 @@ export function AboutPage() {
               <Eyebrow>Quem somos nós</Eyebrow>
               <Heading>O carinho vem de casa.</Heading>
               <Lead>
-                Somos a história de um homem extraordinário, nosso patriarca
-                Auzencio, que sempre viveu com simplicidade, amor e coragem.
+                Nossa história começa com Auzencio, o patriarca da família,
+                que viveu com simplicidade, amor e coragem.
               </Lead>
               <p>
                 Nascido em agosto de 1925, faleceu em agosto de 2024. Pai de 12
@@ -120,7 +120,7 @@ export function AboutPage() {
                 pelo trabalho e pela generosidade.
               </p>
               <p>
-                Trabalhou na agricultura rural e, com muitos sacrifícios, veio
+                Trabalhou no campo e, com muitos sacrifícios, veio
                 para a cidade grande em busca de melhores condições de vida. Era
                 simples, amável, sensível e sincero, apaixonado por animais —
                 principalmente cães e aves.
@@ -176,7 +176,7 @@ export function AboutPage() {
                   <div>
                     <h3>Natureza por perto</h3>
                     <p>
-                      Gramado, jardim e espaço para aproveitar o lado de fora.
+                      Gramado, jardim e espaço para aproveitar o ar livre.
                     </p>
                   </div>
                 </article>
@@ -222,7 +222,7 @@ const PricingRow = styled.article`
 `
 const Price = styled.p`
   font-family: ${({ theme }) => theme.typography.display};
-  font-size: 3.5rem;
+  font-size: clamp(2rem, 4vw, 3.5rem);
   line-height: 1.1;
   color: ${({ theme }) => theme.colors.forest};
   letter-spacing: -0.04em;
@@ -247,7 +247,7 @@ export function ServicesPage() {
   return (
     <PageShell>
       <PageIntro
-        eyebrow="Serviços & valores"
+        eyebrow="Serviços e valores"
         title="O dia deles. A sua tranquilidade."
       >
         <Lead>
@@ -255,8 +255,8 @@ export function ServicesPage() {
           Escolha como seu cão vai viver o Auzen.
         </Lead>
         <Note>
-          Valores iniciais para estimativa, sujeitos à confirmação da equipe.
-          Diárias por cão; transporte combinado à parte.
+          Diárias por cão, conforme o porte. Para portes grande e gigante,
+          consulte a equipe. O transporte é combinado à parte.
         </Note>
       </PageIntro>
       <Section style={{ paddingTop: 0 }}>
@@ -277,15 +277,16 @@ export function ServicesPage() {
                 ao ar livre e atenção à rotina do seu cão.
               </Lead>
               <Price>
-                {money(bookingConfig.rates.hotel)}{' '}
-                <small>/ diária por cão</small>
+                {money(bookingConfig.rates.hotel.Pequeno)} <small>· porte pequeno</small>
+                <br />
+                {money(bookingConfig.rates.hotel.Médio)} <small>· porte médio</small>
               </Price>
               <Schedule>
-                <Clock3 size={18} /> Check-in das 07h às 17h · Check-out até 09h
+                <Clock3 size={18} /> Check-in das 7h às 17h · Check-out até as 9h
                 do dia seguinte.
               </Schedule>
               <Note>
-                Uma diária corresponde a uma noite. A alimentação habitual deve
+                O valor é por noite e por cão. A alimentação habitual deve
                 ser trazida pelo tutor.
               </Note>
               <ButtonLink href="/reservar?servico=hotel">
@@ -296,13 +297,13 @@ export function ServicesPage() {
           </PricingRow>
           <PricingRow id="creche">
             <img
-              src="/images/daycare-play-900.jpg"
-              alt="Dois cães explorando o gramado"
+              src="/images/garden-friends-900.jpg"
+              alt="Dois cães se encontrando no gramado"
               loading="lazy"
             />
             <div>
               <Eyebrow>
-                <Sun size={16} /> Creche · Day Care
+                <Sun size={16} /> Creche para cães
               </Eyebrow>
               <Heading>Mais quintal no dia a dia.</Heading>
               <Lead>
@@ -310,18 +311,19 @@ export function ServicesPage() {
                 para descansar entre uma descoberta e outra.
               </Lead>
               <Price>
-                {money(bookingConfig.rates.daycare)}{' '}
-                <small>/ dia por cão</small>
+                {money(bookingConfig.rates.daycare.Pequeno)} <small>· porte pequeno</small>
+                <br />
+                {money(bookingConfig.rates.daycare.Médio)} <small>· porte médio</small>
               </Price>
               <Schedule>
-                <Clock3 size={18} /> Funcionamento das 07h às 17h.
+                <Clock3 size={18} /> Funcionamento das 7h às 17h.
               </Schedule>
               <Note>
-                Cada data incluída no período conta como um dia de creche.
+                O valor é por dia e por cão. Cada data do período conta como uma diária.
                 Combine a adaptação e a convivência com a equipe.
               </Note>
               <ButtonLink href="/reservar?servico=daycare">
-                Planejar dia de creche <ArrowRight size={17} />
+                Planejar um dia de creche <ArrowRight size={17} />
               </ButtonLink>
               <p><Link to="/creche">Conheça todos os detalhes da creche →</Link></p>
             </div>
@@ -360,7 +362,7 @@ export function ServicesPage() {
                 <div>
                   <h3>Antecipe sua reserva</h3>
                   <p>
-                    Especialmente em finais de semana e feriados prolongados.
+                    Especialmente em fins de semana e feriados prolongados.
                   </p>
                 </div>
               </article>
@@ -453,6 +455,10 @@ const Promotion = styled(Section)`
   background: ${({ theme }) => theme.colors.sand};
 `
 export function PromotionsPage() {
+  const examples = (service: 'hotel' | 'daycare') => (['Pequeno', 'Médio'] as const).map((size) => {
+    const quote = calculateQuote({ service, startDate: '2027-01-01', endDate: service === 'hotel' ? '2027-01-06' : '2027-01-05', pets: [{ ...emptyPet(), size }], promo: bookingConfig.promotion.code })
+    return <p key={size}>Porte {size.toLowerCase()}: de {money(quote.subtotal!)} por {money(quote.total!)}.</p>
+  })
   return (
     <PageShell>
       <Campaign>
@@ -465,8 +471,8 @@ export function PromotionsPage() {
           <Eyebrow>Mais dias. Mais momentos.</Eyebrow>
           <DisplayTitle>Deixe a diversão com a gente.</DisplayTitle>
           <Lead>
-            Vai viajar ou quer um dia diferente para seu cão? Um lugar de
-            carinho espera por ele em Lauro de Freitas.
+            Vai viajar ou quer um dia diferente para seu cão? Aqui, ele encontra
+            espaço para brincar e carinho em cada estadia, em Lauro de Freitas.
           </Lead>
           <ButtonLink href="/reservar?cupom=MAISDIAS">
             Simular minha reserva <ArrowUpRight size={18} />
@@ -478,11 +484,11 @@ export function PromotionsPage() {
         <Container>
           <Split>
             <div>
-              <Eyebrow>Condição inicial · MAISDIAS</Eyebrow>
+              <Eyebrow>Desconto MAISDIAS</Eyebrow>
               <Heading>
-                Fique mais.
+                Mais dias juntos.
                 <br />
-                Aproveite 10% a menos.
+                10% de desconto.
               </Heading>
               <Lead>
                 Use o código MAISDIAS em reservas de 5 diárias ou mais de hotel
@@ -499,32 +505,28 @@ export function PromotionsPage() {
             </div>
             <div>
               <Price>
-                10% <small>sobre as diárias</small>
+                10% <small>de desconto nas diárias</small>
               </Price>
               <RuleList>
                 <article>
                   <Moon />
                   <div>
                     <h3>5 noites de hotel</h3>
-                    <p>
-                      De {money(500)} por {money(450)}, para um cão.
-                    </p>
+                    {examples('hotel')}
                   </div>
                 </article>
                 <article>
                   <Sun />
                   <div>
                     <h3>5 dias de creche</h3>
-                    <p>
-                      De {money(325)} por {money(292.5)}, para um cão.
-                    </p>
+                    {examples('daycare')}
                   </div>
                 </article>
               </RuleList>
               <Note>
-                Condição e tabela provisórias, sujeitas à confirmação pelo
-                Auzen. Não cumulativo; não inclui transporte. Sem cobrança pelo
-                site.
+                Exemplos para um cão. Promoção sujeita à confirmação da equipe,
+                não cumulativa com outros descontos. O transporte é cobrado à
+                parte. Não há pagamento pelo site.
               </Note>
             </div>
           </Split>
@@ -535,13 +537,13 @@ export function PromotionsPage() {
           <Split>
             <Photo>
               <img
-                src="/images/garden-dog-900.jpg"
-                alt="Cão no jardim real do Auzen"
+                src="/images/garden-red-dress-900.jpg"
+                alt="Cão com vestido vermelho no gramado do Auzen"
                 loading="lazy"
               />
             </Photo>
             <div>
-              <Eyebrow>Finais de semana & feriados</Eyebrow>
+              <Eyebrow>Fins de semana e feriados</Eyebrow>
               <Heading>Sua viagem começa com um bom planejamento.</Heading>
               <Lead>
                 Consulte com antecedência as datas desejadas e conte à equipe
@@ -673,7 +675,7 @@ export function ContactPage() {
   return (
     <PageShell>
       <PageIntro
-        eyebrow="Contato & localização"
+        eyebrow="Contato e localização"
         title="A conversa começa com um oi."
       >
         <Lead>
@@ -693,7 +695,7 @@ export function ContactPage() {
                   <div>
                     <h3>Fale pelo WhatsApp</h3>
                     <p className="contact-person">
-                      {contactConfig.whatsapp.role} - {contactConfig.whatsapp.name}
+                      {contactConfig.whatsapp.role} · {contactConfig.whatsapp.name}
                     </p>
                     <p>
                       <a
@@ -709,7 +711,7 @@ export function ContactPage() {
                       rel="noreferrer"
                       variant="text"
                     >
-                      Conversar com a {contactConfig.whatsapp.name}
+                      Conversar com a equipe
                       <ArrowUpRight size={16} aria-hidden="true" />
                     </ButtonLink>
                   </div>
@@ -762,13 +764,13 @@ export function ContactPage() {
                     <h3>Horários</h3>
                     <ContactHours>
                       <div>
-                        <dt>Creche</dt><dd>07h às 17h</dd>
+                        <dt>Creche</dt><dd>7h às 17h</dd>
                       </div>
                       <div>
-                        <dt>Hotel · check-in</dt><dd>07h às 17h</dd>
+                        <dt>Hotel · check-in</dt><dd>7h às 17h</dd>
                       </div>
                       <div>
-                        <dt>Hotel · check-out</dt><dd>Até 09h</dd>
+                        <dt>Hotel · check-out</dt><dd>Até as 9h</dd>
                       </div>
                     </ContactHours>
                     <Note>

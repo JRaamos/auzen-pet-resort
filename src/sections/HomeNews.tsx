@@ -50,10 +50,10 @@ export function HomeNews() {
             <CalendarDays size={16} /> Planeje a próxima estadia
           </strong>
           <p>
-            Hotel: {money(bookingConfig.rates.hotel)} / diária · Creche:{' '}
-            {money(bookingConfig.rates.daycare)} / dia
+            Hotel a partir de {money(bookingConfig.rates.hotel.Pequeno)} por diária · Creche a partir de{' '}
+            {money(bookingConfig.rates.daycare.Pequeno)} por dia
           </p>
-          <small>Valores iniciais por cão, sujeitos à confirmação.</small>
+          <small>Valores para porte pequeno. Consulte a tabela completa por porte.</small>
         </div>
         <ButtonLink href="/promocoes" variant="text">
           Conheça a condição MAISDIAS <ArrowRight size={16} />

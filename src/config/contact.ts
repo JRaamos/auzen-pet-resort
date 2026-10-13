@@ -11,15 +11,15 @@ interface ContactConfig {
 
 export const contactConfig: ContactConfig = {
   whatsapp: {
-    display: '(71) 98241-2339',
-    digits: '5571982412339',
-    name: 'Renata',
-    role: 'Coordenadora de comunicações',
+    display: '(71) 99397-2239',
+    digits: '5571993972239',
+    name: 'Equipe Auzen',
+    role: 'Atendimento e reservas',
   },
   address: 'Rua da Jurema, Quingoma de Fora, Lauro de Freitas – BA',
   instagram: 'https://www.instagram.com/auzenpetresort/',
   openingHours:
-    'Creche: 07h às 17h · Hotel: check-in das 07h às 17h e check-out até 09h',
+    'Creche: 7h às 17h · Hotel: check-in das 7h às 17h e check-out até as 9h',
   legalLinks: [],
 }
 

@@ -46,3 +46,11 @@ Prompt final: fotografia editorial natural e fotorrealista, horizontal 3:2, de d
 - Capturas locais em `qa/`, ignoradas pelo Git.
 
 Marca principal preservada; assinatura Febraio Tech mantida no rodapé. Novos commits usam `jraamos <jhonyramos46@gmail.com>`.
+
+## Atualização comercial — 13/10/2026
+
+Dados enviados pelo cliente: WhatsApp **(71) 99397-2239**; hotel **R$ 105,00** (pequeno) e **R$ 115,00** (médio); creche **R$ 65,00** (pequeno) e **R$ 75,00** (médio), por cão e por diária. Estes valores substituem a tabela inicial acima.
+
+O simulador soma as diárias por porte de cada cão. Portes grande e gigante permanecem sob consulta, sem atribuição de preço presumido. A condição MAISDIAS existente foi mantida e os exemplos foram recalculados: cinco noites de hotel custam R$ 472,50/R$ 517,50; cinco dias de creche, R$ 292,50/R$ 337,50 (pequeno/médio). Desconto sujeito à confirmação da equipe; transporte à parte.
+
+Atualizados também o contato institucional, metadados, dados estruturados e fallback sem JavaScript. Revisados textos, horários, plurais, pontuação e chamadas do site.

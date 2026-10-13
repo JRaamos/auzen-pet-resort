@@ -46,14 +46,14 @@ test('hotel counts nights across month boundaries', () => {
   booking.startDate = '2027-01-31'
   booking.endDate = '2027-02-02'
   assert.equal(calculateQuote(booking).units, 2)
-  assert.equal(calculateQuote(booking).total, 200)
+  assert.equal(calculateQuote(booking).total, 230)
 })
 test('daycare includes both dates and accepts a single day', () => {
   const booking = valid()
   booking.service = 'daycare'
   booking.endDate = booking.startDate
   assert.equal(calculateQuote(booking).units, 1)
-  assert.equal(calculateQuote(booking).total, 65)
+  assert.equal(calculateQuote(booking).total, 75)
 })
 test('hotel rejects same-day checkout and inverse dates', () => {
   const booking = valid()
@@ -75,19 +75,20 @@ test('MAISDIAS discounts 5 nights per pet, not transport', () => {
   booking.transport = 'Buscar e levar'
   assert.deepEqual(calculateQuote(booking), {
     units: 5,
-    rate: 100,
-    subtotal: 1000,
-    discount: 100,
-    total: 900,
+    rates: [115, 115],
+    complete: true,
+    subtotal: 1150,
+    discount: 115,
+    total: 1035,
     eligible: true,
   })
 })
-test('5 daycare days total R$292.50 with promotion', () => {
+test('5 medium-dog daycare days total R$337.50 with promotion', () => {
   const booking = valid()
   booking.service = 'daycare'
   booking.endDate = '2027-01-05'
   booking.promo = 'MAISDIAS'
-  assert.equal(calculateQuote(booking).total, 292.5)
+  assert.equal(calculateQuote(booking).total, 337.5)
 })
 test('invalid and ineligible coupons block advancement', () => {
   const booking = valid()
@@ -158,7 +159,7 @@ test('one encoded message contains all supplied data and the new destination', (
   booking.payment = 'Cartão de crédito'
   booking.transport = 'Buscar e levar'
   const url = new URL(bookingWhatsAppUrl(booking))
-  assert.equal(url.pathname, '/5571982412339')
+  assert.equal(url.pathname, '/5571993972239')
   assert.equal(url.searchParams.get('text'), buildBookingMessage(booking))
   for (const value of [
     'Ana Teste',
@@ -171,8 +172,51 @@ test('one encoded message contains all supplied data and the new destination', (
     'Chegada combinada',
     'Cartão de crédito',
     'Buscar e levar',
-    'R$ 450,00',
+    'R$ 517,50',
     'Nenhum pagamento',
   ])
     assert.ok(url.searchParams.get('text')?.includes(value), value)
+})
+
+test('published prices and five-day promotions apply to each size and service', () => {
+  for (const [service, size, rate, total] of [
+    ['hotel', 'Pequeno', 105, 472.5],
+    ['hotel', 'Médio', 115, 517.5],
+    ['daycare', 'Pequeno', 65, 292.5],
+    ['daycare', 'Médio', 75, 337.5],
+  ] as const) {
+    const booking = valid()
+    booking.service = service
+    booking.endDate = service === 'hotel' ? '2027-01-06' : '2027-01-05'
+    booking.pets[0].size = size
+    booking.promo = 'MAISDIAS'
+    assert.deepEqual(calculateQuote(booking).rates, [rate])
+    assert.equal(calculateQuote(booking).total, total)
+  }
+})
+test('mixed sizes are priced separately, including the WhatsApp breakdown', () => {
+  const booking = valid()
+  booking.pets.push({ ...booking.pets[0], name: 'Mel', size: 'Pequeno' })
+  booking.promo = 'MAISDIAS'
+  assert.equal(calculateQuote(booking).subtotal, 1100)
+  assert.equal(calculateQuote(booking).total, 990)
+  assert.match(buildBookingMessage(booking), /Bento \(Médio\): R\$\s115,00/)
+  assert.match(buildBookingMessage(booking), /Mel \(Pequeno\): R\$\s105,00/)
+  booking.pets.pop()
+  booking.service = 'daycare'
+  booking.endDate = '2027-01-05'
+  assert.equal(calculateQuote(booking).total, 337.5)
+})
+test('missing and unpriced sizes never display a misleading complete total', () => {
+  for (const size of ['', 'Grande', 'Gigante', 'unknown']) {
+    const booking = valid()
+    booking.pets.push({ ...booking.pets[0], size })
+    booking.promo = 'MAISDIAS'
+    const quote = calculateQuote(booking)
+    assert.equal(quote.complete, false)
+    assert.equal(quote.total, null)
+    assert.equal(quote.subtotal, null)
+    assert.equal(quote.discount, 0)
+    assert.match(buildBookingMessage(booking), /Total estimado: \*Sob consulta\*/)
+  }
 })

@@ -109,8 +109,8 @@ export function Footer() {
         <FooterIntro>
           <Brand inverted />
           <p>
-            Hotel e creche para cães, com natureza por perto e espaço para viver
-            o dia do lado de fora.
+            Hotel e creche para cães, com natureza por perto e espaço para brincar
+            e aproveitar o ar livre.
           </p>
         </FooterIntro>
         <FooterColumn>

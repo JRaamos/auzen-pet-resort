@@ -1,3 +1,5 @@
+import { bookingConfig } from '../config/booking'
+import { money } from '../utils/booking'
 import type { WhatsAppIntent } from '../config/contact'
 
 export interface FaqItem {
@@ -18,7 +20,7 @@ export const faqItems: FaqItem[] = [
   {
     question: 'Como faço uma reserva?',
     answer:
-      'Acesse Fazer reserva, escolha serviço e datas e preencha os dados do tutor e do cão. Ao final, o site prepara uma mensagem completa para o WhatsApp. A reserva depende da confirmação da equipe.',
+      'Clique em “Fazer reserva”, escolha o serviço e as datas e preencha os dados do tutor e do cão. Ao final, o site prepara uma mensagem completa para o WhatsApp. A reserva depende da confirmação da equipe.',
     intent: 'general',
     linkLabel: 'Começar a conversa',
   },
@@ -32,21 +34,21 @@ export const faqItems: FaqItem[] = [
   {
     question: 'Como obtenho informações sobre valores?',
     answer:
-      'A página Serviços e valores mostra a tabela inicial: hotel a R$ 100 por diária e creche a R$ 65 por dia, por cão. O formulário calcula a estimativa. A equipe confirma o valor final e o transporte pelo WhatsApp.',
+      `No hotel, a diária custa ${money(bookingConfig.rates.hotel.Pequeno)} para porte pequeno e ${money(bookingConfig.rates.hotel.Médio)} para porte médio. Na creche, os valores por dia são ${money(bookingConfig.rates.daycare.Pequeno)} e ${money(bookingConfig.rates.daycare.Médio)}, respectivamente. Os valores são por cão. Para portes grande e gigante, consulte a equipe. O transporte é combinado à parte.`,
     intent: 'general',
     linkLabel: 'Pedir informações',
   },
   {
     question: 'Quais são os horários?',
     answer:
-      'A creche funciona das 07h às 17h. No hotel, o check-in acontece das 07h às 17h e o check-out é até 09h do dia seguinte. Visitas e transporte são combinados com a equipe.',
+      'A creche funciona das 7h às 17h. No hotel, o check-in acontece das 7h às 17h e o check-out é até as 9h do dia seguinte. Visitas e transporte são combinados com a equipe.',
     intent: 'general',
     linkLabel: 'Combinar horários',
   },
   {
     question: 'O que preciso levar?',
     answer:
-      'Traga a alimentação habitual e a carteira de vacinação. Informe proteção antiparasitária, medicamentos, alergias e rotina do seu cão. Confira todas as orientações na página Antes da estadia.',
+      'Traga a alimentação habitual e a carteira de vacinação. Informe os cuidados contra parasitas, os medicamentos, as alergias e a rotina do seu cão. Confira todas as orientações na página Antes da estadia.',
     intent: 'general',
     linkLabel: 'Tirar uma dúvida',
   },

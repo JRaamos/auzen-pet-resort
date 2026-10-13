@@ -7,8 +7,8 @@ import { Reveal } from '../components/Reveal'
 const items = [
   { icon: Leaf, title: 'Espaço para explorar', text: 'Gramado, jardim e caminhos que convidam ao movimento.' },
   { icon: MoveRight, title: 'Tempo para conviver', text: 'Um ambiente onde brincar e dividir o dia fazem parte da experiência.' },
-  { icon: HeartHandshake, title: 'Cuidado próximo', text: 'Uma relação simples, humana e aberta à conversa com cada tutor.' },
-  { icon: Home, title: 'Ambiente acolhedor', text: 'Menos cara de instalação, mais sensação de quintal e casa.' },
+  { icon: HeartHandshake, title: 'Cuidado próximo', text: 'Atenção à rotina de cada cão e diálogo com a família.' },
+  { icon: Home, title: 'Ambiente acolhedor', text: 'Um quintal para explorar e o aconchego de uma segunda casa.' },
 ]
 
 const Shell = styled.section`

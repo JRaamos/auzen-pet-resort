@@ -169,8 +169,8 @@ export function Services() {
         </Reveal>
         <Reveal delay={0.12}>
           <p>
-            Para passar o dia ou ficar por mais tempo, a conversa começa
-            entendendo o que você e seu cão precisam.
+            Seja para passar o dia ou ficar por mais tempo, queremos
+            conhecer a rotina e as necessidades do seu cão.
           </p>
         </Reveal>
       </ServicesIntro>
@@ -198,7 +198,7 @@ export function Services() {
                 acolhedor, com natureza por perto, para o seu cão ficar.
               </ServiceText>
               <Keywords>
-                Hospedagem · períodos de ausência · ambiente acolhedor
+                Hospedagem · carinho · ambiente acolhedor
               </Keywords>
               <StyledTextButton
                 href="/hotel"
@@ -214,10 +214,10 @@ export function Services() {
           <Reveal>
             <ServiceImage>
               <ResponsiveImage
-                base="daycare-play"
-                alt="Dois cães explorando juntos o gramado do Auzen"
+                base="garden-friends"
+                alt="Dois cães se encontrando no gramado do Auzen"
                 width={900}
-                height={1600}
+                height={962}
                 maxWidth={900}
                 sizes="(max-width: 800px) 90vw, 55vw"
                 objectPosition="50% 52%"
@@ -226,7 +226,7 @@ export function Services() {
           </Reveal>
           <ServiceCopy data-number="02">
             <Reveal delay={0.08}>
-              <Label>Creche · Day Care</Label>
+              <Label>Creche para cães</Label>
               <ServiceTitle>Um dia com mais quintal.</ServiceTitle>
               <ServiceText>
                 Um ambiente ao ar livre para brincar, explorar, conviver e

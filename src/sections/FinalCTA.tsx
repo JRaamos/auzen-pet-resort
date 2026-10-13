@@ -114,7 +114,7 @@ export function FinalCTA() {
       <Content>
         <Reveal>
           <Eyebrow>Vamos conversar?</Eyebrow>
-          <Title>O próximo passeio começa com um oi.</Title>
+          <Title>Vamos planejar a próxima estadia?</Title>
           <FinalLink
             href={createWhatsAppUrl('general')}
             target="_blank"
@@ -126,7 +126,7 @@ export function FinalCTA() {
         </Reveal>
       </Content>
       <CornerNote>
-        Hotel + Creche para cães <ArrowUpRight size={15} aria-hidden="true" />
+        Hotel e creche para cães <ArrowUpRight size={15} aria-hidden="true" />
       </CornerNote>
     </Shell>
   )

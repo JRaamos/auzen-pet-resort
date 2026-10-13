@@ -104,6 +104,10 @@ const dateNumber = (value: string) => {
     ? timestamp
     : NaN
 }
+export function dailyRate(service: Service, size: string): number | null {
+  const rates = bookingConfig.rates[service]
+  return size === 'Pequeno' || size === 'Médio' ? rates[size] : null
+}
 export function calculateQuote(
   booking: Pick<
     Booking,
@@ -117,20 +121,24 @@ export function calculateQuote(
     difference >= (booking.service === 'hotel' ? 1 : 0)
       ? difference + (booking.service === 'daycare' ? 1 : 0)
       : 0
-  const rate = bookingConfig.rates[booking.service]
-  const subtotal = units * rate * booking.pets.length
+  const rates = booking.pets.map((pet) => dailyRate(booking.service, pet.size))
+  const complete = rates.length > 0 && rates.every((rate) => rate !== null)
+  const subtotal = complete
+    ? units * rates.reduce<number>((sum, rate) => sum + (rate ?? 0), 0)
+    : null
   const requested =
     booking.promo.trim().toUpperCase() === bookingConfig.promotion.code
   const eligible = requested && units >= bookingConfig.promotion.minUnits
-  const discount = eligible
+  const discount = eligible && subtotal !== null
     ? Math.round(subtotal * bookingConfig.promotion.percent) / 100
     : 0
   return {
     units,
-    rate,
+    rates,
+    complete,
     subtotal,
     discount,
-    total: Math.round((subtotal - discount) * 100) / 100,
+    total: subtotal === null ? null : Math.round((subtotal - discount) * 100) / 100,
     eligible,
   }
 }
@@ -160,7 +168,7 @@ export function validateStep(
     const timeValid = (value: string, start: string, end: string) =>
       /^\d{2}:\d{2}$/.test(value) && value >= start && value <= end
     if (!timeValid(booking.arrival, '07:00', '17:00'))
-      errors.push('A entrada acontece das 07h às 17h.')
+      errors.push('A entrada acontece das 7h às 17h.')
     if (
       !timeValid(
         booking.departure,
@@ -170,7 +178,7 @@ export function validateStep(
     )
       errors.push(
         booking.service === 'hotel'
-          ? 'Escolha a saída do hotel até 09h.'
+          ? 'Escolha a saída do hotel até as 9h.'
           : 'Escolha a saída da creche até 17h.',
       )
     if (booking.service === 'daycare' && booking.arrival >= booking.departure)
@@ -253,10 +261,10 @@ export function buildBookingMessage(booking: Booking) {
     'Olá, equipe Auzen! Preparei minha solicitação pelo site. Vamos combinar os detalhes? 💚',
     '',
     '📅 *PERÍODO E SERVIÇO*',
-    `Serviço: ${booking.service === 'hotel' ? 'Hotel para cães' : 'Creche / Day Care'}`,
+    `Serviço: ${booking.service === 'hotel' ? 'Hotel para cães' : 'Creche para cães'}`,
     `Entrada: ${displayDate(booking.startDate)} às ${booking.arrival}`,
     `Saída: ${displayDate(booking.endDate)} às ${booking.departure}`,
-    `Quantidade: ${quote.units} ${booking.service === 'hotel' ? 'noite(s)' : 'dia(s)'} · ${booking.pets.length} cão(ães)`,
+    `Quantidade: ${quote.units} ${booking.service === 'hotel' ? (quote.units === 1 ? 'noite' : 'noites') : (quote.units === 1 ? 'dia' : 'dias')} · ${booking.pets.length} ${booking.pets.length === 1 ? 'cão' : 'cães'}`,
     `🚐 Transporte: ${booking.transport}${booking.transport !== 'Não preciso' ? ' (valor e disponibilidade a combinar)' : ''}`,
     '',
     '👤 *TUTOR*',
@@ -280,15 +288,18 @@ export function buildBookingMessage(booking: Booking) {
     ]),
     '',
     '💳 *ESTIMATIVA E PAGAMENTO*',
-    `${money(quote.rate)} × ${quote.units} diária(s) × ${booking.pets.length} cão(ães): ${money(quote.subtotal)}`,
+    ...booking.pets.map((pet, index) => {
+      const rate = quote.rates[index]
+      return `${clean(pet.name)} (${pet.size || 'porte a informar'}): ${rate === null ? 'valor sob consulta' : `${money(rate)} × ${quote.units} ${quote.units === 1 ? 'diária' : 'diárias'} = ${money(rate * quote.units)}`}`
+    }),
     ...(quote.discount
       ? [
           `🎁 MAISDIAS (${bookingConfig.promotion.percent}%): −${money(quote.discount)}`,
         ]
       : []),
-    `Total estimado: *${money(quote.total)}*${booking.transport !== 'Não preciso' ? ' + transporte a combinar' : ''}`,
+    `Total estimado: *${quote.total === null ? 'Sob consulta' : money(quote.total)}*${booking.transport !== 'Não preciso' ? ' + transporte a combinar' : ''}`,
     `Forma de pagamento preferida: ${booking.payment} (a confirmar com a equipe)`,
-    'Tabela provisória. Valor final, disponibilidade e pagamento serão confirmados pelo Auzen. Nenhum pagamento foi realizado pelo site.',
+    'Valor final, disponibilidade e condições de pagamento serão confirmados pela equipe Auzen. Nenhum pagamento foi realizado pelo site.',
     '',
     `📝 Observações gerais: ${clean(booking.notes)}`,
     '',

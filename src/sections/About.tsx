@@ -135,8 +135,8 @@ export function About() {
           <Copy>
             <p>
               Entre gramado, árvores e cantinhos de sombra, o Auzen reúne hotel
-              e creche em um ambiente de verdade — aberto, próximo e cheio de
-              vida.
+              e creche em um espaço acolhedor, com natureza e carinho
+              em cada estadia.
             </p>
             <SimpleList aria-label="Características do espaço">
               <li>Natureza por perto</li>
