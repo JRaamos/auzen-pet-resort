@@ -26,3 +26,11 @@
 A conta usada está no plano Hobby. A Vercel restringe esse plano a uso pessoal e não comercial: https://vercel.com/docs/plans/hobby. Como o site divulga serviços de uma empresa, é necessário adequar o plano/hospedagem para uso comercial. Nenhuma assinatura, compra de domínio, upgrade, integração paga ou analytics foi contratado nesta publicação. O subdomínio `vercel.app` não é um domínio próprio adquirido.
 
 Arquivos de ambiente e `.vercel/` estão ignorados pelo Git. Nenhum `.env.production` foi criado ou alterado.
+
+## Atualização comercial — 13/10/2026
+
+- Domínio oficial atual: https://auzenpetresort.com.br.
+- Alteração `6ccd37d`: preços por porte, simulador, WhatsApp comercial, duas novas fotos e revisão de textos.
+- Vercel confirmou sucesso no deployment `3o5hXyjMrQLxWPj4uoqDn5s2hFLm`; `/contato` já entregou o novo WhatsApp em HTTPS, sem o número antigo.
+- Validação local: lint, build, 17 testes de reserva, 21 verificações de navegador em desktop/tablet/celular e 12 páginas pré-renderizadas. O build conserva o aviso de tamanho do bundle principal.
+- Ajuste complementar da galeria: colunas equilibradas para acomodar as novas fotos sem lacunas entre as linhas no desktop.

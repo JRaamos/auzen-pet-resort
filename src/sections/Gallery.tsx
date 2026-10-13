@@ -48,7 +48,7 @@ const Grid = styled(Container)`
 const getGridSpan = (layout: GalleryLayout, index: number) => {
   if (index === 0) return { columns: 7, rows: 7 }
   if (index === 1) return { columns: 5, rows: 7 }
-  if (layout === 'wide') return { columns: 8, rows: 6 }
+  if (layout === 'wide') return { columns: 6, rows: 6 }
   if (layout === 'square') return { columns: 6, rows: 6 }
   return { columns: 6, rows: 6 }
 }
