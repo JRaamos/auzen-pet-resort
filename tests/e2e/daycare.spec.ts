@@ -20,6 +20,8 @@ test('monthly packages agree across pages and prepare the selected plan for What
     }
     await expect(plans).toContainText('das 7h às 18h')
     await expect(plans).toContainText('mais de um cão')
+    await plans.locator('article').last().scrollIntoViewIfNeeded()
+    await expect(page.locator('[data-floating-contact]')).not.toBeVisible()
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBeTruthy()
   }
 })

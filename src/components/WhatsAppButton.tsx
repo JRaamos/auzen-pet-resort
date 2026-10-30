@@ -56,20 +56,33 @@ export function WhatsAppButton() {
   const { pathname } = useLocation()
   const [visible, setVisible] = useState(false)
   useEffect(() => {
-    const targets = Array.from(
-      document.querySelectorAll('#inicio, #contato, footer'),
-    )
-    const intersections = new Map(
-      targets.map((element) => [element, element.id === 'inicio']),
-    )
+    const intersections = new Map<Element, boolean>()
+    const updateVisibility = () => setVisible(!Array.from(intersections.values()).some(Boolean))
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) =>
         intersections.set(entry.target, entry.isIntersecting),
       )
-      setVisible(!Array.from(intersections.values()).some(Boolean))
+      updateVisibility()
     })
-    targets.forEach((target) => observer.observe(target))
-    return () => observer.disconnect()
+    const syncTargets = () => {
+      for (const target of intersections.keys()) {
+        if (!target.isConnected) {
+          observer.unobserve(target)
+          intersections.delete(target)
+        }
+      }
+      document.querySelectorAll('#inicio, #planos, #contato, footer').forEach(target => {
+        if (intersections.has(target)) return
+        intersections.set(target, target.id === 'inicio')
+        observer.observe(target)
+      })
+      updateVisibility()
+    }
+    syncTargets()
+    // Lazy pages can mount their contact sections after this component.
+    const mutations = new MutationObserver(syncTargets)
+    mutations.observe(document.querySelector('main') || document.body, { childList: true, subtree: true })
+    return () => { observer.disconnect(); mutations.disconnect() }
   }, [pathname])
   // These pages already expose the contact action in their primary content.
   if (pathname === '/reservar' || pathname === '/contato') return null
