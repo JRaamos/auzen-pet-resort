@@ -181,13 +181,13 @@ export function Services() {
           <Reveal>
             <ServiceImage>
               <ResponsiveImage
-                base="garden-friends"
-                alt="Dois cães se encontrando no gramado do Auzen"
+                base="daycare-energy-v1"
+                alt="Dois cães brincando juntos no gramado entre flores amarelas"
                 width={900}
-                height={962}
+                height={1125}
                 maxWidth={900}
                 sizes="(max-width: 800px) 90vw, 55vw"
-                objectPosition="50% 52%"
+                objectPosition="50% 55%"
               />
             </ServiceImage>
           </Reveal>

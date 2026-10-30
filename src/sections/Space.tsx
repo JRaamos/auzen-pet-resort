@@ -213,12 +213,12 @@ export function Space() {
     <SpaceShell id="espaco">
       <SpaceIntro>
         <Reveal>
-          <SectionHeading eyebrow="O espaço">O quintal não é cenário. É parte da experiência.</SectionHeading>
+            <SectionHeading eyebrow="O espaço">Natureza para brincar e explorar.</SectionHeading>
         </Reveal>
         <Reveal delay={0.12}>
           <div>
             <p>
-              O verde aparece em todo canto: no gramado, no jardim, nas árvores e nos caminhos que convidam cada cão a descobrir o ambiente no próprio ritmo.
+              Gramado, árvores e cantinhos de sombra para explorar, brincar e descansar no próprio ritmo.
             </p>
           </div>
         </Reveal>

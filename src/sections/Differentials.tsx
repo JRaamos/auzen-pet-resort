@@ -20,6 +20,7 @@ const Grid = styled(Container)`
   display: grid;
   grid-template-columns: minmax(18rem, 0.8fr) minmax(0, 1.2fr);
   gap: clamp(3rem, 8vw, 8rem);
+  align-items: center;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
     grid-template-columns: 1fr;
@@ -28,9 +29,9 @@ const Grid = styled(Container)`
 
 const ImageWrap = styled.div`
   position: relative;
-  height: clamp(36rem, 68vw, 51rem);
+  height: clamp(30rem, 52vw, 42rem);
   overflow: hidden;
-  border-radius: ${({ theme }) => theme.radius.organic};
+  border-radius: ${({ theme }) => theme.radius.lg};
 
   &::after {
     position: absolute;
@@ -61,10 +62,10 @@ const Content = styled.div`
   }
 
   > div > h2 {
-    max-width: 10ch;
+    max-width: 16ch;
     margin-bottom: clamp(2.5rem, 5vw, 4rem);
     font-family: ${({ theme }) => theme.typography.display};
-    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-size: clamp(2.6rem, 4.4vw, 4rem);
     font-weight: 430;
     letter-spacing: -0.048em;
     line-height: 0.95;
@@ -121,14 +122,14 @@ export function Differentials() {
               height={1600}
               maxWidth={900}
               sizes="(max-width: 800px) 90vw, 42vw"
-              objectPosition="50% 52%"
+              objectPosition="50% 65%"
             />
           </ImageWrap>
         </Reveal>
         <Content>
           <Reveal>
             <p>O jeito Auzen</p>
-            <h2 id="differentials-title">O simples bem-feito faz toda a diferença.</h2>
+            <h2 id="differentials-title">Cuidado em cada detalhe.</h2>
           </Reveal>
           <List role="list">
             {items.map((item, index) => {

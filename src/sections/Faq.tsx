@@ -98,10 +98,10 @@ export function Faq() {
       <FaqGrid>
         <FaqIntro>
           <Reveal>
-            <SectionHeading eyebrow="Dúvidas">A conversa pode começar por aqui.</SectionHeading>
+            <SectionHeading eyebrow="Dúvidas">Dúvidas sobre a estadia?</SectionHeading>
           </Reveal>
           <Reveal delay={0.1}>
-            <p>Regras e detalhes podem variar. Para receber uma resposta atualizada, fale diretamente com o Auzen.</p>
+            <p>Confira as respostas sobre horários, alimentação, transporte e reservas. Se precisar, nossa equipe está por perto para ajudar.</p>
           </Reveal>
           <Reveal delay={0.16}>
             <ButtonLink

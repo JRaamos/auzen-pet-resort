@@ -188,7 +188,7 @@ export function AboutPage() {
             <Photo>
               <img
                 src="/images/human-care-900.jpg"
-                alt="Carinho e companhia com os cães no jardim real do Auzen"
+                alt="Carinho e companhia com os cães no jardim do Auzen"
                 loading="lazy"
               />
               <figcaption>
@@ -267,8 +267,8 @@ export function ServicesPage() {
         <Container>
           <PricingRow id="creche">
             <img
-              src="/images/garden-friends-900.jpg"
-              alt="Dois cães se encontrando no gramado"
+              src="/images/daycare-energy-v1-900.jpg"
+              alt="Dois cães brincando juntos no gramado"
               loading="lazy"
             />
             <div>
@@ -446,7 +446,6 @@ export function PromotionsPage() {
           <ButtonLink href="/reservar?cupom=MAISDIAS">
             Simular minha reserva <ArrowUpRight size={18} />
           </ButtonLink>
-          <Note>Imagem ilustrativa de campanha.</Note>
         </Container>
       </Campaign>
       <Promotion>
@@ -535,10 +534,10 @@ export function SpacePage() {
     <PageShell>
       <PageIntro
         eyebrow="Nosso espaço"
-        title="Natureza para viver, não só para ver."
+        title="Natureza para aproveitar o dia."
       >
         <Lead>
-          Conheça o jardim e os momentos reais no Auzen, em Lauro de Freitas.
+          Conheça o jardim e a rotina do Auzen, em Lauro de Freitas.
         </Lead>
       </PageIntro>
       <Space />
@@ -798,8 +797,8 @@ export function InformationPage() {
             </div>
             <Photo>
               <img
-                src="/images/hotel-rest-900.jpg"
-                alt="Cão descansando no Auzen"
+                src="/images/hotel-welcome-v2-900.jpg"
+                alt="Cão de pelagem dourada em uma varanda acolhedora"
                 loading="lazy"
               />
             </Photo>

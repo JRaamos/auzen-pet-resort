@@ -2,7 +2,7 @@
 
 Criada com a ferramenta integrada de geração de imagens, a pedido do usuário, a partir de `public/images/hotel-rest-900.jpg`, a fotografia disponível do cão na varanda. O arquivo anterior permanece intacto. Não foi localizado um original de maior resolução nos arquivos de entrada consultados.
 
-Resultado completo: `public/images/hotel-welcome-v1.png`. Derivados web AVIF/JPEG de 480 e 900 px usam o prefixo `hotel-welcome-v1`. A versão recriada é identificada como ilustrativa no site; a hero permanece inalterada.
+Resultado completo: `public/images/hotel-welcome-v1.png`. Derivados web AVIF/JPEG de 480 e 900 px usam o prefixo `hotel-welcome-v1`. A hero permanece inalterada. Na revisão posterior, o usuário solicitou a remoção da legenda pública; o arquivo ativo passou a `hotel-welcome-v2`, com correção da cauda e das patas, conforme `revisao-visual-2026-10-29.md`.
 
 ## Prompt aplicado
 

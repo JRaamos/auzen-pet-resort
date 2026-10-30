@@ -41,4 +41,8 @@ Adicionadas as duas fotografias enviadas pelo cliente em 11/10: cães se encontr
 
 ## Atualização de 29/10/2026 — hotel
 
-A pedido do usuário, `hotel-rest-900.jpg` foi usada como referência para uma versão mais iluminada e acolhedora do cão na varanda. A recriação `hotel-welcome-v1` aparece no hotel da home, em `/hotel` e em `/servicos`, identificada como ilustrativa; o detalhe do gramado usa uma foto real. A foto anterior e a hero de imagem grande foram preservadas. Fonte, processo e prompt estão em [hotel-image.md](hotel-image.md).
+A pedido do usuário, `hotel-rest-900.jpg` foi usada como referência para uma versão mais iluminada e acolhedora do cão na varanda. A recriação `hotel-welcome-v1` aparece no hotel da home, em `/hotel` e em `/servicos`, com um detalhe do gramado em foto real. A foto anterior e a hero de imagem grande foram preservadas. Fonte, processo e prompt estão em [hotel-image.md](hotel-image.md).
+
+## Revisão visual complementar de 29/10/2026
+
+Corrigida a anatomia da foto do hotel (`hotel-welcome-v2`) e criadas versões mais claras e expressivas para a creche (`daycare-energy-v1`) e para o cão marrom da galeria (`brown-dog-v2`). A pedido do usuário, as legendas técnicas foram retiradas do site. As fotografias anteriores, a hero, as pessoas e a história familiar permanecem preservadas. Fontes, alterações e prompts: [revisao-visual-2026-10-29.md](revisao-visual-2026-10-29.md).

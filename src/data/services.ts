@@ -2,7 +2,7 @@ export const serviceDetails = {
   hotel: {
     path: '/hotel', name: 'Hotel para cães', title: 'Uma estadia com clima de casa.',
     intro: 'Hospedagem para seu cachorro em Lauro de Freitas, com acolhimento e espaço ao ar livre enquanto você viaja ou cuida dos seus compromissos.',
-    image: 'hotel-welcome-v1', alt: 'Releitura do cão do Auzen em uma varanda iluminada e acolhedora',
+    image: 'hotel-welcome-v2', alt: 'Cão de pelagem dourada em uma varanda iluminada e acolhedora',
     heading: 'A rotina dele também vem na bagagem.',
     detail: 'Cada cão chega com seus hábitos. Antes da estadia, conversamos sobre alimentação, saúde e comportamento para combinar os cuidados com a família.',
     schedule: 'Check-in das 7h às 17h. Check-out até as 9h do dia seguinte.',
@@ -17,7 +17,7 @@ export const serviceDetails = {
   daycare: {
     path: '/creche', name: 'Creche para cães', title: 'Mais quintal no dia a dia.',
     intro: 'Um dia de creche canina em Lauro de Freitas, com natureza, brincadeiras e tempo para descansar. Conheça a creche do Auzen.',
-    image: 'garden-friends', alt: 'Dois cães se encontrando no gramado do Auzen',
+    image: 'daycare-energy-v1', alt: 'Dois cães brincando juntos no gramado entre flores amarelas',
     heading: 'Descobertas, convivência e descanso.',
     detail: 'Converse com a equipe sobre o comportamento e a rotina do seu cão. A adaptação e a convivência são combinadas antes da participação na creche.',
     schedule: 'Segunda a sexta-feira, das 7h às 18h. Combine os dias disponíveis com a equipe.',

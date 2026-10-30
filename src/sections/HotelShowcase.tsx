@@ -27,9 +27,8 @@ const Layout = styled(Container)`
 const Photography = styled.figure`
   position: relative;
   margin: 0;
-  padding: 0 1.5rem 0 0;
-  figcaption { margin-top: 1.75rem; max-width: 24rem; font-size: .64rem; color: ${({ theme }) => theme.colors.brown}; }
-  @media (max-width: 800px) { padding-right: 1rem; figcaption { margin-top: 1.25rem; } }
+  padding: 0 1.5rem 1.2rem 0;
+  @media (max-width: 800px) { padding-right: 1rem; }
 `
 const MainPhoto = styled.div`
   position: relative;
@@ -49,14 +48,14 @@ const MainPhoto = styled.div`
 const InsetPhoto = styled.div`
   position: absolute;
   right: -.5rem;
-  bottom: 4.5rem;
+  bottom: .75rem;
   width: 36%;
   aspect-ratio: 1;
   border: .4rem solid ${({ theme }) => theme.colors.warmWhite};
   border-radius: 1.5rem;
   overflow: hidden;
   box-shadow: ${({ theme }) => theme.shadows.soft};
-  @media (max-width: 800px) { right: -.25rem; width: 31%; bottom: 4rem; }
+  @media (max-width: 800px) { right: -.25rem; width: 31%; bottom: .5rem; }
 `
 const PhotoBadge = styled.div`
   position: absolute;
@@ -163,7 +162,6 @@ export function HotelShowcase({ page = false }: { page?: boolean }) {
       <MainPhoto><ResponsiveImage base={serviceDetails.hotel.image} alt={serviceDetails.hotel.alt} width={900} height={1125} sizes="(max-width: 800px) 90vw, 45vw" loading={page ? 'eager' : 'lazy'} objectPosition="50% 40%" /></MainPhoto>
       <InsetPhoto><ResponsiveImage base="open-lawn" alt="Área gramada e arborizada do Auzen" width={900} height={1600} sizes="(max-width: 800px) 28vw, 200px" objectPosition="50% 40%" /></InsetPhoto>
       <PhotoBadge><Moon size={20} aria-hidden="true" />Carinho em cada estadia</PhotoBadge>
-      <figcaption>Imagem principal ilustrativa, recriada a partir de uma foto do Auzen. No detalhe, foto real do jardim.</figcaption>
     </Photography></Reveal>
     <Reveal delay={.1}>
       <Label>Hotel para cães · Auzen Pet Resort</Label>

@@ -40,7 +40,7 @@ export function FirstVisit() {
       <ol>
         <li><div><h3>Conte um pouquinho sobre ele.</h3><p>Fale com a equipe pelo WhatsApp sobre a rotina, a saúde e o jeito do seu cão.</p></div></li>
         <li><div><h3>Venha conhecer o nosso quintal.</h3><p>Combine uma visita e converse sobre a adaptação e os cuidados que ele precisa.</p></div></li>
-        <li><div><h3>Escolha os dias de diversão.</h3><p>Defina o pacote com a equipe e confirme a disponibilidade para começar.</p></div></li>
+        <li><div><h3>Escolha os dias de diversão.</h3><p>Combine a frequência da creche ou as datas da hospedagem e confirme a disponibilidade com a equipe.</p></div></li>
       </ol>
       <ButtonLink href={createWhatsAppUrl('visit')} target="_blank" rel="noreferrer" data-analytics-location="first_visit">Combinar uma visita <ArrowUpRight size={17} aria-hidden="true" /></ButtonLink>
     </Reveal>

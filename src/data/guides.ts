@@ -15,7 +15,7 @@ export const guides = [
   {
     slug: 'hospedagem-feriados', title: 'Vai viajar? Planeje a hospedagem do seu cachorro.',
     description: 'Um roteiro para organizar datas, horários, alimentação e contato antes de deixar seu cão em um hotel em Lauro de Freitas.',
-    image: 'hotel-rest', alt: 'Cão descansando na área coberta do Auzen',
+    image: 'hotel-welcome-v2', alt: 'Cão de pelagem dourada em uma varanda acolhedora',
     sections: [
       { id: 'datas', title: 'Comece pelas datas e pelos horários', paragraphs: ['Antes de uma viagem de fim de semana ou feriado prolongado, consulte a disponibilidade para todo o período. Reservar com antecedência ajuda a organizar a chegada; uma consulta não garante vaga.', 'No Auzen, o check-in do hotel é das 7h às 17h e o check-out até as 9h do dia seguinte. A recepção funciona todos os dias das 7h às 17h. Se o horário da sua viagem não coincide com esses períodos, converse com a equipe antes de confirmar qualquer condição.'] },
       { id: 'orcamento', title: 'Confira o que entra no orçamento', paragraphs: ['Informe o porte do cachorro e as datas de entrada e saída para consultar a estimativa. Confira os valores e condições vigentes na página de serviços e peça a confirmação do total pelo WhatsApp.', 'Se precisar de transporte, informe a região de busca e retorno. Esse serviço depende de rota, disponibilidade e valor combinados à parte. Pergunte também sobre condições de pagamento e alterações de datas antes de concluir a reserva.'] },

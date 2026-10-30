@@ -36,7 +36,7 @@ export function ServicePage({ service }: { service: 'hotel' | 'daycare' }) {
         </Actions>
         <Note><Clock3 size={15} aria-hidden="true" /> {info.schedule}</Note>
       </div>
-      <ServicePhoto><ResponsiveImage base={info.image} alt={info.alt} width={900} height={962} sizes="(max-width: 800px) 90vw, 45vw" loading="eager" /><figcaption>Um momento real no espaço do Auzen.</figcaption></ServicePhoto>
+      <ServicePhoto><ResponsiveImage base={info.image} alt={info.alt} width={900} height={1125} sizes="(max-width: 800px) 90vw, 45vw" loading="eager" /></ServicePhoto>
     </Split></Container></Section>}
     <Section style={{ paddingTop: 0 }}><Container><Split>
       <div><Eyebrow>Do jeito do seu cão</Eyebrow><Heading>{info.heading}</Heading><Lead>{info.detail}</Lead><Link to="/informacoes">Veja o que levar e como se preparar →</Link></div>

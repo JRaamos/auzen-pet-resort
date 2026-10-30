@@ -18,7 +18,7 @@ const Stories = styled.div`
   display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
   a { display: block; }
   picture { height: auto; }
-  img { width: 100%; height: auto; aspect-ratio: 4/3; object-fit: cover; border-radius: 0 2rem 0 0; transition: filter 180ms; }
+  img { width: 100%; height: auto; aspect-ratio: 4/3; object-fit: cover; object-position: 50% 35%; border-radius: 0 2rem 0 0; transition: filter 180ms; }
   a:hover img { filter: brightness(1.05); }
   h2 { margin-top: 1.5rem; font-size: clamp(2rem, 3vw, 3rem); }
   span { display: inline-flex; align-items: center; gap: .5rem; color: ${({ theme }) => theme.colors.terracottaDark}; }
@@ -28,7 +28,6 @@ const Cover = styled.figure`
   margin: 0;
   picture { height: auto; }
   img { width: 100%; height: auto; max-height: 620px; aspect-ratio: 2/1; object-fit: cover; object-position: 50% 20%; }
-  figcaption { font-size: .75rem; margin-top: .6rem; }
   @media(max-width: 600px) { img { aspect-ratio: 4/3; } }
 `
 const Reading = styled.div`
@@ -58,7 +57,7 @@ export function GuidesPage() {
       {guide && <Note>Por Auzen Pet Resort · Orientações para planejar sua estadia</Note>}
     </PageIntro>
     {guide ? <>
-      <Container><Cover><ResponsiveImage base={guide.image} alt={guide.alt} width={900} height={600} loading="eager" sizes="90vw" /><figcaption>Um momento no espaço do Auzen Pet Resort.</figcaption></Cover></Container>
+      <Container><Cover><ResponsiveImage base={guide.image} alt={guide.alt} width={900} height={600} loading="eager" sizes="90vw" /></Cover></Container>
       <Section><Container><Reading>
         <aside><nav aria-label="Neste guia"><strong>Neste guia</strong><ol>{guide.sections.map(section => <li key={section.id}><a href={`#${section.id}`}>{section.title}</a></li>)}</ol></nav></aside>
         <article>{guide.sections.map(section => <section id={section.id} key={section.id}><Heading>{section.title}</Heading>{section.paragraphs.map(paragraph => <p key={paragraph}>{paragraph}</p>)}</section>)}
