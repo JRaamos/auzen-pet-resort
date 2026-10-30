@@ -1,28 +1,23 @@
 import { ArrowUpRight, Menu, MessageCircle, X } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
-import { Link, NavLink, useLocation } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { contactConfig, createWhatsAppUrl } from '../config/contact'
 import { navigationItems } from '../config/navigation'
 import { Brand } from './Brand'
 import { ResponsiveImage } from './ResponsiveImage'
 
-const HeaderShell = styled.header<{ $scrolled: boolean; $open: boolean }>`
+const HeaderShell = styled.header<{ $open: boolean }>`
   position: fixed;
   z-index: 50;
   top: 0;
   right: 0;
   left: 0;
-  color: ${({ theme, $scrolled, $open }) =>
-    $open || !$scrolled ? theme.colors.warmWhite : theme.colors.forest};
-  background: ${({ $scrolled, $open }) => {
-    if ($open) return 'transparent'
-    if ($scrolled) return 'rgba(246, 240, 230, 0.94)'
-    return 'transparent'
-  }};
+  color: ${({ theme, $open }) => $open ? theme.colors.warmWhite : theme.colors.forest};
+  background: ${({ $open }) => $open ? 'transparent' : 'rgba(246, 240, 230, 0.96)'};
   border-bottom: 1px solid
-    ${({ theme, $scrolled, $open }) => ($scrolled && !$open ? theme.colors.line : 'transparent')};
-  backdrop-filter: ${({ $scrolled, $open }) => ($scrolled && !$open ? 'blur(18px)' : 'none')};
+    ${({ theme, $open }) => ($open ? 'transparent' : theme.colors.line)};
+  backdrop-filter: ${({ $open }) => ($open ? 'none' : 'blur(18px)')};
   transition:
     background ${({ theme }) => theme.transitions.base},
     color ${({ theme }) => theme.transitions.base},
@@ -260,20 +255,10 @@ const MobileFooter = styled.div`
 `
 
 export function Header() {
-  const { pathname } = useLocation()
-  const solidHeader = pathname !== '/'
-  const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const firstMobileLink = useRef<HTMLAnchorElement>(null)
   const headerRef = useRef<HTMLElement>(null)
   const menuButtonRef = useRef<HTMLButtonElement>(null)
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 48)
-    onScroll()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
 
   useEffect(() => {
     document.body.classList.toggle('menu-open', menuOpen)
@@ -331,12 +316,11 @@ export function Header() {
   }, [menuOpen])
 
   const closeMenu = () => setMenuOpen(false)
-  const invertedBrand = menuOpen || (!scrolled && !solidHeader)
+  const invertedBrand = menuOpen
 
   return (
     <HeaderShell
       ref={headerRef}
-      $scrolled={scrolled || solidHeader}
       $open={menuOpen}
     >
       <MenuBackdrop $open={menuOpen} onClick={closeMenu} aria-hidden="true" />
@@ -344,7 +328,7 @@ export function Header() {
         <Brand inverted={invertedBrand} onClick={closeMenu} />
         <DesktopNav aria-label="Navegação principal">
           {navigationItems.map((item) => (
-            <NavLink to={item.href} end={item.href === '/'} key={item.href}>
+            <NavLink to={item.href} end aria-current={item.href.includes('#') ? false : undefined} key={item.href}>
               {item.label}
             </NavLink>
           ))}
@@ -396,7 +380,8 @@ export function Header() {
             <NavLink
               ref={index === 0 ? firstMobileLink : undefined}
               to={item.href}
-              end={item.href === '/'}
+              end
+              aria-current={item.href.includes('#') ? false : undefined}
               key={item.href}
               onClick={closeMenu}
               tabIndex={menuOpen ? 0 : -1}

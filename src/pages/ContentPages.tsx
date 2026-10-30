@@ -34,6 +34,8 @@ import {
 import { Reveal } from '../components/Reveal'
 import { InstagramIcon, WhatsAppIcon } from '../components/SocialIcons'
 import { bookingConfig, preparationItems } from '../config/booking'
+import { daycareConfig } from '../config/daycare'
+import { DaycarePlans } from '../sections/DaycarePlans'
 import { contactConfig, createWhatsAppUrl } from '../config/contact'
 import { Faq } from '../sections/Faq'
 import { Gallery } from '../sections/Gallery'
@@ -255,8 +257,8 @@ export function ServicesPage() {
           Escolha como seu cão vai viver o Auzen.
         </Lead>
         <Note>
-          Diárias por cão, conforme o porte. Para portes grande e gigante,
-          consulte a equipe. O transporte é combinado à parte.
+          Hotel com diárias conforme o porte. Creche com diária avulsa e pacotes
+          mensais. O transporte é combinado à parte.
         </Note>
       </PageIntro>
       <Section style={{ paddingTop: 0 }}>
@@ -311,19 +313,17 @@ export function ServicesPage() {
                 para descansar entre uma descoberta e outra.
               </Lead>
               <Price>
-                {money(bookingConfig.rates.daycare.Pequeno)} <small>· porte pequeno</small>
-                <br />
-                {money(bookingConfig.rates.daycare.Médio)} <small>· porte médio</small>
+                {money(daycareConfig.dailyRate)} <small>· diária avulsa por cão</small>
               </Price>
               <Schedule>
-                <Clock3 size={18} /> Funcionamento das 7h às 17h.
+                <Clock3 size={18} /> {daycareConfig.schedule}.
               </Schedule>
               <Note>
-                O valor é por dia e por cão. Cada data do período conta como uma diária.
+                Pacotes a partir de {money(daycareConfig.plans[0].price)} por mês, com 4 diárias.
                 Combine a adaptação e a convivência com a equipe.
               </Note>
-              <ButtonLink href="/reservar?servico=daycare">
-                Planejar um dia de creche <ArrowRight size={17} />
+              <ButtonLink href="/servicos#planos">
+                Ver pacotes da creche <ArrowRight size={17} />
               </ButtonLink>
               <p><Link to="/creche">Conheça todos os detalhes da creche →</Link></p>
             </div>
@@ -383,6 +383,7 @@ export function ServicesPage() {
           </PricingRow>
         </Container>
       </Section>
+      <DaycarePlans />
       <ReserveCallout />
     </PageShell>
   )
@@ -456,7 +457,7 @@ const Promotion = styled(Section)`
 `
 export function PromotionsPage() {
   const examples = (service: 'hotel' | 'daycare') => (['Pequeno', 'Médio'] as const).map((size) => {
-    const quote = calculateQuote({ service, startDate: '2027-01-01', endDate: service === 'hotel' ? '2027-01-06' : '2027-01-05', pets: [{ ...emptyPet(), size }], promo: bookingConfig.promotion.code })
+    const quote = calculateQuote({ service, startDate: '2027-01-04', endDate: service === 'hotel' ? '2027-01-09' : '2027-01-08', pets: [{ ...emptyPet(), size }], promo: bookingConfig.promotion.code })
     return <p key={size}>Porte {size.toLowerCase()}: de {money(quote.subtotal!)} por {money(quote.total!)}.</p>
   })
   return (
@@ -765,7 +766,7 @@ export function ContactPage() {
                     <p>Recepção todos os dias, das 7h às 17h.</p>
                     <ContactHours>
                       <div>
-                        <dt>Creche</dt><dd>7h às 17h</dd>
+                        <dt>Creche</dt><dd>Segunda a sexta, 7h às 18h</dd>
                       </div>
                       <div>
                         <dt>Hotel · check-in</dt><dd>7h às 17h</dd>

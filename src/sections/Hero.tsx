@@ -1,443 +1,197 @@
-import { ArrowDown, ArrowRight, CalendarDays } from 'lucide-react'
+import { ArrowDown, ArrowRight, CalendarDays, Leaf, PawPrint } from 'lucide-react'
 import { motion, useReducedMotion, useScroll, useTransform } from 'motion/react'
 import { useRef } from 'react'
 import styled from 'styled-components'
 import { ButtonLink } from '../components/Button'
 import { Container } from '../components/Container'
+import { ResponsiveImage } from '../components/ResponsiveImage'
 
-const HeroShell = styled.section`
+const Shell = styled.section`
   position: relative;
-  min-height: 100svh;
-  overflow: hidden;
-  color: ${({ theme }) => theme.colors.warmWhite};
-  background: ${({ theme }) => theme.colors.forest};
   isolation: isolate;
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    --photo-height: clamp(13rem, 35svh, 19rem);
-    min-height: 0;
-  }
-
-  @media (max-width: 800px) and (max-height: 600px) {
-    --photo-height: 10rem;
-  }
-`
-
-const ImageLayer = styled(motion.div)`
-  position: absolute;
-  z-index: -3;
-  inset: -8% 0 -8%;
-
-  picture,
-  img {
-    width: 100%;
-    height: 100%;
-  }
-
-  img {
-    object-fit: cover;
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    inset: 3.2rem 0 auto;
-    height: calc(var(--photo-height) + 1rem);
-    transform: none !important;
-
-    img {
-      object-position: 50% 28%;
-    }
-  }
-`
-
-const Overlay = styled.div`
-  position: absolute;
-  z-index: -2;
-  inset: 0;
-  background:
-    linear-gradient(
-      180deg,
-      rgba(14, 31, 25, 0.66) 0,
-      rgba(14, 31, 25, 0.45) 5rem,
-      transparent 13rem
-    ),
-    linear-gradient(
-      90deg,
-      rgba(17, 48, 38, 0.96) 0%,
-      rgba(17, 48, 38, 0.84) 28%,
-      rgba(17, 48, 38, 0.18) 58%,
-      rgba(17, 48, 38, 0.08) 100%
-    ),
-    linear-gradient(0deg, rgba(14, 31, 25, 0.68) 0%, transparent 45%);
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    background:
-      linear-gradient(
-        180deg,
-        #183e32 3.2rem,
-        rgba(24, 62, 50, 0.12) 6rem,
-        transparent 8rem
-      ),
-      linear-gradient(
-        180deg,
-        transparent 8rem,
-        rgba(24, 62, 50, 0.18) calc(var(--photo-height) - 5rem),
-        #183e32 calc(var(--photo-height) + 3.5rem)
-      );
-  }
-`
-
-const OrganicLine = styled.div`
-  position: absolute;
-  z-index: -1;
-  top: 11%;
-  right: -10rem;
-  width: min(46vw, 45rem);
-  aspect-ratio: 1;
-  border: 1px solid rgba(255, 255, 255, 0.38);
-  border-radius: ${({ theme }) => theme.radius.organic};
-  transform: rotate(15deg);
-
+  overflow: hidden;
+  background: ${({ theme }) => theme.colors.cream};
+  color: ${({ theme }) => theme.colors.forest};
   &::after {
+    content: '';
     position: absolute;
-    inset: 1.4rem;
-    border: 1px solid rgba(200, 102, 69, 0.7);
-    border-radius: inherit;
-    content: '';
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    display: none;
-  }
-`
-
-const HeroInner = styled(Container)`
-  display: flex;
-  min-height: 100svh;
-  flex-direction: column;
-  justify-content: center;
-  padding-top: 7rem;
-  padding-bottom: 5rem;
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    min-height: 0;
-    justify-content: flex-start;
-    padding-top: calc(var(--photo-height) + 1rem);
-    padding-bottom: 3rem;
+    z-index: -1;
+    width: 54rem;
+    height: 54rem;
+    right: -18rem;
+    top: -5rem;
+    border: 1px solid ${({ theme }) => theme.colors.line};
+    border-radius: 50%;
   }
 `
-
-const HeroContent = styled(motion.div)`
-  width: min(100%, 33rem);
-`
-
-const Eyebrow = styled.p`
-  display: flex;
+const Inner = styled(Container)`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 6vw, 6rem);
   align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 1.4rem;
-  color: rgba(255, 255, 255, 0.82);
-  font-size: 0.72rem;
+  min-height: min(100svh, 64rem);
+  padding-block: 8.5rem 5rem;
+  @media (max-width: 800px) {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+    min-height: 0;
+    padding-block: 6rem 3rem;
+  }
+`
+const Copy = styled(motion.div)`
+  min-width: 0;
+  position: relative;
+  z-index: 2;
+`
+const Label = styled.p`
+  margin-bottom: 1.1rem;
+  font-size: .66rem;
   font-weight: 750;
-  letter-spacing: 0.18em;
+  letter-spacing: .14em;
   text-transform: uppercase;
-
-  &::before {
-    width: 2.4rem;
-    height: 1px;
-    background: ${({ theme }) => theme.colors.terracotta};
-    content: '';
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    margin-bottom: 0.8rem;
-    font-size: 0.62rem;
-    letter-spacing: 0.14em;
-    &::before {
-      width: 1.5rem;
-    }
-  }
+  color: ${({ theme }) => theme.colors.terracottaDark};
+  @media (max-width: 800px) { margin-bottom: .65rem; font-size: .58rem; }
 `
-
 const Title = styled.h1`
-  margin-bottom: 1.8rem;
-  font-family: ${({ theme }) => theme.typography.display};
-  font-size: clamp(5.5rem, 10vw, 9rem);
-  font-weight: 500;
-  letter-spacing: -0.058em;
-  line-height: 0.88;
-
-  i {
-    color: ${({ theme }) => theme.colors.terracotta};
-    font-style: normal;
-  }
-  small {
-    display: block;
-    margin: 0.8rem 0 0 0.35rem;
-    font-family: ${({ theme }) => theme.typography.body};
-    font-size: 0.75rem;
-    font-weight: 550;
-    letter-spacing: 0.42em;
-    text-transform: uppercase;
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+  margin: 0 0 1.7rem;
+  font: 500 clamp(6rem, 9vw, 8.6rem)/.85 ${({ theme }) => theme.typography.display};
+  letter-spacing: -.06em;
+  i { font-style: normal; color: ${({ theme }) => theme.colors.terracotta}; }
+  small { display: block; margin: .9rem 0 0 .3rem; font: 600 .72rem/1.5 ${({ theme }) => theme.typography.body}; letter-spacing: .42em; text-transform: uppercase; }
+  @media (max-width: 800px) {
+    font-size: clamp(4.2rem, 15vw, 6rem);
     margin-bottom: 1rem;
-    font-size: clamp(4.2rem, 18vw, 5.5rem);
-    small {
-      margin-top: 0.55rem;
-      font-size: 0.6rem;
-    }
+    small { font-size: .56rem; margin-top: .5rem; }
   }
 `
-
 const Promise = styled.p`
-  max-width: 20ch;
-  margin-bottom: 1rem;
-  font-family: ${({ theme }) => theme.typography.display};
-  font-size: clamp(2rem, 3.8vw, 3.4rem);
-  font-weight: 400;
-  letter-spacing: -0.035em;
-  line-height: 1.05;
-  em {
-    color: ${({ theme }) => theme.colors.sand};
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    max-width: none;
-    margin-bottom: 0.65rem;
-    font-size: clamp(1.55rem, 6.5vw, 2rem);
-  }
+  max-width: 19ch;
+  margin-bottom: 1.1rem;
+  font: 450 clamp(2.4rem, 3.6vw, 3.6rem)/1.02 ${({ theme }) => theme.typography.display};
+  letter-spacing: -.04em;
+  em { color: ${({ theme }) => theme.colors.terracottaDark}; }
+  @media (max-width: 800px) { max-width: 25ch; font-size: clamp(1.7rem, 6.7vw, 2.5rem); margin-bottom: .75rem; }
 `
-
 const Lead = styled.p`
-  max-width: 27rem;
+  max-width: 29rem;
+  font-size: .9rem;
+  color: ${({ theme }) => theme.colors.brown};
   margin-bottom: 1.5rem;
-  color: rgba(255, 255, 255, 0.78);
-  font-size: clamp(0.88rem, 1.2vw, 1rem);
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    margin-bottom: 1rem;
-    font-size: 0.82rem;
-    line-height: 1.65;
-  }
+  @media (max-width: 800px) { font-size: .78rem; margin-bottom: 1rem; }
 `
-
 const Actions = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 0.8rem;
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    align-items: stretch;
-    flex-direction: column;
-    gap: 0.35rem;
-
-    a {
-      width: 100%;
-      min-height: 2.85rem;
-      padding-block: 0.65rem;
-    }
-
-    a:last-child {
-      border-color: transparent;
-      background: transparent;
-    }
+  gap: .8rem;
+  > a { font-size: .76rem; }
+  > a:last-child {
+    color: ${({ theme }) => theme.colors.forest};
+    border: 1px solid ${({ theme }) => theme.colors.forest};
+    background: transparent;
+    &:hover { background: ${({ theme }) => theme.colors.sand}; }
+  }
+  @media (max-width: 520px) {
+    gap: .5rem;
+    > a { padding: .75rem .8rem; font-size: .65rem; min-height: 2.85rem; }
   }
 `
-
-const SideNote = styled(motion.div)`
-  position: absolute;
-  right: clamp(2rem, 5vw, 5.5rem);
-  bottom: 6.5rem;
-  display: grid;
-  max-width: 15rem;
-  grid-template-columns: auto 1fr;
+const Details = styled.p`
+  display: flex;
   align-items: center;
-  gap: 1rem;
-  color: rgba(255, 255, 255, 0.78);
-  font-size: 0.75rem;
-  line-height: 1.5;
-
-  &::before {
-    width: 3.5rem;
-    height: 1px;
-    background: ${({ theme }) => theme.colors.terracotta};
-    content: '';
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    display: none;
+  flex-wrap: wrap;
+  gap: .5rem 1.5rem;
+  margin: 1.5rem 0 0;
+  font-size: .7rem;
+  font-weight: 650;
+  span { display: inline-flex; align-items: center; gap: .45rem; }
+  svg { color: ${({ theme }) => theme.colors.terracottaDark}; }
+  @media (max-width: 800px) { display: none; }
+`
+const Photos = styled(motion.div)`
+  position: relative;
+  min-width: 0;
+  padding: 0 0 2rem 1.5rem;
+  @media (max-width: 800px) { padding: 0 0 1.2rem; margin-inline: .5rem; transform: none !important; }
+`
+const MainPhoto = styled.div`
+  height: clamp(28rem, 62svh, 42rem);
+  overflow: hidden;
+  border-radius: 45% 45% 1.5rem 1.5rem;
+  border: .5rem solid ${({ theme }) => theme.colors.warmWhite};
+  transform: rotate(2deg);
+  @media (max-width: 800px) {
+    height: clamp(10rem, 24svh, 18rem);
+    border-radius: 6rem 1rem 6rem 1rem;
+    img { object-position: 50% 30%; }
   }
 `
-
-const ScrollCue = styled.a`
+const InsetPhoto = styled.div`
   position: absolute;
-  bottom: 1.5rem;
+  width: 36%;
+  aspect-ratio: 1;
+  left: -1rem;
+  bottom: 0;
+  overflow: hidden;
+  border: .45rem solid ${({ theme }) => theme.colors.warmWhite};
+  border-radius: 1.5rem;
+  transform: rotate(-9deg);
+  box-shadow: ${({ theme }) => theme.shadows.soft};
+  @media (max-width: 800px) { width: 6.5rem; left: -.5rem; border-radius: 1rem; border-width: .3rem; }
+`
+const Caption = styled.span`
+  position: absolute;
+  right: -.3rem;
+  bottom: 0;
+  display: flex;
+  gap: .6rem;
+  align-items: center;
+  padding: 1rem 1.2rem;
+  background: ${({ theme }) => theme.colors.forest};
+  color: ${({ theme }) => theme.colors.warmWhite};
+  border-radius: 1rem 1rem 1rem 0;
+  font-size: .75rem;
+  font-weight: 650;
+  @media (max-width: 800px) { font-size: .65rem; padding: .7rem .8rem; }
+`
+const Scroll = styled.a`
+  position: absolute;
+  bottom: 1rem;
   left: 50%;
+  transform: translateX(-50%);
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  color: rgba(255, 255, 255, 0.65);
-  font-size: 0.65rem;
+  gap: .5rem;
+  font-size: .6rem;
   font-weight: 700;
-  letter-spacing: 0.14em;
+  letter-spacing: .1em;
   text-transform: uppercase;
-  transform: translateX(-50%);
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    bottom: 0.85rem;
-    font-size: 0.55rem;
-  }
-
-  svg {
-    animation: float-down 1.8s ease-in-out infinite;
-  }
-
-  @keyframes float-down {
-    0%,
-    100% {
-      transform: translateY(-2px);
-    }
-    50% {
-      transform: translateY(5px);
-    }
-  }
+  @media (max-width: 800px) { display: none; }
 `
 
 export function Hero() {
-  const sectionRef = useRef<HTMLElement>(null)
+  const ref = useRef<HTMLElement>(null)
   const reduceMotion = useReducedMotion()
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start start', 'end start'],
-  })
-  const imageY = useTransform(scrollYProgress, [0, 1], ['0%', '12%'])
-
-  return (
-    <HeroShell id="inicio" ref={sectionRef}>
-      <ImageLayer
-        style={{ y: reduceMotion ? 0 : imageY, scale: reduceMotion ? 1 : 1.04 }}
-      >
-        <picture>
-          <source
-            media="(max-width: 800px)"
-            type="image/avif"
-            srcSet="/images/hero-mobile-v1-480.avif 480w, /images/hero-mobile-v1-900.avif 900w"
-            sizes="100vw"
-          />
-          <source
-            media="(max-width: 800px)"
-            srcSet="/images/hero-mobile-v1-480.jpg 480w, /images/hero-mobile-v1-900.jpg 900w"
-            sizes="100vw"
-          />
-          <source
-            type="image/avif"
-            srcSet="/images/hero-garden-900.avif 900w, /images/hero-garden-1600.avif 1600w"
-            sizes="100vw"
-          />
-          <img
-            src="/images/hero-garden-1600.jpg"
-            alt="Cães e natureza no jardim do Auzen Pet Resort"
-            width={1600}
-            height={900}
-            fetchPriority="high"
-            decoding="async"
-          />
-        </picture>
-      </ImageLayer>
-      <Overlay />
-      <OrganicLine aria-hidden="true" />
-      <HeroInner>
-        <HeroContent
-          initial={false}
-          animate="visible"
-          variants={{
-            hidden: { opacity: 0 },
-            visible: {
-              opacity: 1,
-              transition: { staggerChildren: 0.12, delayChildren: 0.18 },
-            },
-          }}
-        >
-          <motion.div
-            variants={
-              reduceMotion
-                ? undefined
-                : {
-                    hidden: { opacity: 0, y: 24 },
-                    visible: { opacity: 1, y: 0 },
-                  }
-            }
-          >
-            <Eyebrow>Hotel + Creche · Lauro de Freitas</Eyebrow>
-          </motion.div>
-          <motion.div
-            variants={
-              reduceMotion
-                ? undefined
-                : {
-                    hidden: { opacity: 0, y: 28 },
-                    visible: { opacity: 1, y: 0 },
-                  }
-            }
-          >
-            <Title>
-              Auzen<i>.</i>
-              <small>Pet Resort</small>
-            </Title>
-            <Promise>
-              Dias de diversão.
-              <br />
-              <em>Carinho em cada estadia.</em>
-            </Promise>
-          </motion.div>
-          <motion.div
-            variants={
-              reduceMotion
-                ? undefined
-                : {
-                    hidden: { opacity: 0, y: 24 },
-                    visible: { opacity: 1, y: 0 },
-                  }
-            }
-          >
-            <Lead>
-              Natureza, brincadeira e acolhimento para o seu cão se sentir em
-              casa.
-            </Lead>
-          </motion.div>
-          <motion.div
-            variants={
-              reduceMotion
-                ? undefined
-                : {
-                    hidden: { opacity: 0, y: 20 },
-                    visible: { opacity: 1, y: 0 },
-                  }
-            }
-          >
-            <Actions>
-              <ButtonLink href="/reservar">
-                <CalendarDays size={18} aria-hidden="true" /> Planejar minha
-                reserva
-              </ButtonLink>
-              <ButtonLink href="/servicos" variant="outline">
-                Serviços e valores <ArrowRight size={17} aria-hidden="true" />
-              </ButtonLink>
-            </Actions>
-          </motion.div>
-        </HeroContent>
-      </HeroInner>
-      <SideNote
-        initial={reduceMotion ? false : { opacity: 0, x: 20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: 0.9, duration: 0.7 }}
-      >
-        Gramado, árvores e vida ao ar livre fazem parte do cenário.
-      </SideNote>
-      <ScrollCue href="#auzen">
-        Descobrir <ArrowDown size={14} aria-hidden="true" />
-      </ScrollCue>
-    </HeroShell>
-  )
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
+  const y = useTransform(scrollYProgress, [0, 1], ['0%', '8%'])
+  return <Shell id="inicio" ref={ref}>
+    <Inner>
+      <Copy initial={reduceMotion ? false : { y: 18 }} animate={{ y: 0 }} transition={{ duration: .65 }}>
+        <Label>Hotel + Creche · Lauro de Freitas</Label>
+        <Title>Auzen<i>.</i><small>Pet Resort</small></Title>
+        <Promise>Quintal, amigos e diversão.<br /><em>Todo dia tem uma descoberta.</em></Promise>
+        <Lead>Creche e hotel em meio à natureza. Um lugar para seu cão brincar, fazer amigos e se sentir em casa.</Lead>
+        <Actions>
+          <ButtonLink href="/reservar?servico=daycare"><CalendarDays size={17} aria-hidden="true" />Planejar minha reserva</ButtonLink>
+          <ButtonLink href="/#planos" variant="outline">Ver pacotes e valores <ArrowRight size={17} aria-hidden="true" /></ButtonLink>
+        </Actions>
+        <Details><span><Leaf size={16} aria-hidden="true" />Natureza por todos os lados</span><span><PawPrint size={16} aria-hidden="true" />Um dia no ritmo dele</span></Details>
+      </Copy>
+      <Photos style={{ y: reduceMotion ? 0 : y }} initial={reduceMotion ? false : { opacity: .5 }} animate={{ opacity: 1 }} transition={{ duration: .8 }}>
+        <MainPhoto><ResponsiveImage base="garden-friends" alt="Dois cães se encontrando no gramado do Auzen Pet Resort" width={900} height={962} sizes="(max-width: 800px) 90vw, 45vw" loading="eager" fetchPriority="high" objectPosition="50% 35%" /></MainPhoto>
+        <InsetPhoto><ResponsiveImage base="golden-walk" alt="Cão explorando o jardim florido da Auzen" width={900} height={1600} sizes="(max-width: 800px) 104px, 200px" objectPosition="50% 40%" /></InsetPhoto>
+        <Caption><PawPrint size={20} aria-hidden="true" />O nosso quintal espera por ele.</Caption>
+      </Photos>
+    </Inner>
+    <Scroll href="#services-title">Conheça o Auzen <ArrowDown size={14} aria-hidden="true" /></Scroll>
+  </Shell>
 }

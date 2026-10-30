@@ -28,6 +28,7 @@ O build estático é gerado em `dist/`. `vercel.json` define Vite, instalação 
 - `src/config/contact.ts`: telefone, mensagens contextuais e campos comerciais opcionais.
 - `src/config/navigation.ts`: páginas da navegação principal.
 - `src/config/booking.ts`: tabela inicial de diárias, cupom MAISDIAS, horários e limites.
+- `src/config/daycare.ts`: diária avulsa, cinco pacotes mensais e horário da creche, conforme material comercial recebido em 29/10/2026.
 - `src/pages/ContentPages.tsx`: história familiar, serviços, promoções, espaço, contato e orientações.
 - `src/pages/BookingPage.tsx`: formulário em quatro etapas, revisão e link para WhatsApp.
 - `src/utils/booking.ts`: cálculo, validação e mensagem consolidada.
@@ -37,6 +38,8 @@ O build estático é gerado em `dist/`. `vercel.json` define Vite, instalação 
 - `src/components/Brand.tsx` e `public/favicon.svg`: wordmark e favicon provisórios.
 
 WhatsApp, Instagram, endereço regional, história e horários vieram dos materiais enviados em 01/10/2026. O número do imóvel aguarda confirmação. Os preços e a promoção são provisórios, definidos a pedido do usuário e centralizados para revisão. As orientações usam o rascunho fornecido. Dados dos formulários não são persistidos; nenhum pagamento ou confirmação automática é realizado pelo site. Consulte `docs/expansao-reservas.md` para as decisões de conteúdo e fluxo.
+
+Atualização de 29/10/2026: a creche usa o material comercial enviado pelo usuário: diária avulsa de R$ 60; pacotes de 4/8/12/16/20 diárias mensais por R$ 220/400/540/640/760; segunda a sexta, das 7h às 18h. Os pacotes estão na home, em `/creche` e em `/servicos`, com consulta contextual pelo WhatsApp. O simulador calcula diárias avulsas apenas de segunda a sexta; os pacotes mensais e o desconto para famílias com mais de um cão são combinados com a equipe. As condições anteriores do hotel e do cupom MAISDIAS foram preservadas; o cupom não é aplicado aos pacotes mensais.
 
 ## Domínio e SEO
 
@@ -48,7 +51,7 @@ O build inclui título, descrição, Open Graph, favicon, idioma, `robots.txt` e
 
 As 19 fotografias e 2 vídeos fornecidos foram analisados. Veja `docs/curadoria.md`. Os originais permanecem intactos na pasta de origem do usuário.
 
-`public/images` contém derivados AVIF com fallback JPEG, nas larguras 480/900 e 1600 quando a fonte permite. `ResponsiveImage` fornece `srcset`, dimensões, carregamento lazy e recortes por CSS. O hero tem fotografia específica para mobile e preload condicionado à largura.
+`public/images` contém derivados AVIF com fallback JPEG, nas larguras 480/900 e 1600 quando a fonte permite. `ResponsiveImage` fornece `srcset`, dimensões, carregamento lazy e recortes por CSS. O hero usa a fotografia real `garden-friends`, com composição adaptada ao celular e preload condicionado à largura.
 
 O vídeo do quintal é um trecho de 18 segundos, sem áudio, de aproximadamente 1,5 MB. Seu `src` só é definido no primeiro clique; a reprodução pausa ao sair da tela. Não há autoplay. O poster e a descrição permanecem disponíveis sem reprodução.
 

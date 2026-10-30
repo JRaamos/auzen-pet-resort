@@ -18,6 +18,8 @@ import { getLocalBusinessData } from './utils/structuredData'
 import { Container } from './components/Container'
 import { siteConfig } from './config/site'
 import { HomeNews } from './sections/HomeNews'
+import { DaycarePlans } from './sections/DaycarePlans'
+import { FirstVisit } from './sections/FirstVisit'
 import { pageMetadata, notFoundMetadata } from './config/seo'
 import { ServicePage } from './pages/ServicePage'
 import { PrivacyPage } from './pages/PrivacyPage'
@@ -91,12 +93,14 @@ function HomePage() {
     <>
       <Hero />
       <HomeNews />
-      <About />
       <Services />
-      <Space />
       <Experience />
+      <DaycarePlans />
+      <Space />
       <Differentials />
       <Gallery />
+      <FirstVisit />
+      <About />
       <Testimonials />
       <Faq />
       <FinalCTA />

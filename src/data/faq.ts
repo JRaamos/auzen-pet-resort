@@ -1,4 +1,5 @@
 import { bookingConfig } from '../config/booking'
+import { daycareConfig } from '../config/daycare'
 import { money } from '../utils/booking'
 import type { WhatsAppIntent } from '../config/contact'
 
@@ -34,14 +35,14 @@ export const faqItems: FaqItem[] = [
   {
     question: 'Como obtenho informações sobre valores?',
     answer:
-      `No hotel, a diária custa ${money(bookingConfig.rates.hotel.Pequeno)} para porte pequeno e ${money(bookingConfig.rates.hotel.Médio)} para porte médio. Na creche, os valores por dia são ${money(bookingConfig.rates.daycare.Pequeno)} e ${money(bookingConfig.rates.daycare.Médio)}, respectivamente. Os valores são por cão. Para portes grande e gigante, consulte a equipe. O transporte é combinado à parte.`,
+      `Na creche, a diária avulsa custa ${money(daycareConfig.dailyRate)} por cão. Os pacotes mensais vão de ${money(daycareConfig.plans[0].price)} (4 diárias) a ${money(daycareConfig.plans[4].price)} (20 diárias). Famílias com mais de um cão têm desconto especial, com condições combinadas com a equipe. No hotel, a diária custa ${money(bookingConfig.rates.hotel.Pequeno)} para porte pequeno e ${money(bookingConfig.rates.hotel.Médio)} para porte médio; portes grande e gigante sob consulta. O transporte é combinado à parte.`,
     intent: 'general',
     linkLabel: 'Pedir informações',
   },
   {
     question: 'Quais são os horários?',
     answer:
-      'A creche funciona das 7h às 17h. No hotel, o check-in acontece das 7h às 17h e o check-out é até as 9h do dia seguinte. Visitas e transporte são combinados com a equipe.',
+      'A creche funciona de segunda a sexta-feira, das 7h às 18h. No hotel, o check-in acontece das 7h às 17h e o check-out é até as 9h do dia seguinte. Visitas e transporte são combinados com a equipe.',
     intent: 'general',
     linkLabel: 'Combinar horários',
   },

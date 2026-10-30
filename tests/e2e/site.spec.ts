@@ -189,11 +189,11 @@ test('daycare preselection and visual pages', async ({ page }) => {
 
 test('new pricing, promotion examples and client photographs are available', async ({ page }) => {
   await page.goto('/servicos')
-  for (const value of ['105,00', '115,00', '65,00', '75,00'])
+  for (const value of ['105,00', '115,00', '60,00', '220', '400', '540', '640', '760'])
     await expect(page.locator('main')).toContainText(value)
   await page.goto('/promocoes')
   await expect(page.getByRole('heading', { name: 'Mais dias juntos. 10% de desconto.' })).toBeVisible()
-  for (const value of ['472,50', '517,50', '292,50', '337,50'])
+  for (const value of ['472,50', '517,50', '270,00'])
     await expect(page.locator('main')).toContainText(value)
   await page.goto('/espaco')
   for (const base of ['garden-friends', 'garden-red-dress']) {

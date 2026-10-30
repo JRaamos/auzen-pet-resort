@@ -1,8 +1,8 @@
 export const navigationItems = [
-  { label: 'Início', href: '/' },
-  { label: 'Quem somos', href: '/quem-somos' },
-  { label: 'Serviços e valores', href: '/servicos' },
-  { label: 'Promoções', href: '/promocoes' },
+  { label: 'Creche', href: '/creche' },
+  { label: 'Pacotes e valores', href: '/#planos' },
+  { label: 'Hotel', href: '/hotel' },
   { label: 'O espaço', href: '/espaco' },
+  { label: 'Quem somos', href: '/quem-somos' },
   { label: 'Contato', href: '/contato' },
 ] as const

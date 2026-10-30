@@ -67,7 +67,7 @@ export const newBooking = (
   startDate: '',
   endDate: '',
   arrival: '08:00',
-  departure: service === 'hotel' ? '09:00' : '17:00',
+  departure: service === 'hotel' ? '09:00' : bookingConfig.daycareCheckOut.end,
   transport: 'Não preciso',
   promo,
   tutor: {
@@ -105,6 +105,9 @@ const dateNumber = (value: string) => {
     : NaN
 }
 export function dailyRate(service: Service, size: string): number | null {
+  if (service === 'daycare')
+    return ['Pequeno', 'Médio', 'Grande', 'Gigante'].includes(size)
+      ? bookingConfig.rates.daycare.Pequeno : null
   const rates = bookingConfig.rates[service]
   return size === 'Pequeno' || size === 'Médio' ? rates[size] : null
 }
@@ -116,11 +119,21 @@ export function calculateQuote(
 ) {
   const difference =
     (dateNumber(booking.endDate) - dateNumber(booking.startDate)) / 86400000
-  const units =
+  let units =
     Number.isFinite(difference) &&
     difference >= (booking.service === 'hotel' ? 1 : 0)
       ? difference + (booking.service === 'daycare' ? 1 : 0)
       : 0
+  if (booking.service === 'daycare' && units > 0) {
+    const startDay = new Date(dateNumber(booking.startDate)).getUTCDay()
+    const fullWeeks = Math.floor(units / 7)
+    const remainder = units % 7
+    units = fullWeeks * 5
+    for (let offset = 0; offset < remainder; offset++) {
+      const day = (startDay + offset) % 7
+      if (day !== 0 && day !== 6) units++
+    }
+  }
   const rates = booking.pets.map((pet) => dailyRate(booking.service, pet.size))
   const complete = rates.length > 0 && rates.every((rate) => rate !== null)
   const subtotal = complete
@@ -167,24 +180,29 @@ export function validateStep(
       )
     const timeValid = (value: string, start: string, end: string) =>
       /^\d{2}:\d{2}$/.test(value) && value >= start && value <= end
-    if (!timeValid(booking.arrival, '07:00', '17:00'))
-      errors.push('A entrada acontece das 7h às 17h.')
+    const arrivalEnd = booking.service === 'hotel' ? bookingConfig.checkIn.end : bookingConfig.daycareCheckOut.end
+    if (!timeValid(booking.arrival, '07:00', arrivalEnd))
+      errors.push(booking.service === 'hotel' ? 'A entrada acontece das 7h às 17h.' : 'A entrada da creche acontece das 7h às 18h.')
     if (
       !timeValid(
         booking.departure,
         '07:00',
-        booking.service === 'hotel' ? '09:00' : '17:00',
+        booking.service === 'hotel' ? '09:00' : bookingConfig.daycareCheckOut.end,
       )
     )
       errors.push(
         booking.service === 'hotel'
           ? 'Escolha a saída do hotel até as 9h.'
-          : 'Escolha a saída da creche até 17h.',
+          : 'Escolha a saída da creche até 18h.',
       )
     if (booking.service === 'daycare' && booking.arrival >= booking.departure)
       errors.push(
         'Na creche, a saída deve acontecer depois da entrada em cada dia.',
       )
+    if (booking.service === 'daycare' && [booking.startDate, booking.endDate].some(value => {
+      const day = new Date(dateNumber(value)).getUTCDay()
+      return day === 0 || day === 6
+    })) errors.push('A creche funciona de segunda a sexta-feira. Escolha datas nesses dias.')
     if (
       booking.promo.trim() &&
       booking.promo.trim().toUpperCase() !== bookingConfig.promotion.code

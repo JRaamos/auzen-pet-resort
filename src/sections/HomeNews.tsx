@@ -1,8 +1,8 @@
-import { ArrowRight, CalendarDays } from 'lucide-react'
+import { ArrowRight, Clock3 } from 'lucide-react'
 import styled from 'styled-components'
 import { Container } from '../components/Container'
 import { ButtonLink } from '../components/Button'
-import { bookingConfig } from '../config/booking'
+import { daycareConfig } from '../config/daycare'
 import { money } from '../utils/booking'
 const Shell = styled.section`
   background: ${({ theme }) => theme.colors.sand};
@@ -47,16 +47,15 @@ export function HomeNews() {
       <Container>
         <div>
           <strong>
-            <CalendarDays size={16} /> Planeje a próxima estadia
+            <Clock3 size={16} aria-hidden="true" /> Dias de quintal, de segunda a sexta
           </strong>
           <p>
-            Hotel a partir de {money(bookingConfig.rates.hotel.Pequeno)} por diária · Creche a partir de{' '}
-            {money(bookingConfig.rates.daycare.Pequeno)} por dia
+            Creche das 7h às 18h · Diária avulsa {money(daycareConfig.dailyRate)}
           </p>
-          <small>Valores para porte pequeno. Consulte a tabela completa por porte.</small>
+          <small>Pacotes mensais a partir de {money(daycareConfig.plans[0].price)} · 4 diárias por mês.</small>
         </div>
-        <ButtonLink href="/promocoes" variant="text">
-          Conheça a condição MAISDIAS <ArrowRight size={16} />
+        <ButtonLink href="/#planos" variant="text">
+          Escolha seu pacote <ArrowRight size={16} aria-hidden="true" />
         </ButtonLink>
         <ButtonLink href="/informacoes" variant="text">
           Prepare a chegada <ArrowRight size={16} />

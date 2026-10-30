@@ -719,7 +719,7 @@ export function BookingPage() {
                                   ...previous,
                                   service,
                                   departure:
-                                    service === 'hotel' ? '09:00' : '17:00',
+                                    service === 'hotel' ? '09:00' : bookingConfig.daycareCheckOut.end,
                                 }))
                               }
                             />
@@ -728,7 +728,9 @@ export function BookingPage() {
                                 ? 'Hotel · hospedagem'
                                 : 'Creche para cães'}
                               <small>
-                                Pequeno: {money(bookingConfig.rates[service].Pequeno)} · Médio: {money(bookingConfig.rates[service].Médio)} por diária
+                                {service === 'hotel'
+                                  ? `Pequeno: ${money(bookingConfig.rates.hotel.Pequeno)} · Médio: ${money(bookingConfig.rates.hotel.Médio)} por diária`
+                                  : `Diária avulsa: ${money(bookingConfig.rates.daycare.Pequeno)} por cão · segunda a sexta`}
                               </small>
                             </span>
                           </label>
@@ -770,7 +772,7 @@ export function BookingPage() {
                       <Field
                         name="arrival"
                         label="Horário de entrada *"
-                        hint="Entre 7h e 17h."
+                        hint={booking.service === 'hotel' ? 'Entre 7h e 17h.' : 'De segunda a sexta, entre 7h e 18h.'}
                       >
                         <select
                           id="arrival"
@@ -779,7 +781,7 @@ export function BookingPage() {
                             update('arrival', event.target.value)
                           }
                         >
-                          {timeOptions(17).map((time) => (
+                          {timeOptions(booking.service === 'hotel' ? 17 : 18).map((time) => (
                             <option key={time}>{time}</option>
                           ))}
                         </select>
@@ -790,7 +792,7 @@ export function BookingPage() {
                         hint={
                           booking.service === 'hotel'
                             ? 'Check-out do hotel até as 9h.'
-                            : 'Saída da creche até 17h, em cada dia.'
+                            : 'Saída da creche até 18h, em cada dia.'
                         }
                       >
                         <select
@@ -801,7 +803,7 @@ export function BookingPage() {
                           }
                         >
                           {timeOptions(
-                            booking.service === 'hotel' ? 9 : 17,
+                            booking.service === 'hotel' ? 9 : 18,
                           ).map((time) => (
                             <option key={time}>{time}</option>
                           ))}
@@ -844,10 +846,10 @@ export function BookingPage() {
                       </Field>
                     </Fields>
                     <Note>
-                      Hotel: conta-se uma diária por noite. Creche: contam-se
-                      todos os dias do período, incluindo a primeira e a última
-                      data. A equipe verifica a disponibilidade antes de
-                      confirmar.
+                      Hotel: conta-se uma diária por noite. Creche: a estimativa
+                      usa diárias avulsas de segunda a sexta dentro do período.
+                      Para frequência semanal, <Link to="/creche#planos"><u>consulte os pacotes mensais</u></Link>.
+                      A equipe verifica a disponibilidade antes de confirmar.
                     </Note>
                   </>
                 )}
@@ -1296,8 +1298,8 @@ export function BookingPage() {
                 {booking.transport !== 'Não preciso'
                   ? '+ Transporte: valor a combinar. '
                   : ''}
-                Informe o porte de cada cão para calcular a estimativa. Portes
-                grande e gigante: valores sob consulta. A equipe confirma o valor
+                Informe o porte de cada cão para calcular a estimativa. No hotel,
+                portes grande e gigante têm valores sob consulta. Na creche, a diária avulsa é R$ 60 por cão. A equipe confirma o valor
                 final e a disponibilidade. Não há pagamento pelo site.
               </Note>
             </details>

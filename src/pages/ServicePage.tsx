@@ -7,6 +7,7 @@ import { ResponsiveImage } from '../components/ResponsiveImage'
 import { WhatsAppIcon } from '../components/SocialIcons'
 import { createWhatsAppUrl } from '../config/contact'
 import { serviceDetails } from '../data/services'
+import { DaycarePlans } from '../sections/DaycarePlans'
 import { Actions, DisplayTitle, Eyebrow, Heading, Lead, Note, PageShell, Photo, RuleList, Section, Split } from '../styles/pages'
 
 const Questions = styled.div`
@@ -40,6 +41,7 @@ export function ServicePage({ service }: { service: 'hotel' | 'daycare' }) {
       <div><Eyebrow>Do jeito do seu cão</Eyebrow><Heading>{info.heading}</Heading><Lead>{info.detail}</Lead><Link to="/informacoes">Veja o que levar e como se preparar →</Link></div>
       <RuleList>{info.benefits.map((benefit) => <article key={benefit}><Check aria-hidden="true" /><div><h3>{benefit}</h3></div></article>)}</RuleList>
     </Split></Container></Section>
+    {service === 'daycare' && <DaycarePlans />}
     <Section><Container><Eyebrow>Antes de combinar</Eyebrow><Heading>Perguntas sobre {service === 'hotel' ? 'a hospedagem' : 'a creche'}.</Heading>
       <Questions>{info.faqs.map((faq) => <details key={faq.question}><summary>{faq.question}</summary><p>{faq.answer}</p></details>)}</Questions>
       <Actions><ButtonLink href={createWhatsAppUrl(service)} target="_blank" rel="noreferrer" data-service={service} data-analytics-location="service_faq"><WhatsAppIcon width={19} height={19} /> Falar com a equipe</ButtonLink><ButtonLink href="/servicos" variant="text">Consultar serviços e valores <ArrowUpRight size={17} /></ButtonLink></Actions>

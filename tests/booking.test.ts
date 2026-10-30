@@ -53,7 +53,7 @@ test('daycare includes both dates and accepts a single day', () => {
   booking.service = 'daycare'
   booking.endDate = booking.startDate
   assert.equal(calculateQuote(booking).units, 1)
-  assert.equal(calculateQuote(booking).total, 75)
+  assert.equal(calculateQuote(booking).total, 60)
 })
 test('hotel rejects same-day checkout and inverse dates', () => {
   const booking = valid()
@@ -83,12 +83,13 @@ test('MAISDIAS discounts 5 nights per pet, not transport', () => {
     eligible: true,
   })
 })
-test('5 medium-dog daycare days total R$337.50 with promotion', () => {
+test('5 weekday daycare days total R$270 with the existing avulsa promotion', () => {
   const booking = valid()
   booking.service = 'daycare'
-  booking.endDate = '2027-01-05'
+  booking.startDate = '2027-01-04'
+  booking.endDate = '2027-01-08'
   booking.promo = 'MAISDIAS'
-  assert.equal(calculateQuote(booking).total, 337.5)
+  assert.equal(calculateQuote(booking).total, 270)
 })
 test('invalid and ineligible coupons block advancement', () => {
   const booking = valid()
@@ -111,10 +112,40 @@ test('hotel and daycare enforce their separate departure windows', () => {
   booking.departure = '09:30'
   assert.ok(validateStep(booking, 0, '2026-12-01').length)
   booking.service = 'daycare'
-  booking.departure = '17:00'
+  booking.departure = '18:00'
   assert.equal(validateStep(booking, 0, '2026-12-01').length, 0)
-  booking.arrival = '17:00'
+  booking.departure = '18:30'
+  assert.ok(validateStep(booking, 0, '2026-12-01').some(error => error.includes('18h')))
+  booking.departure = '18:00'
+  booking.arrival = '18:00'
   assert.ok(validateStep(booking, 0, '2026-12-01').length)
+})
+
+test('daycare charges weekdays only across weekends and rejects weekend endpoints', () => {
+  const booking = valid()
+  booking.service = 'daycare'
+  booking.startDate = '2027-01-01'
+  booking.endDate = '2027-01-08'
+  assert.equal(calculateQuote(booking).units, 6)
+  assert.equal(calculateQuote(booking).total, 360)
+  assert.equal(validateStep(booking, 0, '2026-12-01').length, 0)
+  booking.startDate = '2027-01-02'
+  assert.ok(validateStep(booking, 0, '2026-12-01').some(error => error.includes('segunda a sexta')))
+  booking.endDate = '2027-01-03'
+  assert.equal(calculateQuote(booking).units, 0)
+})
+
+test('daycare published daily price applies to all known sizes, hotel retains size pricing', () => {
+  const booking = valid()
+  booking.service = 'daycare'
+  booking.endDate = booking.startDate
+  for (const size of ['Pequeno', 'Médio', 'Grande', 'Gigante']) {
+    booking.pets[0].size = size
+    assert.equal(calculateQuote(booking).total, 60)
+  }
+  booking.service = 'hotel'
+  booking.endDate = '2027-01-06'
+  assert.equal(calculateQuote(booking).total, null)
 })
 test('past dates and periods longer than 60 days block requests', () => {
   const booking = valid()
@@ -182,12 +213,13 @@ test('published prices and five-day promotions apply to each size and service', 
   for (const [service, size, rate, total] of [
     ['hotel', 'Pequeno', 105, 472.5],
     ['hotel', 'Médio', 115, 517.5],
-    ['daycare', 'Pequeno', 65, 292.5],
-    ['daycare', 'Médio', 75, 337.5],
+    ['daycare', 'Pequeno', 60, 270],
+    ['daycare', 'Médio', 60, 270],
   ] as const) {
     const booking = valid()
     booking.service = service
-    booking.endDate = service === 'hotel' ? '2027-01-06' : '2027-01-05'
+    if (service === 'daycare') booking.startDate = '2027-01-04'
+    booking.endDate = service === 'hotel' ? '2027-01-06' : '2027-01-08'
     booking.pets[0].size = size
     booking.promo = 'MAISDIAS'
     assert.deepEqual(calculateQuote(booking).rates, [rate])
@@ -204,8 +236,9 @@ test('mixed sizes are priced separately, including the WhatsApp breakdown', () =
   assert.match(buildBookingMessage(booking), /Mel \(Pequeno\): R\$\s105,00/)
   booking.pets.pop()
   booking.service = 'daycare'
-  booking.endDate = '2027-01-05'
-  assert.equal(calculateQuote(booking).total, 337.5)
+  booking.startDate = '2027-01-04'
+  booking.endDate = '2027-01-08'
+  assert.equal(calculateQuote(booking).total, 270)
 })
 test('missing and unpriced sizes never display a misleading complete total', () => {
   for (const size of ['', 'Grande', 'Gigante', 'unknown']) {

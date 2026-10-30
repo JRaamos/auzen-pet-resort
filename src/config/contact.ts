@@ -21,7 +21,7 @@ export const contactConfig: ContactConfig = {
   postalCode: '42725-430',
   instagram: 'https://www.instagram.com/auzenpetresort/',
   openingHours:
-    'Recepção todos os dias: 7h às 17h · Creche: 7h às 17h · Hotel: check-in das 7h às 17h e check-out até as 9h',
+    'Recepção todos os dias: 7h às 17h · Creche: segunda a sexta, 7h às 18h · Hotel: check-in das 7h às 17h e check-out até as 9h',
   legalLinks: [],
 }
 

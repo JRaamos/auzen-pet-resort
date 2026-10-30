@@ -20,10 +20,10 @@ export const serviceDetails = {
     image: 'garden-friends', alt: 'Dois cães se encontrando no gramado do Auzen',
     heading: 'Descobertas, convivência e descanso.',
     detail: 'Converse com a equipe sobre o comportamento e a rotina do seu cão. A adaptação e a convivência são combinadas antes da participação na creche.',
-    schedule: 'Funcionamento das 7h às 17h. Combine os dias disponíveis com a equipe.',
+    schedule: 'Segunda a sexta-feira, das 7h às 18h. Combine os dias disponíveis com a equipe.',
     benefits: ['Jardim para brincar e explorar', 'Convivência combinada conforme o perfil do cão', 'Retorno para casa ao fim do dia'],
     faqs: [
-      { question: 'Qual a diferença entre hotel e creche?', answer: 'Na creche, seu cão passa o dia no Auzen e volta para casa, com funcionamento das 7h às 17h. O hotel inclui pernoite, com saída até as 9h do dia seguinte.' },
+      { question: 'Qual a diferença entre hotel e creche?', answer: 'Na creche, seu cão passa o dia no Auzen e volta para casa, de segunda a sexta, das 7h às 18h. O hotel inclui pernoite, com saída até as 9h do dia seguinte.' },
       { question: 'Como é a adaptação à creche?', answer: 'Conte à equipe como seu cão se comporta com outros animais e pessoas. A adaptação, os cuidados e a participação são combinados conforme as necessidades dele.' },
       { question: 'Preciso levar ração?', answer: 'Sim. Traga a alimentação habitual e informe as porções e os horários. Apresente também a carteira de vacinação e as informações sobre saúde e proteção antiparasitária.' },
       { question: 'Há transporte para a creche?', answer: 'Consulte a equipe sobre busca e retorno. Rota, valor e disponibilidade do transporte são combinados à parte, antes da confirmação.' },
