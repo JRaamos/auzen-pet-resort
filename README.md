@@ -51,7 +51,7 @@ O build inclui título, descrição, Open Graph, favicon, idioma, `robots.txt` e
 
 As 19 fotografias e 2 vídeos fornecidos foram analisados. Veja `docs/curadoria.md`. Os originais permanecem intactos na pasta de origem do usuário.
 
-`public/images` contém derivados AVIF com fallback JPEG, nas larguras 480/900 e 1600 quando a fonte permite. `ResponsiveImage` fornece `srcset`, dimensões, carregamento lazy e recortes por CSS. O hero usa a fotografia real `garden-friends`, com composição adaptada ao celular e preload condicionado à largura.
+`public/images` contém derivados AVIF com fallback JPEG, nas larguras 480/900 e 1600 quando a fonte permite. `ResponsiveImage` fornece `srcset`, dimensões, carregamento lazy e recortes por CSS. O hero usa a fotografia ampla `hero-garden` no desktop e `hero-mobile-v1` no celular, com preload condicionado à largura.
 
 O vídeo do quintal é um trecho de 18 segundos, sem áudio, de aproximadamente 1,5 MB. Seu `src` só é definido no primeiro clique; a reprodução pausa ao sair da tela. Não há autoplay. O poster e a descrição permanecem disponíveis sem reprodução.
 
