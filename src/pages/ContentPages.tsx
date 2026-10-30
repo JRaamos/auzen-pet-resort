@@ -36,6 +36,7 @@ import { InstagramIcon, WhatsAppIcon } from '../components/SocialIcons'
 import { bookingConfig, preparationItems } from '../config/booking'
 import { daycareConfig } from '../config/daycare'
 import { DaycarePlans } from '../sections/DaycarePlans'
+import { HotelShowcase } from '../sections/HotelShowcase'
 import { contactConfig, createWhatsAppUrl } from '../config/contact'
 import { Faq } from '../sections/Faq'
 import { Gallery } from '../sections/Gallery'
@@ -261,42 +262,9 @@ export function ServicesPage() {
           mensais. O transporte é combinado à parte.
         </Note>
       </PageIntro>
+      <HotelShowcase />
       <Section style={{ paddingTop: 0 }}>
         <Container>
-          <PricingRow id="hotel">
-            <img
-              src="/images/hotel-rest-900.jpg"
-              alt="Cão descansando no espaço do Auzen"
-              loading="lazy"
-            />
-            <div>
-              <Eyebrow>
-                <Moon size={16} /> Hotel para cães
-              </Eyebrow>
-              <Heading>Uma estadia com clima de casa.</Heading>
-              <Lead>
-                Acolhimento durante viagens e períodos de ausência, com espaço
-                ao ar livre e atenção à rotina do seu cão.
-              </Lead>
-              <Price>
-                {money(bookingConfig.rates.hotel.Pequeno)} <small>· porte pequeno</small>
-                <br />
-                {money(bookingConfig.rates.hotel.Médio)} <small>· porte médio</small>
-              </Price>
-              <Schedule>
-                <Clock3 size={18} /> Check-in das 7h às 17h · Check-out até as 9h
-                do dia seguinte.
-              </Schedule>
-              <Note>
-                O valor é por noite e por cão. A alimentação habitual deve
-                ser trazida pelo tutor.
-              </Note>
-              <ButtonLink href="/reservar?servico=hotel">
-                Planejar hospedagem <ArrowRight size={17} />
-              </ButtonLink>
-              <p><Link to="/hotel">Conheça todos os detalhes do hotel →</Link></p>
-            </div>
-          </PricingRow>
           <PricingRow id="creche">
             <img
               src="/images/garden-friends-900.jpg"

@@ -38,3 +38,7 @@ As fotos originais receberam derivados para web e recortes de layout. Após a pr
 ## Atualização de 13/10/2026
 
 Adicionadas as duas fotografias enviadas pelo cliente em 11/10: cães se encontrando no gramado (`garden-friends`) e cão com vestido vermelho (`garden-red-dress`). Ambas entram no início da galeria; a primeira também ilustra a creche e a segunda aparece na página de promoções. Derivados AVIF/JPEG em 480 e 900 px, sem alterar os originais; removida a faixa preta inferior. O cartaz de 02/10 serviu de referência para o contato comercial.
+
+## Atualização de 29/10/2026 — hotel
+
+A pedido do usuário, `hotel-rest-900.jpg` foi usada como referência para uma versão mais iluminada e acolhedora do cão na varanda. A recriação `hotel-welcome-v1` aparece no hotel da home, em `/hotel` e em `/servicos`, identificada como ilustrativa; o detalhe do gramado usa uma foto real. A foto anterior e a hero de imagem grande foram preservadas. Fonte, processo e prompt estão em [hotel-image.md](hotel-image.md).

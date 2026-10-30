@@ -8,6 +8,7 @@ import { WhatsAppIcon } from '../components/SocialIcons'
 import { createWhatsAppUrl } from '../config/contact'
 import { serviceDetails } from '../data/services'
 import { DaycarePlans } from '../sections/DaycarePlans'
+import { HotelShowcase } from '../sections/HotelShowcase'
 import { Actions, DisplayTitle, Eyebrow, Heading, Lead, Note, PageShell, Photo, RuleList, Section, Split } from '../styles/pages'
 
 const Questions = styled.div`
@@ -24,19 +25,19 @@ const ServicePhoto = styled(Photo)`
 export function ServicePage({ service }: { service: 'hotel' | 'daycare' }) {
   const info = serviceDetails[service]
   return <PageShell>
-    <Section><Container><Split>
+    {service === 'hotel' ? <HotelShowcase page /> : <Section><Container><Split>
       <div>
         <Eyebrow>Auzen Pet Resort · Lauro de Freitas, BA</Eyebrow>
         <DisplayTitle>{info.name}</DisplayTitle>
         <Lead>{info.intro}</Lead>
         <Actions>
-          <ButtonLink href={createWhatsAppUrl(service)} target="_blank" rel="noreferrer" data-service={service} data-analytics-location="service_hero"><WhatsAppIcon width={19} height={19} /> Consultar {service === 'hotel' ? 'hospedagem' : 'creche'}</ButtonLink>
+          <ButtonLink href={createWhatsAppUrl(service)} target="_blank" rel="noreferrer" data-service={service} data-analytics-location="service_hero"><WhatsAppIcon width={19} height={19} /> Consultar creche</ButtonLink>
           <ButtonLink href={`/reservar?servico=${service}`} variant="text">Planejar reserva <ArrowUpRight size={17} /></ButtonLink>
         </Actions>
         <Note><Clock3 size={15} aria-hidden="true" /> {info.schedule}</Note>
       </div>
-      <ServicePhoto><ResponsiveImage base={info.image} alt={info.alt} width={900} height={service === 'daycare' ? 962 : 1600} sizes="(max-width: 800px) 90vw, 45vw" loading="eager" /><figcaption>Um momento real no espaço do Auzen.</figcaption></ServicePhoto>
-    </Split></Container></Section>
+      <ServicePhoto><ResponsiveImage base={info.image} alt={info.alt} width={900} height={962} sizes="(max-width: 800px) 90vw, 45vw" loading="eager" /><figcaption>Um momento real no espaço do Auzen.</figcaption></ServicePhoto>
+    </Split></Container></Section>}
     <Section style={{ paddingTop: 0 }}><Container><Split>
       <div><Eyebrow>Do jeito do seu cão</Eyebrow><Heading>{info.heading}</Heading><Lead>{info.detail}</Lead><Link to="/informacoes">Veja o que levar e como se preparar →</Link></div>
       <RuleList>{info.benefits.map((benefit) => <article key={benefit}><Check aria-hidden="true" /><div><h3>{benefit}</h3></div></article>)}</RuleList>

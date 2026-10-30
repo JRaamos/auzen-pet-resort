@@ -4,6 +4,7 @@ import { ButtonLink } from '../components/Button'
 import { Container } from '../components/Container'
 import { ResponsiveImage } from '../components/ResponsiveImage'
 import { Reveal } from '../components/Reveal'
+import { HotelShowcase } from './HotelShowcase'
 
 const ServicesShell = styled.section`
   padding: ${({ theme }) => theme.spacing.section} 0;
@@ -174,42 +175,8 @@ export function Services() {
           </p>
         </Reveal>
       </ServicesIntro>
+      <HotelShowcase />
       <Container>
-        <Service id="hotel">
-          <Reveal>
-            <ServiceImage>
-              <ResponsiveImage
-                base="hotel-rest"
-                alt="Cão descansando em uma área coberta do Auzen"
-                width={900}
-                height={1600}
-                maxWidth={900}
-                sizes="(max-width: 800px) 90vw, 55vw"
-                objectPosition="50% 50%"
-              />
-            </ServiceImage>
-          </Reveal>
-          <ServiceCopy data-number="01">
-            <Reveal delay={0.08}>
-              <Label>Hotel</Label>
-              <ServiceTitle>Uma estadia com clima de casa.</ServiceTitle>
-              <ServiceText>
-                Para viagens, compromissos ou períodos de ausência: um lugar
-                acolhedor, com natureza por perto, para o seu cão ficar.
-              </ServiceText>
-              <Keywords>
-                Hospedagem · carinho · ambiente acolhedor
-              </Keywords>
-              <StyledTextButton
-                href="/hotel"
-                variant="text"
-              >
-                Conhecer a hospedagem{' '}
-                <ArrowUpRight size={17} aria-hidden="true" />
-              </StyledTextButton>
-            </Reveal>
-          </ServiceCopy>
-        </Service>
         <Service id="creche" $reverse>
           <Reveal>
             <ServiceImage>

@@ -2,7 +2,7 @@ export const serviceDetails = {
   hotel: {
     path: '/hotel', name: 'Hotel para cães', title: 'Uma estadia com clima de casa.',
     intro: 'Hospedagem para seu cachorro em Lauro de Freitas, com acolhimento e espaço ao ar livre enquanto você viaja ou cuida dos seus compromissos.',
-    image: 'hotel-rest', alt: 'Cão descansando na área coberta do Auzen',
+    image: 'hotel-welcome-v1', alt: 'Releitura do cão do Auzen em uma varanda iluminada e acolhedora',
     heading: 'A rotina dele também vem na bagagem.',
     detail: 'Cada cão chega com seus hábitos. Antes da estadia, conversamos sobre alimentação, saúde e comportamento para combinar os cuidados com a família.',
     schedule: 'Check-in das 7h às 17h. Check-out até as 9h do dia seguinte.',

@@ -71,7 +71,7 @@ export function WhatsAppButton() {
           intersections.delete(target)
         }
       }
-      document.querySelectorAll('#inicio, #planos, #contato, footer').forEach(target => {
+      document.querySelectorAll('#inicio, #hotel, #planos, #contato, footer').forEach(target => {
         if (intersections.has(target)) return
         intersections.set(target, target.id === 'inicio')
         observer.observe(target)
